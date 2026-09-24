@@ -1,0 +1,132 @@
+.services_wrap {
+  border-top: var(--border-width) solid var(--text);
+}
+
+.services_item {
+  interpolate-size: allow-keywords;
+  --_columns: 2.75rem minmax(0, 1fr) 1.375rem;
+  border-bottom: var(--border-width) solid var(--border);
+  @media (width >= 64rem) {
+    --_columns: 4.375rem minmax(0, 1fr) minmax(0, 1.1fr) 1.75rem;
+  }
+}
+
+.services_toggle,
+.services_body {
+  display: grid;
+  grid-template-columns: var(--_columns);
+  column-gap: var(--space-4);
+}
+
+.services_toggle {
+  align-items: baseline;
+  padding-block: var(--space-5);
+  list-style: none;
+  cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
+  @media (hover: hover) {
+    &:hover .services_title {
+      color: var(--brand-500);
+    }
+  }
+}
+
+.services_number {
+  color: var(--text-2);
+  font-weight: var(--primary-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.services_title {
+  margin-block: 0;
+  transition: color var(--hover-duration) var(--hover-ease);
+}
+
+.services_subtitle {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: var(--space-3);
+  color: var(--text-2);
+  font-weight: var(--primary-medium);
+  @media (width >= 64rem) {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+}
+
+.services_icon {
+  position: relative;
+  grid-column: -2;
+  grid-row: 1;
+  align-self: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 0.125rem;
+    margin-top: -0.0625rem;
+    background-color: currentcolor;
+    transition: rotate var(--open-duration) var(--open-ease);
+  }
+  &::after {
+    rotate: 90deg;
+  }
+  .services_item[open] &::after {
+    rotate: 0deg;
+  }
+}
+
+.services_item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  content-visibility: hidden;
+  transition:
+    block-size var(--open-duration) var(--open-ease),
+    content-visibility var(--open-duration) var(--open-ease) allow-discrete;
+}
+
+.services_item[open]::details-content {
+  block-size: auto;
+  content-visibility: visible;
+}
+
+.services_body {
+  padding-bottom: var(--space-5);
+  > * {
+    grid-column: 2;
+    @media (width >= 64rem) {
+      grid-column: 3;
+    }
+  }
+  > .text {
+    margin-top: 0;
+  }
+}
+
+.services_meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.services_tags {
+  display: contents;
+  > li {
+    padding: 0.4em 0.65em;
+    border: var(--border-width) solid var(--border);
+  }
+}
+
+.services_price {
+  margin-left: auto;
+  font-weight: var(--primary-bold);
+}

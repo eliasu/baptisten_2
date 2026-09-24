@@ -20,7 +20,10 @@ ignore any Webflow Lumos skill. No Tailwind.
   footer, accordion, accordion-item, dropdown, marquee, modal, slider, tabs,
   tab-link, form, input, select, choice, fieldset, textarea, range
 - Blocks: none (mode A)
-- Extensions: none yet
+- Extensions (site.css `@layer base`): text style `statement`
+  (`.text-style-statement`, `--statement-*`), `--primary-semibold: 600`,
+  `--letter-spacing-tighter: -0.05em`, `--ease-out`. Eyebrow variant `label`. Font: Schibsted Grotesk replaces Inter.
+- Import: website from imported/D-portfolio.html, record in IMPORT.md
 
 The three files in `resources/css/lumos/` started as verbatim copies. Tokens
 are edited there. To upgrade, run a three-way merge against the commit above,

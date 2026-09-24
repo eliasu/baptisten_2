@@ -1,0 +1,24 @@
+.home-hero_wrap {
+  padding-top: 12svh;
+}
+
+.home-hero_muted {
+  color: var(--heading-accent);
+}
+
+.home-hero_text {
+  margin-top: var(--space-5);
+  color: var(--text-2);
+}
+
+.home-hero_media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: var(--site-gutter);
+  width: 100%;
+  margin-top: var(--section-space-medium);
+  @media (width >= 64rem) {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  }
+}

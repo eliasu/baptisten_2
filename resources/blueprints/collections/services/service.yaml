@@ -1,0 +1,44 @@
+title: Service
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Name der Leistung (z. B. „Websites“). Die Nummer davor ergibt sich aus der Reihenfolge.'
+              character_limit: 30
+              required: true
+              validate:
+                - required
+          -
+            handle: subtitle
+            field:
+              type: text
+              display: Subtitle
+              instructions: 'Kurzer Satz neben dem Namen, immer sichtbar.'
+              character_limit: 50
+          -
+            handle: description
+            field:
+              type: textarea
+              display: Description
+              instructions: 'Beschreibung, sichtbar wenn die Leistung aufgeklappt ist. Zwei bis drei Sätze.'
+              character_limit: 260
+          -
+            handle: tags
+            field:
+              type: taggable
+              display: Tags
+              instructions: 'Stichworte unter der Beschreibung (z. B. „Workshop“, „Design“). Mit Enter bestätigen.'
+          -
+            handle: price
+            field:
+              type: text
+              display: Price
+              instructions: 'Preisangabe rechts (z. B. „ab 5.000 €“ oder „auf Anfrage“).'
+              character_limit: 24

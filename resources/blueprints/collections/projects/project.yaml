@@ -1,0 +1,39 @@
+title: Project
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Name des Projekts, erscheint unter dem Bild.'
+              character_limit: 40
+              required: true
+              validate:
+                - required
+          -
+            handle: category
+            field:
+              type: text
+              display: Category
+              instructions: 'Art des Projekts, rechts neben dem Namen (z. B. „Website“).'
+              character_limit: 30
+          -
+            handle: image
+            field:
+              type: assets
+              display: Image
+              instructions: 'Hochformat 4:5. Bis ein Bild hochgeladen ist, erscheint ein Platzhalter.'
+              container: assets
+              max_files: 1
+              mode: grid
+          -
+            handle: link
+            field:
+              type: link
+              display: Link
+              instructions: 'Optional: wohin die Karte führt, z. B. die Website des Projekts. Ohne Link ist die Karte nicht klickbar.'

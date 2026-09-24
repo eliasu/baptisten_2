@@ -1,0 +1,46 @@
+# Website import
+
+- **Source** — `imported/D-portfolio.html`, single HTML file (inline CSS, GSAP 3.12.5 + ScrollTrigger + Lenis from CDN, Schibsted Grotesk from Google Fonts). Opened as a file, no server. Screenshots at 375/1440 in the session scratchpad.
+- **Live URL** — none known
+- **Pages in scope** — `D-portfolio.html` → `/` (replaces the current home, one page with anchor nav #info #leistungen #arbeiten #kontakt); Impressum → `/impressum`, Datenschutz → `/datenschutz` as generic `page` entries, body left for the client
+- **Out of scope** — no contact form (source has none): copy-email button + mailto + LinkedIn stay, address and URL in a `contact` global
+- **Tokens** — source clamps read at Lumos' 320/1440 viewport range (source caps at ~1800px). All accepted as proposed:
+  - Type (base.css): h1 42→84, lh 1, −0.05em, 650 (hero h1 + contact h2 38→81 −.055 snapped); h2 26→42, lh 1, −0.05em, 650 (accordion titles 26→40 −.045, client names 26→43 w750 −.04 snapped); h5 19→24, 650, −0.03em (card title); text-large 18→22 lh 1.45 (lead; copy button 17→20 and accordion subtitle 17→19 snapped); text-main 18→18; text-small 15→16 (label 15, nav 16, hint 14 snapped). Weights: headings 650 via --primary-bold; new 600 token for labels/links/buttons.
+  - Space: --site-gutter 12→24 (changed), --section-space-large 100→172 (changed), --nav-height 70px (changed). Snapped: page margin 18→46 → site-margin 16→48; hero-image offset 56→110 and explore offset 70→115 → section-space-medium 64→112; label/content gap 20→58 and work intro gap 36→58 → space-8 40→64; 28/34 → space-5.
+  - Colour: light-100 #fff, light-200 #f2f2f0, light-300 #e3e3e0, dark-900 #000, brand-500 #ff4f1a, brand-text #fff. theme-light: white bg, text-2 ≈ #737373 (source #737370), border light-300. Primary button black → orange on hover. Radius 0.
+  - Contrast: h1 grey part darkened #b3b3ae → ~#949490 (3.1:1). Client names keep #c7c7c3 (decorative, 1.7:1).
+- **Breakpoints** — kept Lumos 30/48/64rem (source stacks at 900px). Label/content layout stacks below 64rem, cards below 48rem. Nav on mobile as source: only the last link (Kontakt), no hamburger.
+- **Fonts** — Schibsted Grotesk variable 400–800 (OFL), self-hosted woff2 from Google Fonts in resources/fonts/, replaces Inter
+- **Content model** —
+  - `home` blueprint (rewritten): hero_heading_muted, hero_heading, hero_text, hero_images (2); info_text, info_link_label; work_text; experiments (assets); contact_heading; seo tab
+  - collection `services` (Leistungen), manual order, no route: title, subtitle, description (textarea), tags (taggable list), price (text); number from order
+  - collection `projects` (Arbeiten), manual order, no route yet: title, category (text), image, link (optional)
+  - collection `clients` (Gearbeitet für), manual order, no route: title. Marquee row 2 = reversed order.
+  - global `company`: tagline, email, linkedin
+  - global `seo`: filled from source <head>
+  - navigations: `main` → /#info /#leistungen /#arbeiten /#kontakt; `footer` → Impressum, Datenschutz
+  - Fixed in template: section labels (Info, Leistungen, Arbeiten, Gearbeitet für, Nebenbei, Experimente und Leidenschaften), copy hint Kopieren/Kopiert
+- **Components** —
+  - `content-labeled` (partial): grey label beside content (3/9 ≥64rem). No Lumos layout pairs a label column with content; used 3×.
+  - `media` (partial): image in a fixed ratio, or a neutral placeholder while none is set; carries clip reveal + parallax hooks. `img` has no empty state; used in hero, projects, experiments.
+  - `content-services` (partial): numbered <details> list from `services`. Lumos accordion-item takes a heading string only; rows here have number, subtitle, tags, price.
+  - `content-projects` (partial): intro + 4:5 project cards from `projects`, optional link with hover badge.
+  - Class-only (used once): `home-hero`, `experiments`, `clients` (two Lumos marquees, row 2 reversed), `home-contact`.
+  - Changed ported components: `nav` (text brand + tagline from `company`, no hamburger, only last link below 48rem, translucent blur bar; nav.ts removed), `footer` (one row: © left, links right; footer.ts removed), `button` (radius token, weight 600), `eyebrow` (+ variant `label`).
+- **Behaviour** — GSAP + ScrollTrigger + Lenis via npm, in `resources/js/components/motion.ts`, driven by hook classes (`motion-words`, `motion-scrub`, `motion-up`, `motion-clip`, `data-parallax`, `data-drift`); all off under prefers-reduced-motion.
+  - Accordion: native `<details name>` (one open) + CSS `::details-content` height transition instead of GSAP.
+  - Client marquees: Lumos CSS marquee with pause buttons (WCAG 2.2.2) instead of GSAP; hover slow-down dropped.
+  - Copy email: `copy.ts`, hint Kopieren → Kopiert, aria-live; mailto fallback.
+  - Dropped: nav fade-in, label slide-in, nav 'scrolled' state (bar is always translucent).
+- **Redirects** — none (source was a single file)
+- **Decisions** —
+  - Placeholders: image fields stay empty; template shows the tinted placeholder box until an image is uploaded. 'Kundenname' clients and `#` links (work cards, 'Alle ansehen', LinkedIn) are not imported.
+  - Copy: source German text taken as is (matches site locale de_DE).
+  - Info statement: new text style `statement` 24→42, lh 1.2, −0.035em, 500 (lumos-extend-system, site.css).
+  - Image placeholder fallback is neutral (--background-2 + label), not the source's per-item tint colours (would be a design field).
+- **Still open** —
+  - First slice (nav, footer, home) built; awaiting review.
+  - Not yet rendered with a real uploaded image (hero_images[0], experiments loop): check once assets exist.
+  - 'Alle ansehen' link dropped until there is a projects page.
+  - Impressum/Datenschutz bodies empty.
+  - Control panel check of every entry pending.

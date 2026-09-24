@@ -10,6 +10,10 @@
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-small);
   }
+  &.label {
+    color: var(--text-2);
+    font-weight: var(--primary-semibold);
+  }
   .eyebrow_marker {
     flex: none;
     width: var(--border-width);

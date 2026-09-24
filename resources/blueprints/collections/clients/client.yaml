@@ -1,0 +1,17 @@
+title: Client
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Name des Kunden, wie er im Laufband „Gearbeitet für“ erscheinen soll.'
+              character_limit: 30
+              required: true
+              validate:
+                - required

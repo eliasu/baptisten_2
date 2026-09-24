@@ -1,0 +1,26 @@
+.experiments_wrap {
+  margin-top: var(--section-space-medium);
+}
+
+.experiments_head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.experiments_viewport {
+  overflow: hidden;
+  margin-right: calc(var(--site-margin) * -1);
+}
+
+.experiments_list {
+  display: flex;
+  gap: var(--site-gutter);
+  width: max-content;
+}
+
+.experiments_item {
+  flex: none;
+  width: clamp(13.75rem, 26vw, 26.25rem);
+}

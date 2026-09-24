@@ -1,0 +1,28 @@
+---
+class: null
+---
+{{# Loops the `services` collection. Native <details name> keeps one item open. #}}
+{{ _services = {collection:services} }}
+{{ if _services | count }}
+<div class="services_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ _services scope="service" }}
+    <details class="services_item motion-up" name="services"{{ if first }} open{{ /if }}>
+        <summary class="services_toggle">
+            <span class="services_number text-style-small">{{ count < 10 ? '00' : '0' }}{{ count }}</span>
+            {{ partial:components/heading tag="h3" variant="h2" class="services_title" }}{{ service:title }}{{ /partial:components/heading }}
+            {{ partial:components/paragraph tag="span" variant="large" class="services_subtitle" }}{{ service:subtitle }}{{ /partial:components/paragraph }}
+            <span class="services_icon" aria-hidden="true"></span>
+        </summary>
+        <div class="services_body">
+            {{ partial:components/paragraph max_width="44" }}{{ service:description }}{{ /partial:components/paragraph }}
+            {{ if service:tags || service:price }}
+            <div class="services_meta">
+                {{ if service:tags }}<ul class="services_tags text-style-small">{{ service:tags }}<li>{{ value }}</li>{{ /service:tags }}</ul>{{ /if }}
+                {{ if service:price }}<p class="services_price">{{ service:price }}</p>{{ /if }}
+            </div>
+            {{ /if }}
+        </div>
+    </details>
+    {{ /_services }}
+</div>
+{{ /if }}

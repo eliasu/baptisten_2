@@ -12,16 +12,25 @@
 @import "./components/button.css" layer(components);
 @import "./components/card.css" layer(components);
 @import "./components/choice.css" layer(components);
+@import "./components/clients.css" layer(components);
+@import "./components/content-labeled.css" layer(components);
+@import "./components/content-projects.css" layer(components);
+@import "./components/content-services.css" layer(components);
 @import "./components/content-wrapper.css" layer(components);
 @import "./components/dropdown.css" layer(components);
+@import "./components/experiments.css" layer(components);
 @import "./components/eyebrow.css" layer(components);
 @import "./components/fieldset.css" layer(components);
 @import "./components/footer.css" layer(components);
 @import "./components/form.css" layer(components);
 @import "./components/grid.css" layer(components);
+@import "./components/home-contact.css" layer(components);
+@import "./components/home-hero.css" layer(components);
 @import "./components/icon.css" layer(components);
 @import "./components/marquee.css" layer(components);
+@import "./components/media.css" layer(components);
 @import "./components/modal.css" layer(components);
+@import "./components/motion.css" layer(components);
 @import "./components/nav.css" layer(components);
 @import "./components/overlay.css" layer(components);
 @import "./components/range.css" layer(components);
@@ -32,15 +41,58 @@
 @import "./components/tabs.css" layer(components);
 @import "./components/textarea.css" layer(components);
 
-/* Fonts — Astro's font API sets --font-inter upstream; here it's plain @font-face */
+/* Fonts — self-hosted Schibsted Grotesk (OFL), variable 400–800 */
 @font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-regular.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Schibsted Grotesk";
+  src: url("../fonts/schibsted-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-:root {
-  --font-inter: "Inter";
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("../fonts/schibsted-grotesk-latin-ext.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Extensions — additions to the Lumos system, listed in CLAUDE.md */
+@layer base {
+  :root {
+    --primary-semibold: 600;
+    --letter-spacing-tighter: -0.05em;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --statement: clamp(var(--statement-min) / 16 * 1rem, ((var(--statement-min) - ((var(--statement-max) - var(--statement-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--statement-max) - var(--statement-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--statement-max) / 16 * 1rem);
+    --statement-min: 24;
+    --statement-max: 42;
+    --statement-line-height: 1.2;
+    --statement-letter-spacing: -0.035em;
+    --statement-text-transform: none;
+    --statement-text-wrap: pretty;
+    --statement-margin-top: var(--space-6);
+    --statement-margin-bottom: var(--space-5);
+    --statement-font-family: var(--primary-family);
+    --statement-font-weight: var(--primary-medium);
+    --statement-trim-top: var(--primary-trim-top);
+    --statement-trim-bottom: var(--primary-trim-bottom);
+  }
+
+  .text-style-statement {
+    font-family: var(--statement-font-family);
+    font-size: var(--statement);
+    font-weight: var(--statement-font-weight);
+    line-height: var(--statement-line-height);
+    letter-spacing: var(--statement-letter-spacing);
+    text-transform: var(--statement-text-transform);
+    text-wrap: var(--statement-text-wrap);
+    --_trim-top: var(--statement-trim-top);
+    --_trim-bottom: var(--statement-trim-bottom);
+    --_margin-top: var(--statement-margin-top);
+    --_margin-bottom: var(--statement-margin-bottom);
+  }
 }

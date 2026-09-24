@@ -1,0 +1,28 @@
+---
+# Text above the projects.
+text: null
+class: null
+---
+{{# Loops the `projects` collection. #}}
+{{ _projects = {collection:projects} }}
+{{ if _projects | count }}
+<div class="projects_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ partial:components/paragraph variant="large" max_width="40" class="projects_intro" }}{{ view:text }}{{ /partial:components/paragraph }}
+    <ul class="projects_list">
+        {{ _projects scope="project" }}
+        <li>
+            <{{ project:link ? 'a' : 'div' }} class="projects_card"{{ if project:link }} href="{{ project:link }}"{{ /if }}>
+                <div class="projects_media">
+                    {{ partial:components/media :image="project:image" ratio="4/5" }}
+                    {{ if project:link }}<span class="projects_badge text-style-small" aria-hidden="true">Ansehen</span>{{ /if }}
+                </div>
+                <div class="projects_caption motion-up">
+                    {{ partial:components/heading tag="h3" variant="h5" class="projects_title" }}{{ project:title }}{{ /partial:components/heading }}
+                    {{ partial:components/paragraph tag="span" class="projects_category" }}{{ project:category }}{{ /partial:components/paragraph }}
+                </div>
+            </{{ project:link ? 'a' : 'div' }}>
+        </li>
+        {{ /_projects }}
+    </ul>
+</div>
+{{ /if }}

@@ -1,0 +1,10 @@
+.motion-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  vertical-align: top;
+  > span {
+    display: inline-block;
+  }
+}

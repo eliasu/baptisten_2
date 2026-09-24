@@ -1,0 +1,18 @@
+.home-contact_wrap {
+  border-top: var(--border-width) solid var(--border);
+}
+
+.home-contact_actions {
+  margin-top: var(--space-7);
+  gap: var(--space-3) var(--space-5);
+}
+
+.home-contact_copy {
+  font-size: var(--text-large);
+  gap: var(--space-3);
+}
+
+.home-contact_hint {
+  font-size: var(--text-small);
+  opacity: 0.7;
+}

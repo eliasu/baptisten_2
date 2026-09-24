@@ -1,0 +1,13 @@
+---
+# Label beside the content, above it on small screens.
+label: null
+# Anchor id, for in-page links.
+id: null
+class: null
+---
+{{ if slot | trim }}
+<div class="labeled_wrap{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:id }} id="{{ view:id }}"{{ /if }}>
+    {{ partial:components/eyebrow variant="label" class="labeled_label" }}{{ view:label }}{{ /partial:components/eyebrow }}
+    <div class="labeled_content">{{ slot | trim }}</div>
+</div>
+{{ /if }}

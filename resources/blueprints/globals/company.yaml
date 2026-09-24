@@ -1,0 +1,27 @@
+title: Company
+fields:
+  -
+    handle: tagline
+    field:
+      type: text
+      display: Tagline
+      instructions: 'Kurzer Claim neben dem Namen in der Navigation (nur auf großen Bildschirmen).'
+      character_limit: 40
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: Email
+      instructions: 'E-Mail-Adresse im Kontaktbereich. Besucher können sie mit einem Klick kopieren.'
+      validate:
+        - email
+  -
+    handle: linkedin
+    field:
+      type: text
+      input_type: url
+      display: LinkedIn
+      instructions: 'Vollständige Adresse des LinkedIn-Profils (https://…). Leer lassen, um den Link auszublenden.'
+      validate:
+        - url

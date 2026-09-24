@@ -5,7 +5,7 @@ tabs:
     display: Content
     sections:
       -
-        display: Intro
+        display: Hero
         instructions: 'Der erste Bereich der Startseite.'
         fields:
           -
@@ -18,30 +18,88 @@ tabs:
               validate:
                 - required
           -
-            handle: eyebrow
+            handle: hero_heading_muted
             field:
               type: text
-              display: Eyebrow
-              instructions: 'Kurze Zeile über der Überschrift (optional).'
+              display: 'Heading (grey part)'
+              instructions: 'Erster, grau dargestellter Teil der Hauptüberschrift (z. B. „Du sagst, was du willst.“).'
               character_limit: 40
           -
-            handle: heading
+            handle: hero_heading
             field:
               type: text
               display: Heading
-              instructions: 'Hauptüberschrift der Startseite.'
-              character_limit: 80
+              instructions: 'Zweiter, schwarzer Teil der Hauptüberschrift.'
+              character_limit: 40
               validate:
                 - required
           -
-            handle: text
+            handle: hero_text
             field:
               type: textarea
               display: Text
               instructions: 'Ein bis zwei Sätze unter der Überschrift.'
-              character_limit: 300
+              character_limit: 220
           -
-            import: buttons
+            handle: hero_images
+            field:
+              type: assets
+              display: Images
+              instructions: 'Zwei Bilder unter dem Text: zuerst ein breites (16:10), dann ein hohes (3:4). Bis ein Bild hochgeladen ist, erscheint ein Platzhalter.'
+              container: assets
+              max_files: 2
+              mode: grid
+      -
+        display: Info
+        fields:
+          -
+            handle: info_text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Kurze Vorstellung in großer Schrift, drei bis vier Sätze.'
+              character_limit: 360
+              validate:
+                - required
+          -
+            handle: info_link_label
+            field:
+              type: text
+              display: 'Link label'
+              instructions: 'Beschriftung des Links darunter. Er führt zum Kontaktbereich.'
+              character_limit: 30
+      -
+        display: Work
+        instructions: 'Die Projekte selbst werden unter „Projects“ gepflegt, die Leistungen unter „Services“.'
+        fields:
+          -
+            handle: work_text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Ein Satz über den Projekten.'
+              character_limit: 160
+          -
+            handle: experiments
+            field:
+              type: assets
+              display: 'Side projects'
+              instructions: 'Bilder für das Band „Nebenbei – Experimente und Leidenschaften“ (Querformat 4:3). Bleibt es leer, erscheinen Platzhalter.'
+              container: assets
+              mode: grid
+      -
+        display: Contact
+        instructions: 'E-Mail-Adresse und LinkedIn werden unter Globals → Company gepflegt.'
+        fields:
+          -
+            handle: contact_heading
+            field:
+              type: text
+              display: Heading
+              instructions: 'Große Überschrift im Kontaktbereich.'
+              character_limit: 70
+              validate:
+                - required
   seo:
     display: SEO
     sections:

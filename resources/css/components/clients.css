@@ -1,0 +1,23 @@
+.clients_wrap {
+  display: grid;
+  gap: var(--space-3);
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  .marquee_wrap {
+    --_gap-size: var(--space-8);
+    --_speed: 6s;
+    padding-inline-end: var(--site-margin);
+  }
+}
+
+.clients_name {
+  padding-block: 0.1em;
+  color: color-mix(in srgb, var(--text), var(--background) 78%);
+  white-space: nowrap;
+  transition: color var(--hover-duration) var(--hover-ease);
+  @media (hover: hover) {
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
