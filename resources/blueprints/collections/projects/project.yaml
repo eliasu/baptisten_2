@@ -23,14 +23,15 @@ tabs:
               instructions: 'Art des Projekts, rechts neben dem Namen (z. B. „Website“).'
               character_limit: 30
           -
-            handle: image
+            handle: media
             field:
-              type: assets
-              display: Image
-              instructions: 'Hochformat 4:5. Bis ein Bild hochgeladen ist, erscheint ein Platzhalter.'
-              container: assets
-              max_files: 1
-              mode: grid
+              type: group
+              display: Media
+              instructions: 'Bild, Video oder Slideshow der Arbeit. Das Format ergibt sich aus dem Platz im Raster. Bis etwas hochgeladen ist, erscheint ein Platzhalter.'
+              fullscreen: false
+              fields:
+                -
+                  import: media
           -
             handle: link
             field:

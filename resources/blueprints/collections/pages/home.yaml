@@ -41,14 +41,17 @@ tabs:
               instructions: 'Ein bis zwei Sätze unter der Überschrift.'
               character_limit: 220
           -
-            handle: hero_images
+            handle: hero_media
             field:
-              type: assets
-              display: Images
-              instructions: 'Zwei Bilder unter dem Text: zuerst ein breites (16:10), dann ein hohes (3:4). Bis ein Bild hochgeladen ist, erscheint ein Platzhalter.'
-              container: assets
-              max_files: 2
-              mode: grid
+              type: grid
+              display: Media
+              instructions: 'Drei Medien unter dem Text: zuerst breit (16:10, auf kleinen Bildschirmen quadratisch), dann hoch (3:4), dann ein Panorama über die volle Breite (21:9). Leere Plätze zeigen einen Platzhalter.'
+              max_rows: 3
+              mode: stacked
+              add_row: 'Add media'
+              fields:
+                -
+                  import: media
       -
         display: Info
         fields:
@@ -82,11 +85,14 @@ tabs:
           -
             handle: experiments
             field:
-              type: assets
+              type: grid
               display: 'Side projects'
-              instructions: 'Bilder für das Band „Nebenbei – Experimente und Leidenschaften“ (Querformat 4:3). Bleibt es leer, erscheinen Platzhalter.'
-              container: assets
-              mode: grid
+              instructions: 'Medien für das Band „Nebenbei – Experimente und Leidenschaften“ (Querformat 4:3). Bleibt es leer, erscheinen Platzhalter.'
+              mode: stacked
+              add_row: 'Add media'
+              fields:
+                -
+                  import: media
       -
         display: Contact
         instructions: 'E-Mail-Adresse und LinkedIn werden unter Globals → Company gepflegt.'

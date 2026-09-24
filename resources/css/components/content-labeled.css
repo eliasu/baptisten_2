@@ -11,6 +11,12 @@
   align-self: start;
 }
 
+/* --labeled-bleed: a negative margin that stretches a child of the content
+   back across the label column, to the container's full width. */
 .labeled_content {
+  --labeled-bleed: 0;
   min-width: 0;
+  @media (width >= 64rem) {
+    --labeled-bleed: calc(-100% / 3 - var(--space-8));
+  }
 }

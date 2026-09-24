@@ -5,8 +5,9 @@
     </div>
     {{ partial:components/paragraph variant="large" max_width="46" class="home-hero_text motion-up" }}{{ hero_text }}{{ /partial:components/paragraph }}
     <div class="home-hero_media">
-        {{ partial:components/media :image="hero_images[0]" ratio="16/10" placeholder="Bild folgt: Website-Mockup" parallax="-6" }}
-        {{ partial:components/media :image="hero_images[1]" ratio="3/4" placeholder="Foto folgt" parallax="10" }}
+        {{ partial:components/media :media="hero_media[0]" ratio="16/10" placeholder="Bild folgt: Website-Mockup" parallax="-6" }}
+        {{ partial:components/media :media="hero_media[1]" ratio="3/4" placeholder="Foto folgt" parallax="10" }}
+        {{ partial:components/media :media="hero_media[2]" ratio="21/9" placeholder="Bild folgt: Panorama" parallax="-4" class="home-hero_wide" }}
     </div>
 {{ /partial:components/section }}
 
@@ -42,7 +43,7 @@
                 <ul class="experiments_list" data-drift>
                     {{ if experiments }}
                     {{ experiments scope="experiment" }}
-                    <li class="experiments_item">{{ partial:components/media :image="experiment" ratio="4/3" }}</li>
+                    <li class="experiments_item">{{ partial:components/media :media="experiment" ratio="4/3" placeholder="Experiment" }}</li>
                     {{ /experiments }}
                     {{ else }}
                     {{ loop times="5" }}
@@ -60,10 +61,7 @@
     {{ partial:components/eyebrow variant="label" }}Gearbeitet für{{ /partial:components/eyebrow }}
     <div class="clients_wrap">
         {{ partial:components/marquee label="Kunden" }}
-            {{ collection:clients }}{{ unless no_results }}<span class="clients_name text-style-h2">{{ title }}</span>{{ /unless }}{{ /collection:clients }}
-        {{ /partial:components/marquee }}
-        {{ partial:components/marquee label="Kunden, Gegenrichtung" direction="backwards" }}
-            {{ collection:clients sort="order:desc" }}{{ unless no_results }}<span class="clients_name text-style-h2">{{ title }}</span>{{ /unless }}{{ /collection:clients }}
+            {{ collection:clients }}{{ unless no_results }}<span class="clients_name text-style-h1">{{ title }}</span>{{ /unless }}{{ /collection:clients }}
         {{ /partial:components/marquee }}
     </div>
 {{ /partial:components/section }}

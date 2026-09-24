@@ -21,4 +21,14 @@
   @media (width >= 64rem) {
     grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
   }
+  /* Half width on smaller screens: 16:10 would be too flat there. */
+  > :first-child {
+    @media (width < 64rem) {
+      aspect-ratio: 1 / 1;
+    }
+  }
+}
+
+.home-hero_wide {
+  grid-column: 1 / -1;
 }

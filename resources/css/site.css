@@ -17,6 +17,7 @@
 @import "./components/content-projects.css" layer(components);
 @import "./components/content-services.css" layer(components);
 @import "./components/content-wrapper.css" layer(components);
+@import "./components/cursor.css" layer(components);
 @import "./components/dropdown.css" layer(components);
 @import "./components/experiments.css" layer(components);
 @import "./components/eyebrow.css" layer(components);

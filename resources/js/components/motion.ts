@@ -3,15 +3,50 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
 /* Hooks: .motion-words (words rise on load), .motion-scrub (words brighten
-   while scrolling), .motion-up, .motion-clip, [data-parallax="-6"] (percent),
+   while scrolling), .motion-up, .motion-clip (builds up with the scroll
+   position and back down when scrolled back; media already on screen at load
+   builds up once, on its own), [data-parallax="-6"] (percent),
    [data-drift]. Nothing moves for prefers-reduced-motion. */
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+export const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* The smooth scroller, for components that scroll the page. */
+export let lenis: Lenis | null = null;
+
+/* Each .motion-clip's timeline. Media hidden at load gets none: its scroll
+   position isn't known yet, so the component that shows it calls
+   clipReveal() then, and clipRemove() when it hides it again. */
+export const clips = new WeakMap<Element, gsap.core.Timeline>();
+
+export function clipReveal(el: Element, onScreen = false) {
+  if (reduced) return;
+  // Tied to the scroll, an expo curve packs the whole build into a sliver
+  // of the scroll distance; a gentle curve spreads it over the range.
+  const timeline = gsap.timeline(
+    onScreen
+      ? {}
+      : { defaults: { ease: "power1.inOut" }, scrollTrigger: { trigger: el, start: "top bottom", end: "top 25%", scrub: 2.5 } },
+  );
+  timeline
+    .fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ...(onScreen && { ease: "expo.inOut" }) })
+    .fromTo(el.firstElementChild, { scale: 1.3 }, { scale: 1, duration: 1.6, ...(onScreen && { ease: "expo.out", duration: 2.2 }) }, 0);
+  clips.set(el, timeline);
+}
+
+export function clipRemove(el: Element) {
+  const timeline = clips.get(el);
+  timeline?.scrollTrigger?.kill();
+  timeline?.kill();
+  gsap.set([el, el.firstElementChild], { clearProps: "clipPath,scale" });
+  clips.delete(el);
+}
+
+if (!reduced) {
   gsap.registerPlugin(ScrollTrigger);
   gsap.defaults({ ease: "expo.out" });
 
-  const lenis = new Lenis({ lerp: 0.09, anchors: { offset: -80 } });
+  lenis = new Lenis({ lerp: 0.09, anchors: { offset: -80 } });
   lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.add((time) => lenis!.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
   const splitWords = (root: Element) => {
@@ -52,14 +87,9 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     gsap.from(el, { opacity: 0, y: 20, duration: 1.2, scrollTrigger: reveal(el) });
   }
 
-  for (const el of document.querySelectorAll(".motion-clip")) {
-    gsap.fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, {
-      clipPath: "inset(0% 0% 0% 0%)",
-      duration: 1.6,
-      ease: "expo.inOut",
-      scrollTrigger: reveal(el),
-    });
-    gsap.from(el.firstElementChild, { scale: 1.3, duration: 2.2, scrollTrigger: reveal(el) });
+  for (const el of document.querySelectorAll<HTMLElement>(".motion-clip")) {
+    if (el.offsetParent === null) continue;
+    clipReveal(el, el.getBoundingClientRect().top < innerHeight);
   }
 
   for (const el of document.querySelectorAll<HTMLElement>("[data-parallax]")) {

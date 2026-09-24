@@ -1,0 +1,84 @@
+title: Media
+fields:
+  -
+    handle: type
+    field:
+      type: button_group
+      display: Type
+      instructions: 'Ein Bild, ein Video (stumm, in Schleife) oder mehrere Bilder als Slideshow.'
+      options:
+        image: Image
+        video: Video
+        slideshow: Slideshow
+      default: image
+  -
+    handle: image
+    field:
+      type: assets
+      display: Image
+      instructions: 'Das Bild. Es wird auf das Format dieses Platzes zugeschnitten; der Fokuspunkt bestimmt den Ausschnitt.'
+      container: assets
+      max_files: 1
+      mode: grid
+      if:
+        type: 'equals image'
+  -
+    handle: video
+    field:
+      type: assets
+      display: Video
+      instructions: 'MP4-Datei, möglichst unter 10 MB. Läuft stumm und in Schleife.'
+      container: assets
+      max_files: 1
+      mode: list
+      validate:
+        - 'mimes:mp4,webm'
+      if:
+        type: 'equals video'
+  -
+    handle: poster
+    field:
+      type: assets
+      display: Poster
+      instructions: 'Optional: Standbild, das erscheint, bis das Video lädt.'
+      container: assets
+      max_files: 1
+      mode: grid
+      if:
+        type: 'equals video'
+  -
+    handle: images
+    field:
+      type: assets
+      display: Images
+      instructions: 'Zwei oder mehr Bilder, in dieser Reihenfolge gezeigt.'
+      container: assets
+      min_files: 2
+      mode: grid
+      if:
+        type: 'equals slideshow'
+  -
+    handle: transition
+    field:
+      type: button_group
+      display: Transition
+      instructions: 'Wie ein Bild zum nächsten wechselt.'
+      options:
+        fade: Fade
+        slide: Slide
+        none: None
+      default: fade
+      if:
+        type: 'equals slideshow'
+  -
+    handle: interval
+    field:
+      type: integer
+      display: 'Seconds per image'
+      instructions: 'Wie lange jedes Bild stehen bleibt, in Sekunden.'
+      default: 4
+      validate:
+        - 'min:1'
+        - 'max:20'
+      if:
+        type: 'equals slideshow'

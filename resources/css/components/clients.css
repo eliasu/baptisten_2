@@ -11,7 +11,9 @@
 }
 
 .clients_name {
-  padding-block: 0.1em;
+  /* Room for descenders and umlauts: the text style trims the box to cap
+     height and baseline, and the marquee clips at its edges. */
+  padding-block: 0.25em;
   color: color-mix(in srgb, var(--text), var(--background) 78%);
   white-space: nowrap;
   transition: color var(--hover-duration) var(--hover-ease);

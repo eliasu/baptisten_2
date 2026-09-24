@@ -7,3 +7,5 @@ preferences:
     pages:
       view: tree
       after_save: continue_editing
+    projects:
+      view: list

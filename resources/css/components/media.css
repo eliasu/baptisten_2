@@ -14,7 +14,7 @@
   &:is([data-parallax]) {
     inset: -8% 0;
   }
-  > .image {
+  > :is(.image, .video) {
     height: 100%;
   }
 }
@@ -23,4 +23,43 @@
   padding: var(--space-1) var(--space-2);
   background-color: var(--background);
   font-weight: var(--primary-semibold);
+}
+
+.media_slides {
+  position: absolute;
+  inset: 0;
+}
+
+.media_slide {
+  position: absolute;
+  inset: 0;
+  > .image {
+    height: 100%;
+  }
+
+  .media_slides.fade & {
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out);
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  .media_slides.slide & {
+    translate: 100% 0;
+    transition: translate 1.2s var(--ease-out);
+    &.is-active {
+      translate: 0 0;
+    }
+    &.is-leaving {
+      translate: -100% 0;
+    }
+  }
+
+  .media_slides.none & {
+    visibility: hidden;
+    &.is-active {
+      visibility: visible;
+    }
+  }
 }

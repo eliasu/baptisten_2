@@ -25,6 +25,9 @@
   - `media` (partial): image in a fixed ratio, or a neutral placeholder while none is set; carries clip reveal + parallax hooks. `img` has no empty state; used in hero, projects, experiments.
   - `content-services` (partial): numbered <details> list from `services`. Lumos accordion-item takes a heading string only; rows here have number, subtitle, tags, price.
   - `content-projects` (partial): intro + 4:5 project cards from `projects`, optional link with hover badge.
+  - `media` now takes a `media` fieldset value (image | video | slideshow); slideshow/video script `media.ts`.
+  - Mouse follower: `cursor.ts` + `cursor.css`, element created by the script (no partial). Replaces the project card 'Ansehen' hover badge. Over linked media it shows 'Ansehen' plus the link's domain (no scheme, no www) when the link leaves the site.
+  - `content-projects`: 'Alle anzeigen' toggle, Flip 2→3 columns, position pattern expanded it bleeds to full container width (--labeled-bleed from content-labeled); rows share one height (multiple of the column width), no offset. ≥64rem 3 columns: 1,1,1 | 2,· | ·,1,1 | 1,2 | ·,1,·. 48–64rem 2 columns: 1,1 | 2 | ·,1 | 1,1 | 2 | 1,1. Below 48rem stacked. Toggle: hidden media get their scroll trigger only when shown (clipReveal/clipRemove in motion.ts); works already in view build up once; collapsing from inside the grid first scrolls back to it (Lenis). Captions: category small, one line, on the title's baseline, wraps below when there is no room; max 9 projects.
   - Class-only (used once): `home-hero`, `experiments`, `clients` (two Lumos marquees, row 2 reversed), `home-contact`.
   - Changed ported components: `nav` (text brand + tagline from `company`, no hamburger, only last link below 48rem, translucent blur bar; nav.ts removed), `footer` (one row: © left, links right; footer.ts removed), `button` (radius token, weight 600), `eyebrow` (+ variant `label`).
 - **Behaviour** — GSAP + ScrollTrigger + Lenis via npm, in `resources/js/components/motion.ts`, driven by hook classes (`motion-words`, `motion-scrub`, `motion-up`, `motion-clip`, `data-parallax`, `data-drift`); all off under prefers-reduced-motion.
@@ -38,9 +41,17 @@
   - Copy: source German text taken as is (matches site locale de_DE).
   - Info statement: new text style `statement` 24→42, lh 1.2, −0.035em, 500 (lumos-extend-system, site.css).
   - Image placeholder fallback is neutral (--background-2 + label), not the source's per-item tint colours (would be a design field).
+- **Extensions after first slice (2026-09-25)** —
+  - All media build up scrubbed to the scroll position (top bottom → top 25%, power1.inOut, smoothing 2.5 s) and back down when scrolled back; media on screen at load (hero) builds up once on its own.
+  - Every media slot is a `media` fieldset: image | video (uploaded MP4, muted loop autoplay, optional poster) | slideshow (images + transition slide/fade/none + interval). Transition/interval are editor-set on explicit request, against the CLAUDE.md "content not design" rule.
+  - Hero gets a third, full-width 21:9 media below the two.
+  - Subtle mouse follower (dot; ring over links/buttons; "Ansehen" circle over linked media); off on touch and reduced motion.
+  - Work: "Alle anzeigen" expands the 2 featured projects to an irregular 3-column grid of up to 9, via GSAP Flip. Layout fixed by position in the template (not per project). 7 placeholder projects (Projekt 3–9) created for the client to replace.
+  - Nebenbei: each item is a full media entry (grid of media).
 - **Still open** —
   - First slice (nav, footer, home) built; awaiting review.
-  - Not yet rendered with a real uploaded image (hero_images[0], experiments loop): check once assets exist.
+  - Video only checked as markup (no ffmpeg for a test file): play it once with a real MP4.
+  - Autoplaying slideshows/videos have no pause button (they stop off-screen and for reduced motion); WCAG 2.2.2 would want one for anything moving longer than 5 s.
   - 'Alle ansehen' link dropped until there is a projects page.
   - Impressum/Datenschutz bodies empty.
   - Control panel check of every entry pending.

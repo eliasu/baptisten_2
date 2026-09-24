@@ -1,9 +1,12 @@
+import "./components/content-projects.ts";
+import "./components/copy.ts";
+import "./components/cursor.ts";
 import "./components/dropdown.ts";
 import "./components/form.ts";
 import "./components/marquee.ts";
+import "./components/media.ts";
 import "./components/modal.ts";
+import "./components/motion.ts";
 import "./components/range.ts";
 import "./components/slider.ts";
 import "./components/tabs.ts";
-import "./components/copy.ts";
-import "./components/motion.ts";
