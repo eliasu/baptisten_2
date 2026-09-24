@@ -11,4 +11,71 @@ info_link_label: 'Lass uns sprechen'
 work_text: 'Eine Auswahl, von der Website bis zum Werkzeug nach Maß, für Menschen, denen gute Gestaltung wichtig ist.'
 contact_heading: 'Vernetzen, zusammenarbeiten oder einfach Hallo sagen.'
 noindex: false
+hero_media:
+  -
+    id: bE5A4KA8DKvmQmdggNWde
+    type: video
+    video: videos/tyfte_afar.mp4
+    poster: videos/tyfte_work_afar.jpg
+  -
+    id: x-16XJ6MqLpIycOEPNBaW
+    type: slideshow
+    images:
+      - logo_01.jpg
+      - logo_02.jpg
+      - logo_03.jpg
+      - logo_04.jpg
+      - logo_05.jpg
+      - logo_06.jpg
+      - logo_07.jpg
+      - logo_08.jpg
+      - logo_09.jpg
+      - logo_10.jpg
+      - logo_11.jpg
+      - logo_12.jpg
+      - logo_13.jpg
+      - logo_14.jpg
+      - logo_15.jpg
+    transition: fade
+    interval: 500
+  -
+    id: neoqH7ES54ML4ZXTU5nf1
+    type: slideshow
+    images:
+      - logo_24.jpg
+      - logo_23.jpg
+      - logo_22.jpg
+      - logo_21.jpg
+      - logo_20.jpg
+      - logo_19.jpg
+      - logo_18.jpg
+      - logo_17.jpg
+      - logo_16.jpg
+    transition: slide
+    interval: 4000
+updated_by: 47beda1f-607b-4632-9492-b86d08c71b37
+updated_at: 1790291792
+experiments:
+  -
+    id: '-SRRIQBw__PeOW0vYniIl'
+    type: video
+    video: videos/tyfte_pots.mp4
+  -
+    id: 0Tqb-jPWGcCeYJM-23xBq
+    type: slideshow
+    images:
+      - logo_09.jpg
+      - logo_07.jpg
+      - logo_05.jpg
+      - logo_04.jpg
+    transition: fade
+    interval: 500
+  -
+    id: YfZNagV50M5oR87I3QGyU
+    type: video
+    video: videos/tyfte_potentialentwickler.mp4
+  -
+    id: TMrUSLaHxJaZuAJGinS4l
+    type: video
+    video: videos/tyfte_haftddr.mp4
 ---

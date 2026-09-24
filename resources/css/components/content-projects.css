@@ -102,6 +102,7 @@
 
 .projects_category {
   margin-block: 0;
+  font-size: calc(var(--text-small) * 0.85);
   color: var(--text-2);
   font-weight: var(--primary-semibold);
   white-space: nowrap;

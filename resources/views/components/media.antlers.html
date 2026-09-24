@@ -16,7 +16,7 @@ class: null
         {{ if _type == 'video' && view:media:video }}
             {{ partial:components/video :file="view:media:video" :poster="view:media:poster" variant="custom" }}
         {{ elseif _type == 'slideshow' && view:media:images }}
-            <div class="media_slides {{ view:media:transition ?? 'fade' }}" data-slideshow data-interval="{{ view:media:interval ?? 4 }}">
+            <div class="media_slides {{ view:media:transition ?? 'fade' }}" data-slideshow data-interval="{{ view:media:interval ?? 4000 }}">
                 {{ view:media:images }}
                 <div class="media_slide{{ if first }} is-active{{ /if }}">{{ partial:components/img :image="view:media:images[index]" }}</div>
                 {{ /view:media:images }}

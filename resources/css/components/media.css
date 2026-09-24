@@ -39,7 +39,7 @@
 
   .media_slides.fade & {
     opacity: 0;
-    transition: opacity 1.2s var(--ease-out);
+    transition: opacity var(--_duration, 1.2s) var(--ease-out);
     &.is-active {
       opacity: 1;
     }
@@ -47,7 +47,7 @@
 
   .media_slides.slide & {
     translate: 100% 0;
-    transition: translate 1.2s var(--ease-out);
+    transition: translate var(--_duration, 1.2s) var(--ease-out);
     &.is-active {
       translate: 0 0;
     }

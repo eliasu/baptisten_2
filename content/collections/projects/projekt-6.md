@@ -1,6 +1,11 @@
 ---
 id: 65599fd8-4c52-458e-b207-bfc3cf995d38
 blueprint: project
-title: 'Projekt 6'
-category: 'Website'
+title: Rhythmusgerät
+category: Website
+media:
+  type: image
+  image: logo_23.jpg
+updated_by: 47beda1f-607b-4632-9492-b86d08c71b37
+updated_at: 1790291895
 ---

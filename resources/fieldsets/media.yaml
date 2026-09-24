@@ -74,11 +74,11 @@ fields:
     handle: interval
     field:
       type: integer
-      display: 'Seconds per image'
-      instructions: 'Wie lange jedes Bild stehen bleibt, in Sekunden.'
-      default: 4
+      display: 'Milliseconds per image'
+      instructions: 'Wie lange jedes Bild stehen bleibt, in Millisekunden (1000 = 1 Sekunde). Unter 1000 wird es ein schnelles Flackern.'
+      default: 4000
       validate:
-        - 'min:1'
-        - 'max:20'
+        - 'min:100'
+        - 'max:20000'
       if:
         type: 'equals slideshow'

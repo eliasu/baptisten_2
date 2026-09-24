@@ -42,8 +42,8 @@
   - Info statement: new text style `statement` 24→42, lh 1.2, −0.035em, 500 (lumos-extend-system, site.css).
   - Image placeholder fallback is neutral (--background-2 + label), not the source's per-item tint colours (would be a design field).
 - **Extensions after first slice (2026-09-25)** —
-  - All media build up scrubbed to the scroll position (top bottom → top 25%, power1.inOut, smoothing 2.5 s) and back down when scrolled back; media on screen at load (hero) builds up once on its own.
-  - Every media slot is a `media` fieldset: image | video (uploaded MP4, muted loop autoplay, optional poster) | slideshow (images + transition slide/fade/none + interval). Transition/interval are editor-set on explicit request, against the CLAUDE.md "content not design" rule.
+  - All media build up scrubbed to the scroll position (top bottom → top 35%, power1.inOut, smoothing 2.5 s) and back down when scrolled back; media on screen at load (hero) builds up once on its own.
+  - Every media slot is a `media` fieldset: image | video (uploaded MP4, muted loop autoplay, optional poster) | slideshow (images + transition slide/fade/none + interval in ms; transition shortens to 80% of a short interval). Transition/interval are editor-set on explicit request, against the CLAUDE.md "content not design" rule.
   - Hero gets a third, full-width 21:9 media below the two.
   - Subtle mouse follower (dot; ring over links/buttons; "Ansehen" circle over linked media); off on touch and reduced motion.
   - Work: "Alle anzeigen" expands the 2 featured projects to an irregular 3-column grid of up to 9, via GSAP Flip. Layout fixed by position in the template (not per project). 7 placeholder projects (Projekt 3–9) created for the client to replace.

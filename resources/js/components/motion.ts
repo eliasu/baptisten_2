@@ -24,7 +24,7 @@ export function clipReveal(el: Element, onScreen = false) {
   const timeline = gsap.timeline(
     onScreen
       ? {}
-      : { defaults: { ease: "power1.inOut" }, scrollTrigger: { trigger: el, start: "top bottom", end: "top 25%", scrub: 2.5 } },
+      : { defaults: { ease: "power1.inOut" }, scrollTrigger: { trigger: el, start: "top bottom", end: "top 35%", scrub: 2.5 } },
   );
   timeline
     .fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ...(onScreen && { ease: "expo.inOut" }) })

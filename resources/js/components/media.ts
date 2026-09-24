@@ -25,6 +25,9 @@ for (const show of document.querySelectorAll<HTMLElement>("[data-slideshow]")) {
   const slides = [...show.children] as HTMLElement[];
   if (reduced || slides.length < 2) continue;
   observer.observe(show);
+  const interval = Number(show.dataset.interval) || 4000;
+  // A transition longer than the image stands would never settle.
+  show.style.setProperty("--_duration", `${Math.min(1200, interval * 0.8)}ms`);
   let current = 0;
   setInterval(() => {
     if (!visible.has(show) || document.hidden) return;
@@ -41,5 +44,18 @@ for (const show of document.querySelectorAll<HTMLElement>("[data-slideshow]")) {
     for (const slide of slides) slide.style.transition = "";
     leaving.classList.replace("is-active", "is-leaving");
     next.classList.add("is-active");
-  }, Number(show.dataset.interval || 4) * 1000);
+  }, interval);
 }
+
+/* object-fit: cover scales an image up whenever its box is taller than the
+   image, but the browser picks from srcset by the box's width alone, so it
+   loads a file far too small. Tell it the width actually drawn. */
+const sizer = new ResizeObserver((entries) => {
+  for (const { target, contentRect } of entries) {
+    const img = target as HTMLImageElement;
+    const ratio = Number(img.getAttribute("width")) / Number(img.getAttribute("height"));
+    if (!ratio || !contentRect.width) continue;
+    img.sizes = `${Math.ceil(Math.max(contentRect.width, contentRect.height * ratio))}px`;
+  }
+});
+for (const img of document.querySelectorAll(".media_inner img[srcset]")) sizer.observe(img);
