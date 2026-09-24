@@ -1,0 +1,22 @@
+---
+# Statamic port: `src` is reserved by the partial tag. Video URL or asset. Omit to render nothing.
+file: null
+# Poster image URL or asset.
+poster: null
+# Aspect ratio: 2-1, 16-9, 3-2, 5-4, 1-1, 4-5, 2-3, custom, auto.
+variant: 16-9
+# CSS `aspect-ratio` value. custom only.
+ratio: null
+# Restart after playback.
+loop: true
+# Start automatically. Requires `muted`.
+autoplay: true
+# Mute audio.
+muted: true
+# Fit without cropping and remove the skeleton tint.
+transparent: false
+class: null
+---
+{{ if view:file }}
+<video src="{{ view:file:url ?? view:file }}"{{ if view:poster }} poster="{{ view:poster:url ?? view:poster }}"{{ /if }} class="video{{ if view:variant != 'custom' }} ratio-{{ view:variant }}{{ /if }}{{ if view:transparent | to_bool }} transparent{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:variant == 'custom' && view:ratio }} style="aspect-ratio: {{ view:ratio }};"{{ /if }}{{ if view:loop | to_bool }} loop{{ /if }}{{ if view:autoplay | to_bool }} autoplay{{ /if }}{{ if view:muted | to_bool }} muted{{ /if }} playsinline></video>
+{{ /if }}

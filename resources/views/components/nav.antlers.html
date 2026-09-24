@@ -1,0 +1,42 @@
+---
+# Fix the nav over the page.
+overlap: false
+# Statamic port: links come from this Statamic navigation, not hard-coded.
+navigation: main
+---
+{{# Statamic port: ARIA labels are German, the site language. JS: resources/js/components/nav.ts #}}
+<header class="nav_wrap{{ if view:overlap | to_bool }} overlap{{ /if }}">
+    <div class="nav_inner">
+        <a class="nav_logo" href="/" aria-label="{{ site:name }}">
+            {{ partial:components/icon name="logo" variant="full-width" }}
+        </a>
+        <button class="nav_toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav-menu">
+            <span class="nav_toggle_icon"></span>
+        </button>
+        <nav class="nav_menu" id="nav-menu" aria-label="Hauptnavigation">
+            <div class="nav_menu_inner">
+                <ul class="nav_links">
+                    {{ nav :handle="view:navigation" max_depth="1" }}
+                        {{ unless no_results }}{{ partial:components/nav-link :href="url" }}{{ title }}{{ /partial:components/nav-link }}{{ /unless }}
+                    {{ /nav }}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+{{# No-JS fallback #}}
+<noscript>
+    <style>
+        .nav_toggle {
+            display: none;
+        }
+        .nav_menu {
+            grid-template-rows: 1fr;
+            visibility: visible;
+        }
+        .nav_menu_inner {
+            opacity: 1;
+        }
+    </style>
+</noscript>

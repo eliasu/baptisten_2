@@ -1,0 +1,18 @@
+title: SEO
+fields:
+  -
+    handle: description
+    field:
+      type: textarea
+      display: 'Default description'
+      instructions: 'Standardbeschreibung für Google und beim Teilen, wenn eine Seite keine eigene hat. Etwa 1–2 Sätze.'
+      character_limit: 160
+  -
+    handle: image
+    field:
+      type: assets
+      display: 'Default share image'
+      instructions: 'Standardbild beim Teilen einer Seite, wenn sie kein eigenes hat. Wird auf 1200 × 630 px zugeschnitten.'
+      container: assets
+      max_files: 1
+      mode: grid

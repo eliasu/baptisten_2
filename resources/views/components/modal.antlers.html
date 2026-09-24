@@ -1,0 +1,22 @@
+---
+# Modal ID for triggers, hash links, and `?modal=`. Required.
+id: null
+# Accessible label.
+label: null
+# Modal style: small, side-panel, full-screen.
+variant: small
+class: null
+---
+{{# Statamic port: `preview` (Stacki design mode) isn't ported. JS: resources/js/components/modal.ts #}}
+{{ if view:id && (slot | trim) }}
+<dialog id="{{ view:id }}" class="modal_wrap{{ if view:variant != 'small' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:label }} aria-label="{{ view:label }}"{{ /if }}>
+    <div class="modal_content">
+        {{ partial:components/button class="modal_close" variant="close" emphasis="secondary" attrs="data-modal-close" }}
+        <div class="modal_scroll" data-modal-scroll>
+            <div class="modal_body margin-trim">
+                {{ slot | trim }}
+            </div>
+        </div>
+    </div>
+</dialog>
+{{ /if }}

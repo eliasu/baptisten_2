@@ -1,0 +1,25 @@
+---
+# Field label.
+label: null
+# Initial value.
+value: null
+# Submitted name. Defaults to the label slug.
+name: null
+# Empty-field hint.
+placeholder: null
+# Minimum visible lines. Defaults to `3`.
+min_lines: 3
+# Maximum visible lines. Defaults to `12`.
+max_lines: 12
+# Require the field and mark its label.
+required: false
+class: null
+---
+{{ if view:label }}
+<label class="field form-textarea{{ if view:class }} {{ view:class }}{{ /if }}" style="--_min-lines: {{ view:min_lines }}; --_max-lines: {{ view:max_lines }};">
+    <span class="field-label text-style-main">
+        <span>{{ view:label }}</span>{{ if view:required | to_bool }}<span class="field-star" aria-hidden="true">*</span>{{ /if }}
+    </span>
+    <textarea class="field-control form-textarea_field text-style-main" name="{{ view:name ?? (view:label | slugify) }}"{{ if view:placeholder }} placeholder="{{ view:placeholder }}"{{ /if }}{{ if view:required | to_bool }} required{{ /if }} rows="{{ view:min_lines }}">{{ view:value }}</textarea>
+</label>
+{{ /if }}

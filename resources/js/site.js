@@ -1,1 +1,9 @@
-// This is all you.
+import "./components/dropdown.ts";
+import "./components/footer.ts";
+import "./components/form.ts";
+import "./components/marquee.ts";
+import "./components/modal.ts";
+import "./components/nav.ts";
+import "./components/range.ts";
+import "./components/slider.ts";
+import "./components/tabs.ts";

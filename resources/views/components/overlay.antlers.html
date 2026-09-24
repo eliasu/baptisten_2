@@ -1,0 +1,8 @@
+---
+# Overlay style: solid, gradient.
+variant: solid
+# Tint strength as a percentage.
+strength: 50
+class: null
+---
+<div class="overlay{{ if view:variant != 'solid' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}" style="--_strength: {{ view:strength }};"></div>

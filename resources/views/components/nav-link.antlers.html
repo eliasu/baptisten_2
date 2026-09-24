@@ -1,0 +1,10 @@
+---
+# Link destination. The current URL is marked automatically.
+href: null
+class: null
+---
+{{ if view:href && (slot | trim) }}
+<li>
+    <a class="nav_link{{ if view:class }} {{ view:class }}{{ /if }}" href="{{ view:href }}"{{ if (current_uri | ensure_right('/')) == (view:href | ensure_right('/')) }} aria-current="page"{{ /if }}>{{ slot | trim }}</a>
+</li>
+{{ /if }}

@@ -1,0 +1,63 @@
+title: Home
+order: 2
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        display: Intro
+        instructions: 'Der erste Bereich der Startseite.'
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Name der Seite im Control Panel und im Browser-Tab.'
+              required: true
+              validate:
+                - required
+          -
+            handle: eyebrow
+            field:
+              type: text
+              display: Eyebrow
+              instructions: 'Kurze Zeile über der Überschrift (optional).'
+              character_limit: 40
+          -
+            handle: heading
+            field:
+              type: text
+              display: Heading
+              instructions: 'Hauptüberschrift der Startseite.'
+              character_limit: 80
+              validate:
+                - required
+          -
+            handle: text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Ein bis zwei Sätze unter der Überschrift.'
+              character_limit: 300
+          -
+            import: buttons
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+              default: pages/home
+              visibility: hidden

@@ -1,0 +1,53 @@
+title: Page
+order: 1
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Überschrift der Seite. Erscheint auch im Browser-Tab und in der Navigation.'
+              character_limit: 80
+              required: true
+              validate:
+                - required
+          -
+            handle: content
+            field:
+              type: bard
+              display: Content
+              instructions: 'Fließtext der Seite. Zwischenüberschriften (H2, H3), fett, kursiv, Links und Listen sind möglich.'
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - anchor
+                - unorderedlist
+                - orderedlist
+              toolbar_mode: fixed
+              save_html: true
+  seo:
+    display: SEO
+    sections:
+      -
+        fields:
+          -
+            import: seo
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: template
+            field:
+              type: template
+              display: Template
+              default: pages/page
+              visibility: hidden

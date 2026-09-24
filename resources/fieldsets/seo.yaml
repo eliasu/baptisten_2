@@ -1,0 +1,25 @@
+title: SEO
+fields:
+  -
+    handle: meta_description
+    field:
+      type: textarea
+      display: 'Meta description'
+      instructions: 'Kurze Beschreibung der Seite für Google und beim Teilen in sozialen Netzwerken. Leer lassen, um die Standardbeschreibung aus Globals → SEO zu verwenden.'
+      character_limit: 160
+  -
+    handle: og_image
+    field:
+      type: assets
+      display: 'Share image'
+      instructions: 'Bild, das beim Teilen der Seite erscheint (z. B. WhatsApp, Facebook). Wird auf 1200 × 630 px zugeschnitten. Leer lassen, um das Standardbild zu verwenden.'
+      container: assets
+      max_files: 1
+      mode: grid
+  -
+    handle: noindex
+    field:
+      type: toggle
+      display: 'Hide from search engines'
+      instructions: 'Aktivieren, wenn diese Seite nicht bei Google & Co. erscheinen soll.'
+      default: false

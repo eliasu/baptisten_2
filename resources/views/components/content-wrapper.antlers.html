@@ -1,0 +1,23 @@
+---
+# Content layout: stack, auto-width, columns, breakout, contain, sticky-content, sticky-visual, card.
+# The default slot is the first column, the `column2` slot the second.
+variant: stack
+# Show the second column first. columns, breakout, contain only.
+reverse: false
+# Center each column's content. stack only.
+centered: false
+# Card visual opacity, 0–100. Defaults to `70`. card only.
+media_opacity: null
+# First-column classes.
+column1_class: null
+# Second-column classes.
+column2_class: null
+class: null
+---
+{{ _column1 = slot | trim }}{{ _column2 = slot:column2 | trim }}
+{{ if _column1 || _column2 }}
+<div class="layout{{ if view:variant == 'card' }} card-layout theme-dark{{ elseif view:variant != 'stack' }} {{ view:variant }}{{ /if }}{{ if view:reverse | to_bool }} reversed{{ /if }}{{ if view:centered | to_bool }} centered{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:variant == 'card' && view:media_opacity !== null && view:media_opacity >= 0 && view:media_opacity <= 100 && view:media_opacity != 70 }} style="--_media-opacity: {{ view:media_opacity }}"{{ /if }}>
+    {{ if _column1 }}<div{{ if view:column1_class }} class="{{ view:column1_class }}"{{ /if }}>{{ _column1 }}</div>{{ /if }}
+    {{ if _column2 }}<div{{ if view:column2_class }} class="{{ view:column2_class }}"{{ /if }}>{{ _column2 }}</div>{{ /if }}
+</div>
+{{ /if }}

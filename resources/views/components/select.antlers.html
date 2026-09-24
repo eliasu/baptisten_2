@@ -1,0 +1,58 @@
+---
+# Field label. Defaults to the variant name.
+label: null
+# Initially selected value.
+value: null
+# Option source: list, month, day, year.
+variant: list
+# Options to show: a list of values, or a map of value → label. list only.
+options: null
+# First year. Defaults to 100 years before `to`. year only.
+from: null
+# Last year. Defaults to the current year. year only.
+to: null
+# Submitted name. Defaults to the label slug.
+name: null
+# Prompt shown before selection. Defaults to the variant prompt.
+placeholder: null
+# Require the field and mark its label.
+required: false
+# Visually hide the label.
+label_hidden: false
+class: null
+---
+{{# Statamic port: wording is German, the site language; `state` (US states) isn't ported. #}}
+{{ _wording = [
+    'list' => ['label' => 'Auswahl', 'placeholder' => 'Bitte wählen…'],
+    'month' => ['label' => 'Monat', 'placeholder' => 'MM'],
+    'day' => ['label' => 'Tag', 'placeholder' => 'TT'],
+    'year' => ['label' => 'Jahr', 'placeholder' => 'JJJJ'],
+] }}
+{{ _words = _wording[view:variant] ?? _wording['list'] }}
+{{ _text = view:label ?? _words:label }}
+{{ _latest = view:to ?? (now | format("Y")) }}
+{{ _earliest = view:from ?? (_latest - 100) }}{{ _span = _latest - _earliest }}
+{{ if view:variant != 'list' || view:options }}
+<label class="field form-select{{ if view:class }} {{ view:class }}{{ /if }}">
+    <span class="field-label text-style-main{{ if view:label_hidden | to_bool }} sr-only{{ /if }}">
+        <span>{{ _text }}</span>{{ if view:required | to_bool }}<span class="field-star" aria-hidden="true">*</span>{{ /if }}
+    </span>
+
+    <span class="form-select_control">
+        <select class="field-control form-select_field text-style-main" name="{{ view:name ?? (_text | slugify) }}"{{ if view:required | to_bool }} required{{ /if }}>
+            <option value="" disabled{{ unless view:value }} selected{{ /unless }} hidden>{{ view:placeholder ?? _words:placeholder }}</option>
+            {{ if view:variant == 'month' || view:variant == 'day' }}
+                {{ loop from="1" :to="view:variant == 'month' ? 12 : 31" }}{{ _v = value < 10 ? '0{value}' : value }}<option value="{{ _v }}"{{ if _v == view:value }} selected{{ /if }}>{{ _v }}</option>{{ /loop }}
+            {{ elseif view:variant == 'year' }}
+                {{ loop from="0" :to="_span" }}{{ _y = _latest - value }}<option value="{{ _y }}"{{ if _y == view:value }} selected{{ /if }}>{{ _y }}</option>{{ /loop }}
+            {{ else }}
+                {{ foreach :array="view:options" }}
+                    {{ _option_value = (key | is_numeric) ? value : key }}
+                    <option value="{{ _option_value }}"{{ if _option_value == view:value }} selected{{ /if }}>{{ value }}</option>
+                {{ /foreach }}
+            {{ /if }}
+        </select>
+        {{ partial:components/icon name="arrow" variant="small" class="form-select_mark" }}
+    </span>
+</label>
+{{ /if }}

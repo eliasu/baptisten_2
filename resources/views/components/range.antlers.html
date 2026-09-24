@@ -1,0 +1,43 @@
+---
+# Field label.
+label: null
+# Initial value. Defaults to the midpoint.
+value: null
+# Minimum value. Defaults to `0`.
+min: 0
+# Maximum value. Defaults to `100`.
+max: 100
+# Value interval. Defaults to `1`.
+step: 1
+# Unit shown after the value.
+unit: null
+# Submitted name. Defaults to the label slug.
+name: null
+# Require the field and mark its label.
+required: false
+# Statamic port: stands in for ...rest. Field ID. Defaults to `range-` plus the label slug.
+id: null
+class: null
+---
+{{# JS: resources/js/components/range.ts #}}
+{{ if view:label }}
+{{ _start = view:value ?? (((view:min + view:max) / 2) | round) }}
+{{ _progress = view:max == view:min ? 0 : ((_start - view:min) / (view:max - view:min)) }}
+{{ _field_id = view:id ?? ('range-' + (view:label | slugify)) }}
+<div class="field form-range{{ if view:class }} {{ view:class }}{{ /if }}" style="--_progress: {{ _progress }};">
+    <label class="field-label text-style-main" for="{{ _field_id }}">
+        <span>{{ view:label }}</span>{{ if view:required | to_bool }}<span class="field-star" aria-hidden="true">*</span>{{ /if }}
+    </label>
+
+    <span class="form-range_control">
+        <input class="form-range_input" type="range" id="{{ _field_id }}" name="{{ view:name ?? (view:label | slugify) }}" min="{{ view:min }}" max="{{ view:max }}" step="{{ view:step }}" value="{{ _start }}"{{ if view:required | to_bool }} required{{ /if }}>
+        <span class="form-range_track" aria-hidden="true"></span>
+        <span class="form-range_fill" aria-hidden="true"></span>
+        <span class="form-range_handle" aria-hidden="true"></span>
+    </span>
+
+    <output class="form-range_output text-style-small" for="{{ _field_id }}">
+        <span class="form-range_value">{{ _start }}</span>{{ if view:unit }}<span>{{ view:unit }}</span>{{ /if }}
+    </output>
+</div>
+{{ /if }}

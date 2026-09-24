@@ -1,0 +1,12 @@
+---
+# Type style: inherit, display, h1–h6, large, main, small.
+variant: inherit
+# Maximum line length in characters.
+max_width: null
+class: null
+---
+{{ if slot | trim }}
+<div class="text rich-text{{ if view:variant != 'inherit' }} text-style-{{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:max_width }} style="--_mw: {{ view:max_width }}ch;"{{ /if }}>
+    {{ slot | trim }}
+</div>
+{{ /if }}

@@ -3,6 +3,8 @@ fields:
   -
     handle: alt
     field:
-      display: 'Alt Text'
       type: text
-      instructions: 'Description of the image'
+      display: 'Alt text'
+      instructions: 'Beschreibt, was auf dem Bild zu sehen ist – für Menschen, die das Bild nicht sehen können, und für Suchmaschinen. Ein kurzer Satz genügt.'
+      validate:
+        - required

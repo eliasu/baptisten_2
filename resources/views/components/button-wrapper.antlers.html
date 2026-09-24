@@ -1,0 +1,10 @@
+---
+# Top margin: default, 0–8, auto.
+margin_top: default
+class: null
+---
+{{ if slot | trim }}
+<div class="button-wrapper{{ if view:margin_top != 'default' }} margin-top-{{ view:margin_top }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ slot | trim }}
+</div>
+{{ /if }}

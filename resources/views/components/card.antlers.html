@@ -1,0 +1,53 @@
+---
+# Eyebrow text. Supports inline markup.
+eyebrow: null
+# Card title. Supports inline markup.
+heading: null
+# Heading level: h1–h6.
+heading_tag: h3
+# Body text. Supports inline markup.
+text: null
+# Button label. Omit to hide the button.
+button_label: null
+# Button destination. Omit for a `<button>`.
+button_href: null
+# Card layout: default, cover, stacked.
+variant: default
+# Color theme of element and its children: inherit, light, dark, brand, invert. Not for stacked.
+theme: inherit
+# Image source: an asset or a path/URL. cover, stacked only.
+image: null
+# Image alt text. Omit for decorative images. cover, stacked only.
+image_alt: null
+class: null
+---
+{{ _has_image = view:variant != 'default' && view:image }}
+{{ _has_content = view:eyebrow || view:heading || view:text || view:button_label }}
+{{ if _has_image || _has_content }}
+{{ _btn_variant = view:variant == 'stacked' ? 'link' : 'main' }}
+{{ _btn_emphasis = view:variant == 'default' ? 'secondary' : 'primary' }}
+<div class="card_wrap{{ if view:variant != 'default' }} {{ view:variant }}{{ /if }}{{ if view:variant != 'stacked' && view:theme != 'inherit' }} theme-{{ view:theme }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ if _has_image }}
+    <div class="card_visual">
+        {{ partial:components/img :image="view:image" :alt="view:image_alt" }}
+        {{ if view:variant == 'cover' }}{{ partial:components/overlay variant="gradient" }}{{ /if }}
+    </div>
+    {{ /if }}
+    {{ if _has_content }}
+    <div class="card_content margin-trim">
+        {{ partial:components/eyebrow }}{{ view:eyebrow }}{{ /partial:components/eyebrow }}
+        {{ partial:components/heading :tag="view:heading_tag" variant="h5" }}{{ view:heading }}{{ /partial:components/heading }}
+        {{ partial:components/paragraph }}{{ view:text }}{{ /partial:components/paragraph }}
+        {{ if view:button_label }}
+        {{ partial:components/button-wrapper }}
+            {{ if view:button_href }}
+            {{ partial:components/button element="link" :href="view:button_href" :variant="_btn_variant" :emphasis="_btn_emphasis" }}{{ view:button_label }}{{ /partial:components/button }}
+            {{ else }}
+            {{ partial:components/button :variant="_btn_variant" :emphasis="_btn_emphasis" }}{{ view:button_label }}{{ /partial:components/button }}
+            {{ /if }}
+        {{ /partial:components/button-wrapper }}
+        {{ /if }}
+    </div>
+    {{ /if }}
+</div>
+{{ /if }}

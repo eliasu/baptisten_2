@@ -1,0 +1,18 @@
+---
+# Field group label.
+legend: null
+# Field layout: stack, columns, thirds, inline.
+variant: stack
+# Legend style: heading, label, hidden.
+legend_style: heading
+class: null
+---
+{{ _styles = ['heading' => 'text-style-h5', 'label' => 'field-label text-style-main', 'hidden' => 'sr-only'] }}
+{{ if view:legend && (slot | trim) }}
+<fieldset class="form-fieldset{{ if view:variant != 'stack' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+    <legend class="form-fieldset_legend form-fieldset_legend-{{ view:legend_style }} {{ _styles[view:legend_style] }}">{{ view:legend }}</legend>
+    <div class="form-fieldset_fields">
+        {{ slot | trim }}
+    </div>
+</fieldset>
+{{ /if }}

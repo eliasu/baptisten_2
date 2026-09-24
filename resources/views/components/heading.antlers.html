@@ -1,0 +1,12 @@
+---
+# Heading level: h1–h6.
+tag: h2
+# Type style: inherit, display, h1–h6, large, main, small. Unset, it matches `tag`.
+variant: null
+# Maximum line length in characters.
+max_width: null
+class: null
+---
+{{ if slot | trim }}{{ _variant = view:variant ?? view:tag }}
+<{{ view:tag }} class="heading{{ if _variant != 'inherit' }} text-style-{{ _variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:max_width }} style="--_mw: {{ view:max_width }}ch;"{{ /if }}>{{ slot | trim }}</{{ view:tag }}>
+{{ /if }}

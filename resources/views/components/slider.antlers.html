@@ -1,0 +1,32 @@
+---
+# Accessible label. Defaults to `Slider`.
+label: Slider
+# Slider bounds: bleed, crop-start, contained.
+variant: bleed
+# Slides shown below 30rem. Defaults to `1.02`.
+xsmall: 1.02
+# Slides shown from 30rem. Inherits `xsmall`.
+small: null
+# Slides shown from 48rem. Inherits `small`.
+medium: null
+# Slides shown from 64rem. Inherits `medium`.
+large: null
+class: null
+---
+{{# Default slot: one element per slide. Statamic port: step labels are German. JS: resources/js/components/slider.ts #}}
+{{ if slot | trim }}
+{{ _style = (view:xsmall != 1.02 && view:xsmall > 0 ? '--_visible-xs: {view:xsmall}; ' : '') + (view:small > 0 ? '--_visible-sm: {view:small}; ' : '') + (view:medium > 0 ? '--_visible-md: {view:medium}; ' : '') + (view:large > 0 ? '--_visible-lg: {view:large};' : '') }}
+<div class="slider_wrap{{ if view:variant != 'bleed' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}"{{ if _style | trim }} style="{{ _style | trim }}"{{ /if }}>
+    <div class="slider_list" role="group" aria-label="{{ view:label }}" tabindex="0">
+        {{ slot | trim }}
+    </div>
+
+    <div class="slider_controls">
+        <div class="slider_markers"></div>
+        <div class="slider_steps">
+            {{ partial:components/button variant="arrow" emphasis="secondary" direction="back" label="Vorherige Folie" attrs='data-step="-1"' }}
+            {{ partial:components/button variant="arrow" emphasis="secondary" label="Nächste Folie" attrs='data-step="1"' }}
+        </div>
+    </div>
+</div>
+{{ /if }}

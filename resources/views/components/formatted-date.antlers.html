@@ -1,0 +1,7 @@
+---
+# Date to format.
+date: null
+# Statamic port: replaces locale, timeZone and format. Carbon isoFormat string, in the site's locale. Defaults to long date style.
+format: LL
+---
+{{ if view:date }}<time datetime="{{ view:date | format('c') }}">{{ view:date | iso_format(view:format) }}</time>{{ /if }}

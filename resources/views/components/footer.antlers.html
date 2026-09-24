@@ -1,0 +1,24 @@
+---
+# Statamic port: links come from this Statamic navigation, not hard-coded.
+navigation: footer
+---
+{{# Statamic port: ARIA label is German, the site language. JS: resources/js/components/footer.ts #}}
+<footer class="footer_wrap">
+    <div class="footer_inner">
+        <div class="footer_top">
+            <a class="footer_logo" href="/" aria-label="{{ site:name }}">
+                {{ partial:components/icon name="logo" variant="full-width" }}
+            </a>
+            <nav aria-label="Fußzeile">
+                <ul class="footer_links">
+                    {{ nav :handle="view:navigation" max_depth="1" }}
+                        {{ unless no_results }}<li><a class="footer_link" href="{{ url }}">{{ title }}</a></li>{{ /unless }}
+                    {{ /nav }}
+                </ul>
+            </nav>
+        </div>
+        <div class="footer_bottom">
+            <p class="footer_copyright text-style-small">&copy; <span id="year">{{ now format="Y" }}</span>&#160;{{ site:name }}</p>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,10 @@
+---
+# Statamic port: `src` is reserved by the partial tag. SVG file name in resources/svg. Omit to render nothing.
+name: null
+# Icon size: small, medium, large, full-width.
+variant: medium
+# Statamic port: stands in for aria-label. Unset, the icon is hidden from assistive tech.
+label: null
+class: null
+---
+{{ if view:name }}{{ _classes = 'icon ' + view:variant + (view:class ? (' ' + view:class) : '') }}{{ svg :src="view:name" sanitize="false" :class="_classes" :aria-hidden="view:label ? null : 'true'" :aria-label="view:label" :role="view:label ? 'img' : null" }}{{ /if }}

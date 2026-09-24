@@ -1,0 +1,49 @@
+---
+# Statamic port: `src` is reserved by the partial tag. Image source: an asset (optimized through Glide) or a path/URL (served as-is).
+image: null
+# Alt text. Omit for decorative images. Assets fall back to their own alt field.
+alt: null
+# Responsive image mode: full-width, constrained, densities.
+variant: full-width
+# Responsive `sizes` value. constrained only.
+sizes: null
+# Display width. The other dimension is inferred.
+width: null
+# Display height. The other dimension is inferred.
+height: null
+# Output quality: low, mid, high, max.
+quality: high
+# Fit without cropping and remove the skeleton tint.
+transparent: false
+# Loading behavior: lazy, eager.
+loading: lazy
+# Fetch priority: auto, high, low.
+fetch_priority: auto
+class: null
+---
+{{# Statamic port: Glide builds the srcset with the widths Astro's <Image> uses; with width and height both set it crops around the focal point. #}}
+{{ if view:image }}
+{{ _classes = 'image' + (view:variant == 'densities' ? ' densities' : '') + ((view:transparent | to_bool) ? ' transparent' : '') + (view:class ? (' ' + view:class) : '') }}
+{{ _alt = view:alt ?? view:image:alt ?? '' }}
+{{ if !view:image:url || view:image:extension == 'svg' }}
+<img src="{{ view:image:url ?? view:image }}" alt="{{ _alt }}" class="{{ _classes }}"{{ if view:width }} width="{{ view:width }}"{{ /if }}{{ if view:height }} height="{{ view:height }}"{{ /if }} loading="{{ view:loading }}"{{ if view:fetch_priority != 'auto' }} fetchpriority="{{ view:fetch_priority }}"{{ /if }}>
+{{ else }}
+{{ _qmap = ['low' => 25, 'mid' => 50, 'high' => 80, 'max' => 100] }}{{ _q = _qmap[view:quality] ?? 80 }}
+{{ _sw = view:image:width }}{{ _sh = view:image:height }}
+{{ _crop = view:width && view:height }}
+{{ if _crop }}{{ _ratio = view:height / view:width }}{{ else }}{{ _ratio = _sh / _sw }}{{ /if }}
+{{ _limit = (_sh / _ratio) | round }}{{ _limit = _limit < _sw ? _limit : _sw }}
+{{ _dw = view:width ?? _sw }}{{ _dw = _dw < _limit ? _dw : _limit }}
+{{ _dh = (_dw * _ratio) | round }}
+{{ _cap = view:variant == 'constrained' ? (_dw * 2) : _limit }}{{ _cap = _cap < _limit ? _cap : _limit }}
+{{ _rem = _dw / 16 }}
+{{ if view:variant == 'constrained' }}{{ _sizes = view:sizes ?? '(min-width: {_rem}rem) {_rem}rem, 100vw' }}{{ else }}{{ _sizes = view:loading == 'lazy' ? 'auto, 100vw' : '100vw' }}{{ /if }}
+{{ _dw2 = _dw * 2 }}{{ _dh2 = (_dw2 * _ratio) | round }}{{ _ch = (_cap * _ratio) | round }}
+{{ _breakpoints = [640, 750, 828, 1080, 1280, 1668, 2048, 2560] }}
+<img
+    src="{{ glide :src="view:image" :width="_dw" :height="_dh" fit="crop_focal" :quality="_q" }}"
+    {{ if view:variant == 'densities' }}srcset="{{ glide :src="view:image" :width="_dw" :height="_dh" fit="crop_focal" :quality="_q" }} 1x{{ if _dw2 <= _limit }}, {{ glide :src="view:image" :width="_dw2" :height="_dh2" fit="crop_focal" :quality="_q" }} 2x{{ /if }}"
+    {{ else }}srcset="{{ _breakpoints }}{{ if value < _cap }}{{ _bh = (value * _ratio) | round }}{{ glide :src="view:image" :width="value" :height="_bh" fit="crop_focal" :quality="_q" }} {{ value }}w, {{ /if }}{{ /_breakpoints }}{{ glide :src="view:image" :width="_cap" :height="_ch" fit="crop_focal" :quality="_q" }} {{ _cap }}w" sizes="{{ _sizes }}"{{ /if }}
+    alt="{{ _alt }}" class="{{ _classes }}" width="{{ _dw }}" height="{{ _dh }}" loading="{{ view:loading }}"{{ if view:fetch_priority != 'auto' }} fetchpriority="{{ view:fetch_priority }}"{{ /if }}>
+{{ /if }}
+{{ /if }}

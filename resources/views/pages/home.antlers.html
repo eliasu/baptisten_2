@@ -1,0 +1,13 @@
+{{# Intro #}}
+{{ partial:components/section padding_top="large" }}
+    {{ partial:components/content-wrapper }}
+        {{ partial:components/eyebrow }}{{ eyebrow }}{{ /partial:components/eyebrow }}
+        {{ partial:components/heading tag="h1" variant="display" max_width="16" }}{{ heading }}{{ /partial:components/heading }}
+        {{ partial:components/paragraph variant="large" max_width="48" }}{{ text }}{{ /partial:components/paragraph }}
+        {{ partial:components/button-wrapper }}
+            {{ buttons scope="button" }}
+                {{ partial:components/button element="link" :href="button:link" :emphasis="first ? 'primary' : 'secondary'" }}{{ button:label }}{{ /partial:components/button }}
+            {{ /buttons }}
+        {{ /partial:components/button-wrapper }}
+    {{ /partial:components/content-wrapper }}
+{{ /partial:components/section }}

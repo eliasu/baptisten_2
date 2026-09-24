@@ -1,0 +1,21 @@
+---
+# Accessible label. Defaults to `Laufband`.
+label: Laufband
+# Travel direction: forwards, backwards.
+direction: forwards
+class: null
+---
+{{# Default slot: one element per item. Statamic port: --_count is set by resources/js/components/marquee.ts. #}}
+{{ _items = slot | trim }}
+{{ if _items }}
+<div class="marquee_wrap{{ if view:direction != 'forwards' }} {{ view:direction }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}" role="group" aria-label="{{ view:label }}">
+    <div class="marquee_viewport">
+        <div class="marquee_track">
+            <div class="marquee_panel">{{ _items }}</div>
+            <div class="marquee_panel" aria-hidden="true" inert>{{ _items }}</div>
+        </div>
+    </div>
+
+    {{ partial:components/button variant="play" emphasis="secondary" pressed="true" class="marquee_toggle" attrs="data-marquee-toggle" }}
+</div>
+{{ /if }}

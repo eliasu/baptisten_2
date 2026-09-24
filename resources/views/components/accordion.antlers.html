@@ -1,0 +1,18 @@
+---
+# Keep only one item open.
+single: true
+# Open the first item on load.
+open_first: false
+class: null
+---
+{{# Statamic port: `preview` (Stacki design mode) and its script aren't ported. The group name comes from a hash of the items, not a counter. #}}
+{{ _items = slot | trim }}
+{{ if _items }}
+{{ _single = view:single | to_bool }}
+{{ _group = _single ? ('name="accordion-' + (_items | md5 | substr(0, 8)) + '"') : '' }}
+{{ _open_first = view:open_first | to_bool }}
+{{ _parts = _items | explode('data-accordion-group') }}
+<div class="accordion_wrap{{ if _single }} single{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ _parts }}{{ if index > 0 }}{{ _group }}{{ if index == 1 && _open_first }} open{{ /if }}{{ /if }}{{ value }}{{ /_parts }}
+</div>
+{{ /if }}

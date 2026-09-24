@@ -1,0 +1,13 @@
+---
+# HTML element: span, p, h1–h6.
+tag: p
+# Eyebrow style: default, tag.
+variant: default
+class: null
+---
+{{ if slot | trim }}
+<div class="eyebrow_wrap{{ if view:variant != 'default' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ if view:variant == 'default' }}<span class="eyebrow_marker" aria-hidden="true"></span>{{ /if }}
+    <{{ view:tag }} class="eyebrow_text text-style-small">{{ slot | trim }}</{{ view:tag }}>
+</div>
+{{ /if }}

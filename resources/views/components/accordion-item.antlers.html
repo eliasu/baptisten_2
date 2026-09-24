@@ -1,0 +1,21 @@
+---
+# Item heading.
+heading: null
+# Heading level: h2–h6.
+heading_tag: h3
+# Open on load.
+open: false
+class: null
+---
+{{ if view:heading && (slot | trim) }}
+<details class="accordion_item{{ if view:class }} {{ view:class }}{{ /if }}"{{ if view:open | to_bool }} open{{ /if }} data-accordion-group>
+    <summary class="accordion_toggle">
+        {{ partial:components/heading :tag="view:heading_tag" variant="h5" class="accordion_title" }}{{ view:heading }}{{ /partial:components/heading }}
+        {{ partial:components/icon name="arrow" variant="small" class="accordion_icon" }}
+    </summary>
+
+    <div class="accordion_body margin-trim">
+        {{ slot | trim }}
+    </div>
+</details>
+{{ /if }}

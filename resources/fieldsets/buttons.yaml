@@ -1,0 +1,31 @@
+title: Buttons
+fields:
+  -
+    handle: buttons
+    field:
+      type: grid
+      display: Buttons
+      instructions: 'Bis zu zwei Buttons. Der erste wird hervorgehoben, der zweite dezenter dargestellt.'
+      max_rows: 2
+      mode: stacked
+      add_row: 'Add button'
+      fields:
+        -
+          handle: label
+          field:
+            type: text
+            display: Label
+            instructions: 'Beschriftung des Buttons, kurz und eindeutig (z. B. „Mehr erfahren“).'
+            character_limit: 30
+            validate:
+              - required
+        -
+          handle: link
+          field:
+            type: link
+            display: Link
+            instructions: 'Ziel des Buttons: eine Seite dieser Website oder eine externe Adresse.'
+            collections:
+              - pages
+            validate:
+              - required
