@@ -193,8 +193,8 @@ follows on the second use.
       variant-only params (say which variant), occasional settings, `class`
       last.
 - [ ] Describes each param with the wording other partials already use.
-- [ ] Adds a snippet to `.vscode/lumos.code-snippets` when it will be used
-      often.
+- [ ] Regenerates `.vscode/lumos.code-snippets` with the
+      `lumos-statamic-vscode` skill (never edited by hand).
 - [ ] No comments beyond the param descriptions, the banners dividing a
       stylesheet, one line labelling each section of a page, and
       `Statamic port:` notes.
