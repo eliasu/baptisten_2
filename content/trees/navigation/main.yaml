@@ -1,1 +1,21 @@
-tree: {  }
+tree:
+  -
+    id: '493bb189-73ed-41f0-84ba-4be62d7f90c6'
+    title: 'Gottesdienst'
+    url: '/#gottesdienst'
+  -
+    id: '1bf672b9-4477-40d2-9854-898856bc2ae5'
+    title: 'Sprachen'
+    url: '/#sprachen'
+  -
+    id: '55d8f775-0547-4ca2-abab-d77ef34e66d5'
+    title: 'Angebote'
+    url: '/#angebote'
+  -
+    id: 'cacc6b05-eacc-43ab-b102-69038c7a1894'
+    title: 'Gemeinde'
+    url: '/#gemeinde'
+  -
+    id: '96a01e70-85e1-44d1-9e1e-a3802d5dcae4'
+    title: 'Kontakt'
+    url: '/#kontakt'

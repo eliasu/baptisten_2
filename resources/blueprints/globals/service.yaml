@@ -1,0 +1,19 @@
+title: 'Gottesdienst'
+fields:
+  -
+    handle: 'time'
+    field:
+      type: 'time'
+      display: 'Time'
+      instructions: 'Beginn des Sonntagsgottesdienstes. Daraus berechnet die Startseite den nächsten Termin, den Kalendereintrag und „Jetzt live“.'
+      validate:
+        - 'required'
+  -
+    handle: 'duration'
+    field:
+      type: 'integer'
+      display: 'Duration'
+      instructions: 'Dauer in Minuten, für Kalendereintrag und Live-Anzeige.'
+      validate:
+        - 'required'
+      default: 90

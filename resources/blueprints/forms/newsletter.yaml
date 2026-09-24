@@ -1,0 +1,13 @@
+title: 'Newsletter'
+fields:
+  -
+    handle: 'email'
+    field:
+      type: 'text'
+      input_type: 'email'
+      display: 'E-Mail-Adresse'
+      instructions: 'E-Mail-Adresse der Person, die den Newsletter möchte. Die Beschriftung sehen Besucher*innen.'
+      placeholder: 'name@beispiel.de'
+      validate:
+        - 'required'
+        - 'email'

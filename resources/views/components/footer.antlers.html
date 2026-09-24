@@ -2,23 +2,28 @@
 # Statamic port: links come from this Statamic navigation, not hard-coded.
 navigation: footer
 ---
-{{# Statamic port: ARIA label is German, the site language. JS: resources/js/components/footer.ts #}}
+{{# Statamic port: ARIA label is German, the site language. JS: resources/js/components/footer.ts
+    Statamic port: claim instead of the logo, one link column per top-level item of the navigation (its children are the links). #}}
 <footer class="footer_wrap">
     <div class="footer_inner">
         <div class="footer_top">
-            <a class="footer_logo" href="/" aria-label="{{ site:name }}">
-                {{ partial:components/icon name="logo" variant="full-width" }}
-            </a>
-            <nav aria-label="Fußzeile">
-                <ul class="footer_links">
-                    {{ nav :handle="view:navigation" max_depth="1" }}
-                        {{ unless no_results }}<li><a class="footer_link" href="{{ url }}">{{ title }}</a></li>{{ /unless }}
-                    {{ /nav }}
-                </ul>
-            </nav>
+            {{ partial:components/paragraph variant="h3" class="footer_claim" }}Bei Gott sind alle willkommen. Alle.{{ /partial:components/paragraph }}
+            {{ nav :handle="view:navigation" max_depth="2" }}
+                {{ unless no_results }}
+                <nav class="footer_group" aria-label="{{ title }}">
+                    {{ partial:components/heading tag="h2" variant="small" class="footer_heading" }}{{ title }}{{ /partial:components/heading }}
+                    <ul class="footer_links">
+                        {{ children }}
+                        <li><a class="footer_link link-hover" href="{{ url }}"{{ if url | starts_with('http') }} target="_blank" rel="noopener"{{ /if }}>{{ title }}</a></li>
+                        {{ /children }}
+                    </ul>
+                </nav>
+                {{ /unless }}
+            {{ /nav }}
         </div>
         <div class="footer_bottom">
-            <p class="footer_copyright text-style-small">&copy; <span id="year">{{ now format="Y" }}</span>&#160;{{ site:name }}</p>
+            <p class="footer_copyright">Evangelisch-Freikirchliche Gemeinde Berlin-Schöneberg, Hauptstraße, K.d.ö.R.</p>
+            <a class="footer_totop link-hover" href="#top">Nach oben {{ partial:components/icon name="arrow-up" variant="small" }}</a>
         </div>
     </div>
 </footer>

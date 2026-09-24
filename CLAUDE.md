@@ -20,7 +20,19 @@ ignore any Webflow Lumos skill. No Tailwind.
   footer, accordion, accordion-item, dropdown, marquee, modal, slider, tabs,
   tab-link, form, input, select, choice, fieldset, textarea, range
 - Blocks: none (mode A)
-- Extensions: none yet
+- Extensions (all in `resources/css/site.css`, `@layer base`):
+  - text style `serif` (tokens `--serif*`, class `.text-style-serif`), listed
+    in the `variant` comment of heading, paragraph, rich-text
+  - `--secondary-family` (Newsreader) + `--secondary-regular`,
+    `--secondary-trim-*`; `--text-large` uses it
+  - weights `--primary-book` (450), `--primary-heading` (520)
+  - `--persian-family`, `--korean-family` (language section)
+  - swatches `--sun-500`, `--live-500`
+  - utilities `.color-secondary` (theme `--text-2`) and `.link-hover`
+    (underline draws in on hover), in `@layer utilities`
+  - auto dark mode: `prefers-color-scheme: dark` swaps the swatch values in
+    `:root`, so every theme flips with them
+- Import: website from `import/baptisten.schöneberg – Redesign.html`, record in IMPORT.md
 
 The three files in `resources/css/lumos/` started as verbatim copies. Tokens
 are edited there. To upgrade, run a three-way merge against the commit above,

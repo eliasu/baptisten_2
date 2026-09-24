@@ -1,0 +1,136 @@
+.history_wrap {
+  overflow: clip;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.history_pin {
+  padding-block: var(--section-space-large);
+  @media (width >= 64rem) {
+    padding-bottom: 0;
+  }
+}
+
+.history_head {
+  width: var(--site-width);
+  max-width: var(--max-width-main);
+  margin: 0 auto var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: var(--space-4);
+  & > * {
+    margin: 0;
+  }
+}
+
+.history_hint {
+  display: none;
+  font-family: var(--secondary-family);
+  font-style: italic;
+  font-size: var(--text-small);
+}
+
+.history_track {
+  display: flex;
+  flex-direction: column;
+  width: var(--site-width);
+  max-width: var(--max-width-main);
+  margin-inline: auto;
+}
+
+.history_item {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0 var(--space-4);
+  padding-block: var(--space-4);
+  border-top: var(--border-width) solid var(--border);
+  & > * {
+    margin: 0;
+  }
+  & > :not(.history_year) {
+    grid-column: 2;
+  }
+}
+
+.history_year {
+  grid-row: 1 / 3;
+  font-size: 2.6rem;
+  font-family: var(--secondary-family);
+  font-weight: var(--primary-regular);
+  color: var(--text-2);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  font-feature-settings: "tnum";
+  .current & {
+    color: var(--heading-accent);
+  }
+}
+
+.history_title {
+  margin-bottom: var(--space-1);
+}
+
+.history_bar {
+  display: none;
+}
+
+@media (width >= 64rem) {
+  .history_pin {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    .pinned & {
+      overflow-x: visible;
+    }
+  }
+
+  .history_hint {
+    display: block;
+  }
+
+  .history_track {
+    flex-direction: row;
+    width: max-content;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: max(var(--site-margin), (100vw - var(--max-width-main)) / 2);
+  }
+
+  .history_item {
+    display: block;
+    flex: none;
+    width: clamp(17.5rem, 26vw, 23.75rem);
+    scroll-snap-align: start;
+    scroll-margin-left: var(--site-margin);
+    padding: 0 var(--space-7) 0 0;
+    border-top: 0;
+    & + & {
+      padding-left: var(--space-5);
+      border-left: var(--border-width) solid var(--border);
+    }
+  }
+
+  .history_year {
+    font-size: var(--h1);
+    margin-bottom: var(--space-4);
+  }
+
+  .history_bar {
+    display: block;
+    position: relative;
+    height: var(--border-width);
+    width: var(--site-width);
+    max-width: var(--max-width-main);
+    margin: var(--space-8) auto 0;
+    background-color: var(--border);
+  }
+
+  .history_progress {
+    position: absolute;
+    inset: 0;
+    background-color: var(--text);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+}

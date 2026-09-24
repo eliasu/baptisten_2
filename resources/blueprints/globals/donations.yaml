@@ -1,0 +1,32 @@
+title: 'Spenden'
+fields:
+  -
+    handle: 'text'
+    field:
+      type: 'textarea'
+      display: 'Text'
+      instructions: 'Zwei Sätze, wofür Spenden verwendet werden.'
+      character_limit: 250
+  -
+    handle: 'recipient'
+    field:
+      type: 'text'
+      display: 'Recipient'
+      instructions: 'Kontoinhaber.'
+      validate:
+        - 'required'
+      character_limit: 50
+  -
+    handle: 'iban'
+    field:
+      type: 'text'
+      display: 'IBAN'
+      instructions: 'IBAN des Spendenkontos. Leer lassen blendet IBAN und den Kopieren-Button aus.'
+      character_limit: 34
+  -
+    handle: 'purpose'
+    field:
+      type: 'text'
+      display: 'Purpose'
+      instructions: 'Vorgeschlagener Verwendungszweck.'
+      character_limit: 40

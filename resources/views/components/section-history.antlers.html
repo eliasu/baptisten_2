@@ -1,0 +1,31 @@
+---
+# Heading above the timeline. Line breaks are kept.
+heading: null
+# Anchor id for in-page links.
+id: null
+class: null
+---
+{{# Milestones from the `history` collection; the last one is highlighted. Pinned sideways scroll from 64rem.
+    JS: resources/js/components/section-history.ts #}}
+{{ collection:history as="milestones" }}
+{{ if milestones }}
+<section{{ if view:id }} id="{{ view:id }}"{{ /if }} class="history_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div class="history_pin">
+        <div class="history_head">
+            {{ partial:components/heading tag="h2" variant="h1" }}{{ view:heading | nl2br }}{{ /partial:components/heading }}
+            <p class="history_hint color-secondary">Scrolle weiter durch die Jahre</p>
+        </div>
+        <div class="history_track">
+            {{ milestones scope="milestone" }}
+            <article class="history_item{{ if last }} current{{ /if }}">
+                <p class="history_year text-style-h1">{{ milestone:year }}</p>
+                {{ partial:components/heading tag="h3" variant="h6" class="history_title margin-bottom-2" }}{{ milestone:title }}{{ /partial:components/heading }}
+                {{ partial:components/paragraph variant="serif" max_width="32" class="color-secondary" }}{{ milestone:description }}{{ /partial:components/paragraph }}
+            </article>
+            {{ /milestones }}
+        </div>
+        <div class="history_bar" aria-hidden="true"><span class="history_progress"></span></div>
+    </div>
+</section>
+{{ /if }}
+{{ /collection:history }}

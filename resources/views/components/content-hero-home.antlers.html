@@ -1,0 +1,49 @@
+---
+# Heading, one line per line. The last line is the word that raises the figures' arms.
+heading: null
+# Text below the heading.
+text: null
+class: null
+---
+{{# JS: resources/js/components/content-hero-home.ts. Fact labels are fixed; values come from the service, contact and social globals. #}}
+{{ if view:heading }}
+{{ _lines = view:heading | trim | nl2br | explode('<br />') }}
+<div class="hero_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div class="hero_layout">
+        <div class="hero_content">
+            {{ partial:components/heading tag="h1" variant="display" class="hero_heading" }}{{ foreach :array="_lines" }}<span class="hero_line"><span{{ if last }} class="hero_all" tabindex="0"{{ /if }}>{{ value | trim }}</span></span>{{ /foreach }}{{ /partial:components/heading }}
+            {{ partial:components/paragraph variant="large" max_width="34" class="hero_text hero_fade" }}{{ view:text }}{{ /partial:components/paragraph }}
+        </div>
+        <div class="hero_field hero_fade" aria-hidden="true">
+            <canvas class="hero_canvas"></canvas>
+            <span class="hero_caption" data-touch-text="Tippe in die Menge">Fahre über die Menge</span>
+        </div>
+    </div>
+    <div class="hero_rule" aria-hidden="true"></div>
+    <div class="hero_facts">
+        <div class="hero_fact">
+            {{ partial:components/heading tag="h2" variant="small" class="hero_fact-label" }}Nächster Gottesdienst{{ /partial:components/heading }}
+            <p class="text text-style-h6" data-service-next>Sonntag, {{ service:time }} Uhr</p>
+            <p class="hero_fact-note" data-service-note>Vor Ort und im Livestream</p>
+            <p class="hero_fact-action">{{ partial:components/button element="link" variant="link" href="#" attrs='target="_blank" rel="noopener" data-service-calendar' }}In den Kalender{{ /partial:components/button }}</p>
+        </div>
+        <div class="hero_fact">
+            {{ partial:components/heading tag="h2" variant="small" class="hero_fact-label" }}Adresse{{ /partial:components/heading }}
+            {{ partial:components/paragraph variant="h6" }}{{ contact:street }}<br>{{ contact:city }}{{ /partial:components/paragraph }}
+            <p class="hero_fact-action">{{ partial:components/button element="link" variant="link" href="#kontakt" }}Anfahrt{{ /partial:components/button }}</p>
+        </div>
+        <div class="hero_fact">
+            {{ partial:components/heading tag="h2" variant="small" class="hero_fact-label" }}Von zu Hause{{ /partial:components/heading }}
+            <p class="hero_live text-style-h6" data-live><span class="live-dot" aria-hidden="true"></span><span data-live-label="Jetzt live">Jeden Sonntag ab {{ service:time | replace(':00', '') }} Uhr</span></p>
+            <p class="hero_fact-note">Gottesdienst im Livestream auf YouTube</p>
+            {{ if social:youtube }}<p class="hero_fact-action">{{ partial:components/button element="link" variant="link" :href="social:youtube" attrs='target="_blank" rel="noopener"' }}Zum Livestream{{ /partial:components/button }}</p>{{ /if }}
+        </div>
+        <div class="hero_fact">
+            {{ partial:components/heading tag="h2" variant="small" class="hero_fact-label" }}Mit Kindern{{ /partial:components/heading }}
+            {{ partial:components/paragraph variant="h6" }}Kindergottesdienst parallel{{ /partial:components/paragraph }}
+            <p class="hero_fact-note">Für alle von 3 bis 12 Jahren</p>
+            <p class="hero_fact-action">{{ partial:components/button element="link" variant="link" href="#angebote" attrs='data-offer-filter="kinder-und-familie"' }}Angebote für Familien{{ /partial:components/button }}</p>
+        </div>
+    </div>
+</div>
+{{ /if }}

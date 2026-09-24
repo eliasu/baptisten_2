@@ -1,0 +1,34 @@
+title: 'Ansprechpersonen'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Name'
+              instructions: 'Vor- und Nachname.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'role'
+            field:
+              type: 'text'
+              display: 'Role'
+              instructions: 'Aufgabe, z. B. „Pastorin“.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'email'
+            field:
+              type: 'text'
+              display: 'Email'
+              instructions: 'E-Mail-Adresse für den Link „E-Mail“.'
+              validate:
+                - 'required'
+              input_type: 'email'

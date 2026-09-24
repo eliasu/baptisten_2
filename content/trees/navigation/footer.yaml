@@ -1,1 +1,49 @@
-tree: {  }
+tree:
+  -
+    id: 'c5e893b7-1108-43d3-b32f-1ec2f6f00276'
+    title: 'Gemeinde'
+    children:
+      -
+        id: '01a342c7-2117-47e2-8175-248566313a3d'
+        title: 'Über uns'
+        url: '/#gemeinde'
+      -
+        id: '21bd86d8-8f1f-4f5b-b6ea-8cbdd8fea524'
+        title: 'Geschichte'
+        url: '/#geschichte'
+      -
+        id: '91654d0b-85ee-4e84-8e2f-b54d99d54c7d'
+        title: 'Mitmachen'
+        url: '/#mitmachen'
+      -
+        id: 'a8c81028-f412-4d4e-94ca-c2af98ce2a2d'
+        title: 'Spenden'
+        url: '/#spenden'
+  -
+    id: 'a24dbb24-4d60-4ac4-af93-af281818a864'
+    title: 'Verbunden mit'
+    children:
+      -
+        id: 'fa450001-7952-4d16-889c-eb782d0e14bf'
+        title: 'Baptisten Wannsee'
+        url: 'https://baptisten-wannsee.de/'
+      -
+        id: '9f2b193f-f88c-4a50-8b35-bf51f6b1a099'
+        title: 'Immanuel Albertinen Diakonie'
+        url: 'https://www.immanuelalbertinen.de/'
+      -
+        id: 'cd245a6c-9574-4ca5-a9f6-52f4c01de4c2'
+        title: 'Bund Evangelisch-Freikirchlicher Gemeinden'
+        url: 'https://www.baptisten.de/'
+  -
+    id: '96b83784-91e2-4a63-acd6-8662c9b3a6d8'
+    title: 'Rechtliches'
+    children:
+      -
+        id: '4598755a-7375-4fd1-97eb-2bed96931e87'
+        title: 'Impressum'
+        url: 'https://www.baptisten-schoeneberg.de/impressum/'
+      -
+        id: '928b8828-367b-4b9d-abef-8ea04af0424b'
+        title: 'Datenschutz'
+        url: 'https://www.baptisten-schoeneberg.de/'

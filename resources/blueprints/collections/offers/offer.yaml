@@ -1,0 +1,86 @@
+title: 'Angebote'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Name des Angebots.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'when'
+            field:
+              type: 'text'
+              display: 'When'
+              instructions: 'Wann es stattfindet, kurz: „Sonntag, 10:00 Uhr“, „Nach Absprache“.'
+              validate:
+                - 'required'
+              character_limit: 60
+          -
+            handle: 'offer_categories'
+            field:
+              type: 'terms'
+              display: 'Category'
+              instructions: 'Unter welchem Filter das Angebot erscheint.'
+              validate:
+                - 'required'
+              taxonomies:
+                - 'offer_categories'
+              max_items: 1
+              mode: 'select'
+              create: false
+          -
+            handle: 'icon'
+            field:
+              type: 'select'
+              display: 'Icon'
+              instructions: 'Symbol rechts in der Zeile.'
+              validate:
+                - 'required'
+              options:
+                figure: 'Kreuz (Gottesdienst)'
+                chalice: 'Kelch (Abendmahl)'
+                waves: 'Wellen (Taufe)'
+                screen: 'Bildschirm (online)'
+                children: 'Zwei Figuren (Kinder)'
+                house: 'Haus mit Rutsche'
+                shirt: 'T-Shirt'
+                growth: 'Aufwärtskurve'
+                horizon: 'Sonne am Horizont'
+                cup: 'Tasse'
+                plate: 'Teller mit Besteck'
+                circles: 'Zwei Kreise (Gespräch)'
+          -
+            handle: 'description'
+            field:
+              type: 'textarea'
+              display: 'Description'
+              instructions: 'Was es ist und für wen. Zwei bis drei Sätze.'
+              validate:
+                - 'required'
+              character_limit: 400
+          -
+            handle: 'tags'
+            field:
+              type: 'list'
+              display: 'Tags'
+              instructions: 'Optionale Stichworte unter dem Text, z. B. „Livestream“, „barrierearm“.'
+          -
+            handle: 'info'
+            field:
+              type: 'bard'
+              display: 'Details'
+              instructions: 'Ort, Ansprechperson oder Kontakt, rechts neben dem Text. Zeilenumbruch mit Umschalt+Enter; Links für E-Mail oder Telefon.'
+              buttons:
+                - 'bold'
+                - 'anchor'
+              save_html: true
+              toolbar_mode: 'fixed'
+              remove_empty_nodes: 'trim'

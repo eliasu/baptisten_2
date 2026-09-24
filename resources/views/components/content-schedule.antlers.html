@@ -1,0 +1,53 @@
+---
+# Livestream box heading.
+stream_heading: null
+# Livestream box text.
+stream_text: null
+# Small note at the bottom of the livestream box (rich text).
+stream_note: null
+class: null
+---
+{{# Steps from the `schedule` collection; the livestream button goes to the YouTube channel (social global). JS: resources/js/components/content-schedule.ts #}}
+{{ collection:schedule as="steps" }}
+{{ if steps }}
+<div class="schedule_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div class="schedule_timeline">
+        <span class="schedule_rail" aria-hidden="true"></span>
+        <ol class="schedule_steps">
+            {{ steps scope="step" }}
+            <li class="schedule_step">
+                <p class="schedule_time text-style-h3">{{ step:time }}{{ if step:place }}<small class="schedule_place">{{ step:place }}</small>{{ /if }}</p>
+                <div>
+                    {{ partial:components/heading tag="h3" variant="h5" class="margin-bottom-2" }}{{ step:title }}{{ /partial:components/heading }}
+                    {{ partial:components/paragraph variant="serif" max_width="52" class="color-secondary" }}{{ step:description }}{{ /partial:components/paragraph }}
+                    {{ if step:tag }}<span class="schedule_tag">{{ step:tag }}</span>{{ /if }}
+                </div>
+            </li>
+            {{ /steps }}
+        </ol>
+    </div>
+    {{ if view:stream_heading }}
+    <aside class="schedule_stream background-2">
+        <div class="schedule_screen" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
+                <line x1="160" y1="40" x2="160" y2="150"/><line x1="92" y1="70" x2="228" y2="70"/>
+                <circle cx="160" cy="26" r="9"/>
+                <rect class="schedule_floor" x="18" y="150" width="284" height="1"/>
+                <g class="schedule_bars"><rect x="22" y="160" width="3" height="8"/><rect x="28" y="156" width="3" height="12"/><rect x="34" y="162" width="3" height="6"/><rect x="40" y="158" width="3" height="10"/></g>
+            </svg>
+        </div>
+        {{ partial:components/heading tag="h3" variant="h5" }}{{ view:stream_heading }}{{ /partial:components/heading }}
+        {{ partial:components/paragraph variant="serif" class="color-secondary" }}{{ view:stream_text }}{{ /partial:components/paragraph }}
+        {{ if social:youtube }}
+        {{ partial:components/button-wrapper margin_top="5" }}
+            {{ partial:components/button element="link" :href="social:youtube" attrs='target="_blank" rel="noopener"' }}Livestream öffnen{{ /partial:components/button }}
+        {{ /partial:components/button-wrapper }}
+        {{ /if }}
+        {{ if view:stream_note }}
+        <div class="schedule_note">{{ partial:components/rich-text variant="small" }}{{ view:stream_note }}{{ /partial:components/rich-text }}</div>
+        {{ /if }}
+    </aside>
+    {{ /if }}
+</div>
+{{ /if }}
+{{ /collection:schedule }}

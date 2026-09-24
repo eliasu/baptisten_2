@@ -1,0 +1,27 @@
+---
+class: null
+---
+{{# Languages from the `languages` collection. JS: resources/js/components/content-languages.ts #}}
+{{ collection:languages as="languages" }}
+{{ if languages }}
+<div class="languages_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div class="languages_showcase">
+        <div class="languages_stage" aria-live="polite">
+            {{ languages limit="1" scope="first_language" }}<span class="languages_word text-style-display" lang="{{ first_language:lang_code }}">{{ first_language:welcome }}</span>{{ /languages }}
+        </div>
+        {{ languages limit="1" scope="first_language" }}<p class="languages_label color-secondary">{{ first_language:label }}</p>{{ /languages }}
+    </div>
+    <ul class="languages_list">
+        {{ languages scope="language" }}
+        <li>
+            <button class="languages_item" type="button" aria-pressed="{{ first ? 'true' : 'false' }}" data-word="{{ language:welcome }}" data-lang="{{ language:lang_code }}" data-label="{{ language:label }}">
+                <span class="languages_name text-style-h5" lang="{{ language:lang_code }}">{{ language:title }}</span>
+                {{ if language:time }}<span class="languages_time color-secondary">{{ language:time }}</span>{{ /if }}
+                <span class="languages_text text-style-serif color-secondary">{{ language:description }}</span>
+            </button>
+        </li>
+        {{ /languages }}
+    </ul>
+</div>
+{{ /if }}
+{{ /collection:languages }}

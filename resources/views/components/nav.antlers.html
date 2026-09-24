@@ -4,11 +4,14 @@ overlap: false
 # Statamic port: links come from this Statamic navigation, not hard-coded.
 navigation: main
 ---
-{{# Statamic port: ARIA labels are German, the site language. JS: resources/js/components/nav.ts #}}
+{{# Statamic port: ARIA labels are German, the site language. JS: resources/js/components/nav.ts
+    Statamic port: logo is the figure plus the site name as text; the livestream button and the address in the
+    mobile menu come from the `social` and `contact` globals. Desktop layout from 64rem, not 48rem. #}}
 <header class="nav_wrap{{ if view:overlap | to_bool }} overlap{{ /if }}">
     <div class="nav_inner">
-        <a class="nav_logo" href="/" aria-label="{{ site:name }}">
-            {{ partial:components/icon name="logo" variant="full-width" }}
+        <a class="nav_logo" href="/#top" aria-label="{{ site:name }}, zum Seitenanfang">
+            {{ partial:components/icon name="logo-icon" class="nav_logo_mark" }}
+            <span class="nav_logo_text" aria-hidden="true"><b>{{ site:name | replace('.', '</b>.') }}</span>
         </a>
         <button class="nav_toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav-menu">
             <span class="nav_toggle_icon"></span>
@@ -19,7 +22,14 @@ navigation: main
                     {{ nav :handle="view:navigation" max_depth="1" }}
                         {{ unless no_results }}{{ partial:components/nav-link :href="url" }}{{ title }}{{ /partial:components/nav-link }}{{ /unless }}
                     {{ /nav }}
+                    {{ if social:youtube }}
+                    {{ _live_attrs = 'target="_blank" rel="noopener" data-live data-service-time="{service:time}" data-service-duration="{service:duration}" data-service-title="Gottesdienst, {site:name}" data-service-location="{contact:street}, {contact:city}" data-service-stream="{social:youtube}"' }}
+                    <li class="nav_live">
+                        {{ partial:components/button element="link" :href="social:youtube" :attrs="_live_attrs" }}<span class="live-dot" aria-hidden="true"></span><span data-live-label="Jetzt live">Livestream</span>{{ /partial:components/button }}
+                    </li>
+                    {{ /if }}
                 </ul>
+                <p class="nav_meta text-style-small">{{ contact:street }}, {{ contact:city }}<br><a class="link-hover" href="tel:{{ contact:phone | replace(' ', '') }}">{{ contact:phone }}</a></p>
             </div>
         </nav>
     </div>

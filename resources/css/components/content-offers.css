@@ -1,0 +1,206 @@
+.offers_wrap {
+  width: 100%;
+}
+
+.offers_filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-5);
+}
+
+.offers_chip {
+  min-height: 2.5rem;
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--border);
+  font-size: var(--text-small);
+  transition:
+    border-color var(--hover-duration) var(--hover-ease),
+    background-color var(--hover-duration) var(--hover-ease),
+    color var(--hover-duration) var(--hover-ease);
+  & sup {
+    margin-left: 0.25em;
+    font-size: 0.7em;
+    opacity: 0.7;
+    font-feature-settings: "tnum";
+  }
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--text);
+    }
+  }
+  &[aria-pressed="true"] {
+    background-color: var(--text);
+    border-color: var(--text);
+    color: var(--background);
+  }
+}
+
+.offers_count {
+  margin-bottom: var(--space-2);
+  font-family: var(--secondary-family);
+  font-style: italic;
+}
+
+.offers_list {
+  border-top: var(--border-width) solid var(--text);
+}
+
+.offers_item {
+  border-bottom: var(--border-width) solid var(--border);
+  transition: opacity calc(var(--hover-duration) * 1.7) var(--hover-ease);
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+/* Row and body share one grid: title, when, icon */
+.offers_toggle,
+.offers_body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.5rem;
+  gap: var(--space-1) var(--space-4);
+  @media (width >= 48rem) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 17.5rem) 3.5rem;
+    gap: var(--space-4);
+  }
+}
+
+.offers_toggle {
+  align-items: center;
+  padding-block: var(--space-4);
+  list-style: none;
+  cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.offers_title {
+  transition: translate calc(var(--hover-duration) * 1.7) var(--hover-ease);
+  .offers_toggle:hover & {
+    translate: 0.625rem 0;
+  }
+}
+
+.offers_plus {
+  position: relative;
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-left: var(--space-2);
+  vertical-align: middle;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(50% - var(--border-width) / 2);
+    width: 100%;
+    height: var(--border-width);
+    background-color: currentcolor;
+    transition: transform calc(var(--hover-duration) * 1.5) var(--hover-ease);
+  }
+  &::after {
+    transform: rotate(90deg);
+  }
+  [open] &::after {
+    transform: rotate(0);
+  }
+}
+
+.offers_when {
+  grid-row: 2;
+  font-size: var(--text-small);
+  font-feature-settings: "tnum";
+  @media (width >= 48rem) {
+    grid-row: auto;
+  }
+}
+
+.offers_icon {
+  --_size: 2.25rem;
+  grid-row: 1 / 3;
+  grid-column: 2;
+  justify-self: end;
+  & * {
+    vector-effect: non-scaling-stroke;
+  }
+  .offers_toggle:hover &,
+  [open] & {
+    color: var(--heading-accent);
+  }
+  @media (width >= 48rem) {
+    --_size: 3rem;
+    grid-row: auto;
+    grid-column: auto;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .offers_toggle:hover & * {
+      animation: offers-draw 0.8s var(--hover-ease);
+    }
+  }
+}
+
+@keyframes offers-draw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+.offers_body {
+  padding-bottom: var(--space-5);
+  & > :first-child {
+    grid-column: 1 / -1;
+  }
+  @media (width >= 48rem) {
+    & > :first-child {
+      grid-column: auto;
+    }
+  }
+}
+
+.offers_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  & li {
+    padding: 0.15em 0.6em;
+    border: var(--border-width) solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--text-2);
+  }
+}
+
+.offers_info {
+  grid-column: 1 / -1;
+  @media (width >= 48rem) {
+    grid-column: auto;
+  }
+  & a {
+    color: var(--text);
+  }
+}
+
+/* Height transition, as in the accordion component */
+.offers_details {
+  interpolate-size: allow-keywords;
+  &::details-content {
+    block-size: 0;
+    overflow: hidden;
+    content-visibility: hidden;
+    transition:
+      block-size calc(var(--open-duration) * 2) var(--open-ease),
+      content-visibility calc(var(--open-duration) * 2) var(--open-ease) allow-discrete;
+  }
+  &[open]::details-content {
+    block-size: auto;
+    content-visibility: visible;
+  }
+}

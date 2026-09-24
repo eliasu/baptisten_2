@@ -1,7 +1,7 @@
 .footer_wrap {
   display: flex;
   justify-content: center;
-  padding-block: var(--section-space-small);
+  padding-block: var(--section-space-small) var(--space-6);
   padding-inline: var(--site-margin);
   background-color: var(--background);
   color: var(--text);
@@ -13,54 +13,61 @@
   max-width: var(--max-width-main);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-8);
 }
 
 .footer_top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4) var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  @media (width >= 64rem) {
+    grid-template-columns: minmax(0, 6fr) repeat(3, minmax(0, 2fr));
+  }
 }
 
-.footer_logo {
-  display: block;
-  width: 7.5rem;
-  max-width: 100%;
-  transition: opacity var(--hover-duration) var(--hover-ease);
-  @media (hover: hover) {
-    &:hover {
-      opacity: 0.6;
-    }
+.footer_claim {
+  grid-column: 1 / -1;
+  max-width: 14ch;
+  @media (width >= 64rem) {
+    grid-column: auto;
   }
+}
+
+.footer_heading {
+  margin-bottom: var(--space-2);
+  color: var(--text-2);
+  font-weight: var(--primary-regular);
 }
 
 .footer_links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-4);
+  display: grid;
+  gap: var(--space-1);
   font-size: var(--text-small);
-  font-weight: var(--primary-medium);
 }
 
 .footer_link {
-  color: var(--text-2);
-  text-decoration: none;
-  transition: color var(--hover-duration) var(--hover-ease);
-  @media (hover: hover) {
-    &:hover {
-      color: var(--text);
-    }
-  }
+  justify-self: start;
 }
 
 .footer_bottom {
-  padding-top: var(--space-4);
-  border-top: var(--border-width) solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-small);
+  color: var(--text-2);
 }
 
-.footer_copyright {
-  color: var(--text-2);
+.footer_totop {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  & .icon {
+    transition: translate var(--hover-duration) var(--hover-ease);
+  }
+  @media (hover: hover) {
+    &:hover .icon {
+      translate: 0 -0.2rem;
+    }
+  }
 }

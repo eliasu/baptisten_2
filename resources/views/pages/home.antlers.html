@@ -1,13 +1,46 @@
-{{# Intro #}}
-{{ partial:components/section padding_top="large" }}
-    {{ partial:components/content-wrapper }}
-        {{ partial:components/eyebrow }}{{ eyebrow }}{{ /partial:components/eyebrow }}
-        {{ partial:components/heading tag="h1" variant="display" max_width="16" }}{{ heading }}{{ /partial:components/heading }}
-        {{ partial:components/paragraph variant="large" max_width="48" }}{{ text }}{{ /partial:components/paragraph }}
-        {{ partial:components/button-wrapper }}
-            {{ buttons scope="button" }}
-                {{ partial:components/button element="link" :href="button:link" :emphasis="first ? 'primary' : 'secondary'" }}{{ button:label }}{{ /partial:components/button }}
-            {{ /buttons }}
-        {{ /partial:components/button-wrapper }}
-    {{ /partial:components/content-wrapper }}
+{{# Hero #}}
+{{ partial:components/section id="top" padding_top="small" padding_bottom="none" }}
+    {{ partial:components/content-hero-home :heading="hero_heading" :text="hero_text" /}}
+{{ /partial:components/section }}
+
+{{# Sunday service #}}
+{{ partial:components/section id="gottesdienst" padding_top="large" padding_bottom="large" gap="small" }}
+    {{ partial:components/content-section-head :heading="service_heading" :text="service_lede" /}}
+    {{ partial:components/content-schedule :stream_heading="stream_heading" :stream_text="stream_text" :stream_note="stream_note" /}}
+{{ /partial:components/section }}
+
+{{# Languages #}}
+{{ partial:components/section id="sprachen" padding_top="large" padding_bottom="large" gap="small" class="background-2" }}
+    {{ partial:components/content-section-head :heading="languages_heading" :text="languages_lede" /}}
+    {{ partial:components/content-languages /}}
+{{ /partial:components/section }}
+
+{{# Offers #}}
+{{ partial:components/section id="angebote" padding_top="large" padding_bottom="large" gap="small" }}
+    {{ partial:components/content-section-head :heading="offers_heading" :text="offers_lede" /}}
+    {{ partial:components/content-offers /}}
+{{ /partial:components/section }}
+
+{{# Stance #}}
+{{ partial:components/section id="gemeinde" theme="dark" padding_top="large" padding_bottom="large" }}
+    {{ partial:components/content-stance :label="stance_label" :text="stance_text" /}}
+{{ /partial:components/section }}
+
+{{# History #}}
+{{ partial:components/section-history id="geschichte" :heading="history_heading" /}}
+
+{{# News #}}
+{{ partial:components/section id="aktuelles" padding_top="large" padding_bottom="large" gap="small" }}
+    {{ partial:components/content-section-head :heading="news_heading" :text="news_lede" /}}
+    {{ partial:components/content-news :newsletter_heading="newsletter_heading" :newsletter_text="newsletter_text" /}}
+{{ /partial:components/section }}
+
+{{# Join and give #}}
+{{ partial:components/section id="mitmachen" padding_top="none" padding_bottom="large" }}
+    {{ partial:components/content-join :heading="join_heading" :text="join_text" :areas="join_areas" /}}
+{{ /partial:components/section }}
+
+{{# Contact #}}
+{{ partial:components/section id="kontakt" padding_top="large" padding_bottom="large" }}
+    {{ partial:components/content-contact /}}
 {{ /partial:components/section }}

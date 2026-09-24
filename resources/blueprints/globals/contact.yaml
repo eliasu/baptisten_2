@@ -1,0 +1,57 @@
+title: 'Kontakt'
+fields:
+  -
+    handle: 'street'
+    field:
+      type: 'text'
+      display: 'Street'
+      instructions: 'Straße und Hausnummer.'
+      validate:
+        - 'required'
+      character_limit: 40
+  -
+    handle: 'city'
+    field:
+      type: 'text'
+      display: 'City'
+      instructions: 'Postleitzahl und Ort.'
+      validate:
+        - 'required'
+      character_limit: 30
+  -
+    handle: 'phone'
+    field:
+      type: 'text'
+      display: 'Phone'
+      instructions: 'Telefonnummer, wie sie angezeigt wird: „030 78004 200“.'
+      validate:
+        - 'required'
+      character_limit: 20
+  -
+    handle: 'email'
+    field:
+      type: 'text'
+      display: 'Email'
+      instructions: 'Allgemeine E-Mail-Adresse der Gemeinde.'
+      validate:
+        - 'required'
+      input_type: 'email'
+  -
+    handle: 'video_email'
+    field:
+      type: 'text'
+      display: 'Livestream email'
+      instructions: 'Adresse für Rückmeldungen zum Livestream (Ton, Bild).'
+      input_type: 'email'
+  -
+    handle: 'directions'
+    field:
+      type: 'list'
+      display: 'Directions'
+      instructions: 'Anfahrt, eine Zeile pro Eintrag (Bus, Bahn, Parken).'
+  -
+    handle: 'map_url'
+    field:
+      type: 'link'
+      display: 'Map link'
+      instructions: 'Link „In der Karte öffnen“, z. B. zu OpenStreetMap.'

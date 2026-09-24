@@ -7,7 +7,10 @@
   background-color: var(--button-background);
   color: var(--button-text);
   border: var(--border-width) solid var(--button-border);
-  border-radius: 0.5em;
+  border-radius: var(--radius-small);
+  min-height: 3rem;
+  font-size: var(--text-small);
+  font-weight: var(--primary-medium);
   line-height: 1.2;
   text-decoration: none;
   text-align: center;
@@ -20,6 +23,31 @@
       background-color: var(--button-background-hover);
       color: var(--button-text-hover);
       border-color: var(--button-border-hover);
+    }
+  }
+  /* Statamic port: hover fills the button from the left instead of fading */
+  &:where(:not(.link, .play, .close, .arrow)) {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: var(--button-background-hover);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform calc(var(--hover-duration) * 1.7) var(--hover-ease);
+    }
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        background-color: var(--button-background);
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
     }
   }
   &.secondary {

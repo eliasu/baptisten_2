@@ -13,12 +13,14 @@ align: null
 full_height: false
 # Inner container classes.
 container_class: null
+# Statamic port: stands in for ...rest. Anchor id for in-page links.
+id: null
 class: null
 ---
 {{# Named slot `background` renders before the container. Statamic port: containerAttrs and ...rest aren't ported. #}}
 {{ _pad = ['none' => '0', 'even' => 'sitemargin'] }}
 {{ if (slot | trim) || (slot:background | trim) }}
-<section class="section{{ if view:padding_top != 'medium' }} padding-top-{{ _pad[view:padding_top] ?? view:padding_top }}{{ /if }}{{ if view:padding_bottom != 'medium' }} padding-bottom-{{ _pad[view:padding_bottom] ?? view:padding_bottom }}{{ /if }}{{ if view:full_height | to_bool }} min-height-screen{{ /if }}{{ if view:theme != 'inherit' }} theme-{{ view:theme }}{{ /if }}{{ if view:align }} alignment-{{ view:align }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
+<section{{ if view:id }} id="{{ view:id }}"{{ /if }} class="section{{ if view:padding_top != 'medium' }} padding-top-{{ _pad[view:padding_top] ?? view:padding_top }}{{ /if }}{{ if view:padding_bottom != 'medium' }} padding-bottom-{{ _pad[view:padding_bottom] ?? view:padding_bottom }}{{ /if }}{{ if view:full_height | to_bool }} min-height-screen{{ /if }}{{ if view:theme != 'inherit' }} theme-{{ view:theme }}{{ /if }}{{ if view:align }} alignment-{{ view:align }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}">
     {{ slot:background | trim }}
     {{ if slot | trim }}
     <div class="container{{ if view:gap != '8' }} gap-{{ view:gap }}{{ /if }}{{ if view:container_class }} {{ view:container_class }}{{ /if }}">

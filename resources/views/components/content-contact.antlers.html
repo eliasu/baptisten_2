@@ -1,0 +1,63 @@
+---
+class: null
+---
+{{# Address and links from the `contact` and `social` globals, people from `team`; the map is a fixed schematic.
+    JS: resources/js/components/content-contact.ts #}}
+<div class="contact_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div>
+        <h2 class="sr-only">Kontakt und Anfahrt</h2>
+        <address class="contact_address text-style-h2">{{ contact:street }}<br>{{ contact:city }}</address>
+        <div class="contact_links">
+            <a class="link-hover" href="tel:{{ contact:phone | replace(' ', '') }}">{{ contact:phone }}</a>
+            <a class="link-hover" href="mailto:{{ contact:email }}">{{ contact:email }}</a>
+        </div>
+        <div class="contact_details">
+            {{ if contact:directions }}
+            <div>
+                {{ partial:components/heading tag="h3" variant="small" class="contact_label" }}Anfahrt{{ /partial:components/heading }}
+                <ul>{{ foreach :array="contact:directions" }}<li>{{ value }}</li>{{ /foreach }}</ul>
+            </div>
+            {{ /if }}
+            <div>
+                {{ partial:components/heading tag="h3" variant="small" class="contact_label" }}Online{{ /partial:components/heading }}
+                <ul>
+                    {{ if social:instagram }}<li><a class="link-hover" href="{{ social:instagram }}" target="_blank" rel="noopener">Instagram</a></li>{{ /if }}
+                    {{ if social:youtube }}<li><a class="link-hover" href="{{ social:youtube }}" target="_blank" rel="noopener">YouTube</a></li>{{ /if }}
+                    {{ if social:facebook }}<li><a class="link-hover" href="{{ social:facebook }}" target="_blank" rel="noopener">Facebook</a></li>{{ /if }}
+                </ul>
+            </div>
+        </div>
+        {{ collection:team as="people" }}
+        {{ if people }}
+        <ul class="contact_team">
+            {{ people scope="person" }}
+            <li><strong>{{ person:title }}</strong><span class="color-secondary">{{ person:role }}</span><a class="link-hover" href="mailto:{{ person:email }}">E-Mail</a></li>
+            {{ /people }}
+        </ul>
+        {{ /if }}
+        {{ /collection:team }}
+    </div>
+    <div>
+        <div class="contact_map" role="img" aria-label="Schematische Karte: Die Kirche liegt an der Hauptstraße, Ecke Albertstraße, nördlich die U-Bahn Kleistpark.">
+            <svg viewBox="0 0 400 400" aria-hidden="true">
+                <path class="contact_street-minor" d="M-10 120 L410 190"/>
+                <path class="contact_street-minor" d="M60 -10 L130 410"/>
+                <path class="contact_street-minor" d="M-10 300 L410 330"/>
+                <path class="contact_street-minor" d="M300 -10 L260 410"/>
+                <path class="contact_street-main" d="M360 -10 C320 110 250 200 210 250 S120 360 90 410"/>
+                <path class="contact_route" d="M340 44 C320 100 290 150 250 200 L 226 228"/>
+                <rect class="contact_station" x="332" y="34" width="18" height="18"/>
+                <text x="330" y="26" text-anchor="end">U Kleistpark</text>
+                <text x="36" y="232" transform="rotate(10 36 232)">Albertstraße</text>
+                <text x="236" y="300" transform="rotate(-52 236 300)">Hauptstraße</text>
+                <g class="contact_church" transform="translate(212 212)">
+                    <circle cx="14" cy="4" r="5"/>
+                    <line x1="14" y1="11" x2="14" y2="34"/>
+                    <line x1="0" y1="14" x2="28" y2="14"/>
+                </g>
+                <text class="contact_place" x="250" y="232">{{ site:name }}</text>
+            </svg>
+        </div>
+        <div class="contact_caption"><span class="color-secondary">Schematische Darstellung</span>{{ if contact:map_url }}<a class="link-hover" href="{{ contact:map_url }}" target="_blank" rel="noopener">In der Karte öffnen</a>{{ /if }}</div>
+    </div>
+</div>

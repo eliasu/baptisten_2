@@ -1,0 +1,26 @@
+---
+# Small label above the statement.
+label: null
+# Statement, set very large; its words light up while scrolling.
+text: null
+class: null
+---
+{{# Principles from the `principles` collection. JS: resources/js/components/content-stance.ts #}}
+{{ if view:text }}
+<div class="stance_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ partial:components/heading tag="h2" variant="small" class="stance_label color-secondary" }}{{ view:label }}{{ /partial:components/heading }}
+    {{ partial:components/paragraph variant="h2" max_width="24" class="stance_text" }}{{ view:text }}{{ /partial:components/paragraph }}
+    {{ collection:principles as="principles" }}
+    {{ if principles }}
+    <div class="stance_principles">
+        {{ principles scope="principle" }}
+        <div class="stance_principle">
+            {{ partial:components/heading tag="h3" variant="h6" class="margin-bottom-3" }}{{ principle:title }}{{ /partial:components/heading }}
+            {{ partial:components/paragraph variant="serif" class="color-secondary" }}{{ principle:description }}{{ /partial:components/paragraph }}
+        </div>
+        {{ /principles }}
+    </div>
+    {{ /if }}
+    {{ /collection:principles }}
+</div>
+{{ /if }}

@@ -1,0 +1,34 @@
+title: 'Geschichte'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'year'
+            field:
+              type: 'text'
+              display: 'Year'
+              instructions: 'Jahreszahl, oder ein Wort wie „Heute“. Der letzte Eintrag wird farbig hervorgehoben.'
+              validate:
+                - 'required'
+              character_limit: 6
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Was in diesem Jahr geschah, in wenigen Worten.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'description'
+            field:
+              type: 'textarea'
+              display: 'Description'
+              instructions: 'Ein bis zwei Sätze.'
+              validate:
+                - 'required'
+              character_limit: 160

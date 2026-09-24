@@ -1,0 +1,42 @@
+---
+# Section heading.
+heading: null
+# Invitation text.
+text: null
+# Areas visitors can pick; the choice goes into the email.
+areas: null
+class: null
+---
+{{# Donation details from the `donations` global, email address from `contact`. JS: resources/js/components/content-join.ts #}}
+{{ if view:heading }}
+{{ _mailto = 'mailto:' + contact:email + '?subject=Ich%20m%C3%B6chte%20mitmachen' }}
+<div class="join_wrap{{ if view:class }} {{ view:class }}{{ /if }}" data-email="{{ contact:email }}">
+    <div>
+        {{ partial:components/heading tag="h2" variant="h1" }}{{ view:heading }}{{ /partial:components/heading }}
+        {{ partial:components/paragraph variant="large" max_width="44" class="color-secondary margin-top-5" }}{{ view:text }}{{ /partial:components/paragraph }}
+        {{ if view:areas }}
+        <div class="join_areas" role="group" aria-label="Bereiche zum Mitmachen">
+            {{ foreach :array="view:areas" }}<button class="join_area" type="button" aria-pressed="false"><span class="join_box" aria-hidden="true"></span>{{ value }}</button>{{ /foreach }}
+        </div>
+        <p class="join_output color-secondary" aria-live="polite">Noch nichts ausgewählt.</p>
+        {{ /if }}
+        {{ partial:components/button-wrapper margin_top="0" }}
+            {{ partial:components/button element="link" emphasis="secondary" :href="_mailto" class="join_send" }}Nachricht schreiben{{ /partial:components/button }}
+        {{ /partial:components/button-wrapper }}
+    </div>
+    {{ if donations:recipient }}
+    <aside class="join_give" id="spenden">
+        {{ partial:components/heading tag="h3" variant="h4" class="margin-bottom-3" }}Spenden{{ /partial:components/heading }}
+        {{ partial:components/paragraph variant="serif" class="color-secondary" }}{{ donations:text }}{{ /partial:components/paragraph }}
+        <dl class="join_account">
+            <dt>Empfänger</dt><dd>{{ donations:recipient }}</dd>
+            {{ if donations:iban }}<dt>IBAN</dt><dd class="join_iban">{{ donations:iban }}</dd>{{ /if }}
+            {{ if donations:purpose }}<dt>Zweck</dt><dd>{{ donations:purpose }}</dd>{{ /if }}
+        </dl>
+        {{ if donations:iban }}
+        {{ partial:components/button emphasis="secondary" class="join_copy" attrs='data-copied="Kopiert" data-failed="Kopieren nicht möglich"' }}IBAN kopieren{{ /partial:components/button }}
+        {{ /if }}
+    </aside>
+    {{ /if }}
+</div>
+{{ /if }}

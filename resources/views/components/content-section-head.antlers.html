@@ -1,0 +1,15 @@
+---
+# Section heading. Line breaks are kept.
+heading: null
+# Intro text beside the heading.
+text: null
+# Heading level: h1–h6.
+tag: h2
+class: null
+---
+{{ if view:heading }}
+<div class="section-head_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    {{ partial:components/heading :tag="view:tag" variant="h1" }}{{ view:heading | nl2br }}{{ /partial:components/heading }}
+    {{ partial:components/paragraph variant="large" max_width="44" class="section-head_text" }}{{ view:text }}{{ /partial:components/paragraph }}
+</div>
+{{ /if }}

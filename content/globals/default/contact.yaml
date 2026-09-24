@@ -1,0 +1,10 @@
+street: 'Hauptstraße 125 A'
+city: '10827 Berlin'
+phone: '030 78004 200'
+email: 'mail@baptisten-schoeneberg.de'
+video_email: 'video@baptisten-schoeneberg.de'
+directions:
+  - 'Bus M48 und M85, Haltestelle Albertstraße'
+  - 'U7 Kleistpark, etwa 10 Minuten zu Fuß'
+  - 'Vor Ort gibt es keine Parkplätze'
+map_url: 'https://www.openstreetmap.org/search?query=Hauptstra%C3%9Fe%20125A%2C%2010827%20Berlin'

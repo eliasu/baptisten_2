@@ -1,0 +1,59 @@
+title: 'Sprachen'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Name'
+              instructions: 'Name der Sprache, in ihrer eigenen Schrift (z. B. „한국어“).'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'time'
+            field:
+              type: 'text'
+              display: 'Time'
+              instructions: 'Wann die Gruppe feiert, kurz: „So 10:00“, „sonntags“, „regelmäßig“.'
+              character_limit: 20
+          -
+            handle: 'description'
+            field:
+              type: 'textarea'
+              display: 'Description'
+              instructions: 'Ein bis zwei Sätze über die Gruppe.'
+              validate:
+                - 'required'
+              character_limit: 250
+          -
+            handle: 'welcome'
+            field:
+              type: 'text'
+              display: 'Welcome word'
+              instructions: '„Willkommen“ in dieser Sprache. Erscheint groß links.'
+              validate:
+                - 'required'
+              character_limit: 20
+          -
+            handle: 'label'
+            field:
+              type: 'text'
+              display: 'Label'
+              instructions: 'Zeile unter dem großen Wort, z. B. „한국어 · Koreanisch“.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'lang_code'
+            field:
+              type: 'text'
+              display: 'Language code'
+              instructions: 'Zweistelliger Sprachcode (de, pt, ko, fa …). Steuert Schrift und Leserichtung.'
+              validate:
+                - 'required'
+              character_limit: 5

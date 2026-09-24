@@ -1,0 +1,39 @@
+title: 'Aktuelles'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Überschrift der Meldung.'
+              validate:
+                - 'required'
+              character_limit: 60
+          -
+            handle: 'category'
+            field:
+              type: 'text'
+              display: 'Category'
+              instructions: 'Rubrik links neben der Meldung, ein Wort: „Taufe“, „Ökumene“, „Gemeinde“.'
+              character_limit: 15
+          -
+            handle: 'teaser'
+            field:
+              type: 'textarea'
+              display: 'Teaser'
+              instructions: 'Ein bis zwei Sätze. Die drei neuesten Meldungen erscheinen auf der Startseite.'
+              validate:
+                - 'required'
+              character_limit: 200
+          -
+            handle: 'link'
+            field:
+              type: 'link'
+              display: 'Link'
+              instructions: 'Optional: wohin die Meldung führt, z. B. ein Instagram-Beitrag oder eine PDF.'
+              container: 'assets'

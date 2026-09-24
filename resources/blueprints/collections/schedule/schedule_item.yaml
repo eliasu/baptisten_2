@@ -1,0 +1,48 @@
+title: 'Sonntagsablauf'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Was passiert, z. B. „Gottesdienst“.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'time'
+            field:
+              type: 'text'
+              display: 'Time'
+              instructions: 'Uhrzeit wie „10:00“ oder ein kurzes Wort wie „danach“.'
+              validate:
+                - 'required'
+              character_limit: 8
+          -
+            handle: 'place'
+            field:
+              type: 'text'
+              display: 'Place'
+              instructions: 'Raum, in dem es stattfindet, z. B. „Kirchsaal“.'
+              character_limit: 30
+          -
+            handle: 'description'
+            field:
+              type: 'textarea'
+              display: 'Description'
+              instructions: 'Zwei bis drei Sätze.'
+              validate:
+                - 'required'
+              character_limit: 300
+          -
+            handle: 'tag'
+            field:
+              type: 'text'
+              display: 'Tag'
+              instructions: 'Optionaler Hinweis im Kästchen darunter, z. B. „Auch im Livestream“.'
+              character_limit: 30

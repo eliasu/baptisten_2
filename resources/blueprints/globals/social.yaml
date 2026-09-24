@@ -1,0 +1,22 @@
+title: 'Social Media'
+fields:
+  -
+    handle: 'youtube'
+    field:
+      type: 'link'
+      display: 'YouTube'
+      instructions: 'YouTube-Kanal. Wird auch für alle Livestream-Links verwendet.'
+      validate:
+        - 'required'
+  -
+    handle: 'instagram'
+    field:
+      type: 'link'
+      display: 'Instagram'
+      instructions: 'Instagram-Profil. Leer lassen, um den Link auszublenden.'
+  -
+    handle: 'facebook'
+    field:
+      type: 'link'
+      display: 'Facebook'
+      instructions: 'Facebook-Seite. Leer lassen, um den Link auszublenden.'

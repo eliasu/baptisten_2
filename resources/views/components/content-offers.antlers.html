@@ -1,0 +1,33 @@
+---
+class: null
+---
+{{# Offers from the `offers` collection, one native <details> each. The filter chips and the count are built by
+    resources/js/components/content-offers.ts from the categories in list order. #}}
+{{ collection:offers as="offers" }}
+{{ if offers }}
+<div class="offers_wrap{{ if view:class }} {{ view:class }}{{ /if }}">
+    <div class="offers_filters" role="group" aria-label="Angebote filtern" hidden></div>
+    <p class="offers_count color-secondary" aria-live="polite" hidden></p>
+    <ul class="offers_list">
+        {{ offers scope="offer" }}
+        <li class="offers_item" data-category="{{ offer:offer_categories:slug }}" data-category-title="{{ offer:offer_categories:title }}">
+            <details class="offers_details">
+                <summary class="offers_toggle">
+                    <span class="offers_title text-style-h4">{{ offer:title }}<span class="offers_plus" aria-hidden="true"></span></span>
+                    <span class="offers_when color-secondary">{{ offer:when }}</span>
+                    {{ _icon = 'offer-{offer:icon:value}' }}{{ partial:components/icon :name="_icon" class="offers_icon" }}
+                </summary>
+                <div class="offers_body">
+                    <div>
+                        {{ partial:components/paragraph variant="serif" max_width="60" }}{{ offer:description }}{{ /partial:components/paragraph }}
+                        {{ if offer:tags }}<ul class="offers_tags">{{ offer:tags }}<li>{{ value }}</li>{{ /offer:tags }}</ul>{{ /if }}
+                    </div>
+                    {{ if offer:info }}<div class="offers_info">{{ partial:components/rich-text variant="small" class="color-secondary" }}{{ offer:info }}{{ /partial:components/rich-text }}</div>{{ /if }}
+                </div>
+            </details>
+        </li>
+        {{ /offers }}
+    </ul>
+</div>
+{{ /if }}
+{{ /collection:offers }}

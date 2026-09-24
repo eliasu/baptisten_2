@@ -1,63 +1,262 @@
-title: Home
+title: 'Home'
 order: 2
 tabs:
-  main:
-    display: Content
+  hero:
+    display: 'Hero'
     sections:
       -
-        display: Intro
-        instructions: 'Der erste Bereich der Startseite.'
         fields:
           -
-            handle: title
+            handle: 'title'
             field:
-              type: text
-              display: Title
+              type: 'text'
+              display: 'Title'
               instructions: 'Name der Seite im Control Panel und im Browser-Tab.'
-              required: true
               validate:
-                - required
+                - 'required'
+              character_limit: 60
           -
-            handle: eyebrow
+            handle: 'hero_heading'
             field:
-              type: text
-              display: Eyebrow
-              instructions: 'Kurze Zeile über der Überschrift (optional).'
+              type: 'textarea'
+              display: 'Heading'
+              instructions: 'Große Überschrift, eine Zeile pro Zeile. Die letzte Zeile ist das Wort, bei dem die Figuren daneben die Arme heben.'
+              validate:
+                - 'required'
+              character_limit: 80
+          -
+            handle: 'hero_text'
+            field:
+              type: 'textarea'
+              display: 'Text'
+              instructions: 'Ein bis zwei Sätze unter der Überschrift.'
+              validate:
+                - 'required'
+              character_limit: 200
+  service:
+    display: 'Gottesdienst'
+    sections:
+      -
+        fields:
+          -
+            handle: 'service_heading'
+            field:
+              type: 'textarea'
+              display: 'Heading'
+              instructions: 'Überschrift des Abschnitts. Zeilenumbruch mit Enter.'
+              validate:
+                - 'required'
               character_limit: 40
           -
-            handle: heading
+            handle: 'service_lede'
             field:
-              type: text
-              display: Heading
-              instructions: 'Hauptüberschrift der Startseite.'
-              character_limit: 80
+              type: 'textarea'
+              display: 'Intro'
+              instructions: 'Einleitung rechts neben der Überschrift.'
               validate:
-                - required
-          -
-            handle: text
-            field:
-              type: textarea
-              display: Text
-              instructions: 'Ein bis zwei Sätze unter der Überschrift.'
+                - 'required'
               character_limit: 300
           -
-            import: buttons
-  seo:
-    display: SEO
-    sections:
-      -
-        fields:
-          -
-            import: seo
-  sidebar:
-    display: Sidebar
-    sections:
-      -
-        fields:
-          -
-            handle: template
+            handle: 'stream_heading'
             field:
-              type: template
-              display: Template
-              default: pages/home
-              visibility: hidden
+              type: 'text'
+              display: 'Livestream heading'
+              instructions: 'Überschrift des Livestream-Kastens.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'stream_text'
+            field:
+              type: 'textarea'
+              display: 'Livestream text'
+              instructions: 'Ein bis zwei Sätze. Der Button führt zum YouTube-Kanal (Globals → Social Media).'
+              validate:
+                - 'required'
+              character_limit: 200
+          -
+            handle: 'stream_note'
+            field:
+              type: 'bard'
+              display: 'Livestream note'
+              instructions: 'Kleiner Hinweis unten im Kasten, z. B. an wen man bei Problemen schreibt.'
+              buttons:
+                - 'bold'
+                - 'anchor'
+              save_html: true
+              toolbar_mode: 'fixed'
+              remove_empty_nodes: 'trim'
+  languages:
+    display: 'Sprachen'
+    sections:
+      -
+        fields:
+          -
+            handle: 'languages_heading'
+            field:
+              type: 'textarea'
+              display: 'Heading'
+              instructions: 'Überschrift des Abschnitts. Zeilenumbruch mit Enter.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'languages_lede'
+            field:
+              type: 'textarea'
+              display: 'Intro'
+              instructions: 'Einleitung rechts neben der Überschrift.'
+              validate:
+                - 'required'
+              character_limit: 300
+  offers:
+    display: 'Angebote'
+    sections:
+      -
+        fields:
+          -
+            handle: 'offers_heading'
+            field:
+              type: 'textarea'
+              display: 'Heading'
+              instructions: 'Überschrift des Abschnitts. Zeilenumbruch mit Enter.'
+              validate:
+                - 'required'
+              character_limit: 40
+          -
+            handle: 'offers_lede'
+            field:
+              type: 'textarea'
+              display: 'Intro'
+              instructions: 'Einleitung rechts neben der Überschrift.'
+              validate:
+                - 'required'
+              character_limit: 300
+  stance:
+    display: 'Gemeinde'
+    sections:
+      -
+        fields:
+          -
+            handle: 'stance_label'
+            field:
+              type: 'text'
+              display: 'Label'
+              instructions: 'Kleine Zeile über dem Text, z. B. „Wofür wir stehen“.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'stance_text'
+            field:
+              type: 'textarea'
+              display: 'Statement'
+              instructions: 'Das Leitbild in wenigen Sätzen, sehr groß gesetzt.'
+              validate:
+                - 'required'
+              character_limit: 400
+  history:
+    display: 'Geschichte'
+    sections:
+      -
+        fields:
+          -
+            handle: 'history_heading'
+            field:
+              type: 'textarea'
+              display: 'Heading'
+              instructions: 'Überschrift über der Zeitleiste. Zeilenumbruch mit Enter.'
+              validate:
+                - 'required'
+              character_limit: 40
+  news:
+    display: 'Aktuelles'
+    sections:
+      -
+        fields:
+          -
+            handle: 'news_heading'
+            field:
+              type: 'text'
+              display: 'Heading'
+              instructions: 'Überschrift des Abschnitts.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'news_lede'
+            field:
+              type: 'textarea'
+              display: 'Intro'
+              instructions: 'Einleitung rechts neben der Überschrift.'
+              validate:
+                - 'required'
+              character_limit: 200
+          -
+            handle: 'newsletter_heading'
+            field:
+              type: 'text'
+              display: 'Newsletter heading'
+              instructions: 'Überschrift des Newsletter-Kastens.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'newsletter_text'
+            field:
+              type: 'textarea'
+              display: 'Newsletter text'
+              instructions: 'Ein Satz, was im Newsletter steht.'
+              validate:
+                - 'required'
+              character_limit: 150
+  join:
+    display: 'Mitmachen'
+    sections:
+      -
+        fields:
+          -
+            handle: 'join_heading'
+            field:
+              type: 'text'
+              display: 'Heading'
+              instructions: 'Überschrift des Abschnitts.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'join_text'
+            field:
+              type: 'textarea'
+              display: 'Text'
+              instructions: 'Einladung zum Mitmachen, zwei Sätze.'
+              validate:
+                - 'required'
+              character_limit: 250
+          -
+            handle: 'join_areas'
+            field:
+              type: 'list'
+              display: 'Areas'
+              instructions: 'Bereiche, die man antippen kann (Küche, Musik …). Die Auswahl landet in der E-Mail an die Gemeinde.'
+              validate:
+                - 'required'
+  seo:
+    display: 'SEO'
+    sections:
+      -
+        fields:
+          -
+            import: 'seo'
+  sidebar:
+    display: 'Sidebar'
+    sections:
+      -
+        fields:
+          -
+            handle: 'template'
+            field:
+              type: 'template'
+              display: 'Template'
+              default: 'pages/home'
+              visibility: 'hidden'

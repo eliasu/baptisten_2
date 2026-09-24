@@ -1,0 +1,40 @@
+title: 'Gemeindemagazin'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Name im Control Panel, z. B. „Ausgabe 12“.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'issue'
+            field:
+              type: 'integer'
+              display: 'Issue number'
+              instructions: 'Nummer der Ausgabe, erscheint groß auf dem Cover.'
+              validate:
+                - 'required'
+          -
+            handle: 'theme'
+            field:
+              type: 'text'
+              display: 'Theme'
+              instructions: 'Thema der Ausgabe, erscheint kursiv auf dem Cover.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'link'
+            field:
+              type: 'link'
+              display: 'Link'
+              instructions: 'Wo man die Ausgabe liest: eine Adresse oder eine hochgeladene PDF. Ohne Link ist das Cover nicht klickbar.'
+              container: 'assets'

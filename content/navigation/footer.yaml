@@ -1,4 +1,4 @@
-title: Footer
+title: 'Footer'
 collections:
-  - pages
-max_depth: 1
+  - 'pages'
+max_depth: 2

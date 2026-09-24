@@ -1,0 +1,120 @@
+.contact_wrap {
+  width: 100%;
+  display: grid;
+  gap: var(--space-8);
+  @media (width >= 64rem) {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--section-space-small);
+  }
+}
+
+.contact_address {
+  margin: 0;
+  font-style: normal;
+}
+
+.contact_links {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-6);
+  font-size: var(--h5);
+  letter-spacing: var(--h5-letter-spacing);
+  & a {
+    justify-self: start;
+  }
+}
+
+.contact_details {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--border);
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.contact_label {
+  margin-bottom: var(--space-2);
+  color: var(--text-2);
+  font-weight: var(--primary-regular);
+}
+
+.contact_team {
+  margin-top: var(--space-6);
+  border-top: var(--border-width) solid var(--border);
+  & li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    padding-block: var(--space-3);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+  & strong {
+    font-weight: var(--primary-medium);
+  }
+  & span {
+    font-size: var(--text-small);
+  }
+}
+
+.contact_map {
+  aspect-ratio: 1;
+  overflow: clip;
+  background-color: var(--background-2);
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+  & path,
+  & line {
+    fill: none;
+  }
+  & text {
+    font-family: var(--primary-family);
+    font-size: 0.8125rem;
+    fill: var(--text-2);
+  }
+}
+
+.contact_street-minor {
+  stroke: var(--border);
+  stroke-width: 5;
+}
+
+.contact_street-main {
+  stroke: var(--border);
+  stroke-width: 10;
+}
+
+.contact_route {
+  stroke: var(--text);
+  stroke-width: 2;
+  stroke-dasharray: 4 5;
+}
+
+.contact_station {
+  fill: var(--brand-500);
+}
+
+.contact_church {
+  fill: var(--text);
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.contact_map .contact_place {
+  fill: var(--text);
+  font-size: 0.875rem;
+  font-weight: var(--primary-medium);
+}
+
+.contact_caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  font-size: var(--text-small);
+}

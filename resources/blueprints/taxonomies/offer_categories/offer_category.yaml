@@ -1,0 +1,16 @@
+title: 'Angebotskategorie'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Name des Filters über der Liste, z. B. „Kinder und Familie“.'
+              validate:
+                - 'required'
+              character_limit: 25

@@ -1,0 +1,8 @@
+title: 'Newsletter'
+honeypot: 'fax'
+store: true
+email:
+  -
+    id: '9f96d542-7e09-4a4a-b54c-fb5381c0f06a'
+    to: 'elias@commandg.de'
+    subject: 'Neue Newsletter-Anmeldung'

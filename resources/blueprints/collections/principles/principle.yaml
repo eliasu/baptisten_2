@@ -1,0 +1,25 @@
+title: 'Grundsätze'
+tabs:
+  main:
+    display: 'Content'
+    sections:
+      -
+        fields:
+          -
+            handle: 'title'
+            field:
+              type: 'text'
+              display: 'Title'
+              instructions: 'Kurzer Titel, z. B. „Ohne Hierarchie“.'
+              validate:
+                - 'required'
+              character_limit: 30
+          -
+            handle: 'description'
+            field:
+              type: 'textarea'
+              display: 'Description'
+              instructions: 'Ein bis zwei Sätze.'
+              validate:
+                - 'required'
+              character_limit: 200
