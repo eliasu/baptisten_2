@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>command+g – Gut beraten. Gut gemacht.</title>
+<meta name="description" content="Du sagst, was du willst. Wir sagen, was du brauchst. Websites, Design und alles dazwischen.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--soft:#f2f2f0;--ink:#000;--mu:#737370;--ln:#e3e3e0;--ac:#ff4f1a;--pad:clamp(18px,3.2vw,52px);--nav-h:70px;--font:"Schibsted Grotesk",system-ui,"Helvetica Neue",Arial,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+*,*::before,*::after{box-sizing:border-box;border-radius:0!important}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--ac);color:#fff}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.lbl{font-size:15px;font-weight:600;color:var(--mu)}
+.ph{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(150deg,color-mix(in srgb,var(--c,#999) 30%,#f2f2f0) 0%,#f2f2f0 75%)}
+.ph span{font-size:14px;font-weight:600;background:#fff;padding:6px 10px}
+.ulink{position:relative;display:inline-flex;font-weight:600}
+.ulink::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:currentColor;transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.ulink:hover::after{transform:scaleX(0)}
+.sec{padding:clamp(100px,12vw,190px) var(--pad);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(20px,4vw,64px)}
+
+/* Kopf */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:calc(var(--nav-h) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) var(--pad) 0;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:background .5s var(--ease)}
+.nav.scrolled{background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:baseline;gap:16px}
+.brand b{font-size:19px;font-weight:700;letter-spacing:-.03em}
+.brand span{font-size:15px;color:var(--mu)}
+.nav nav{display:flex;gap:30px;font-size:16px;font-weight:500}
+.nav nav a{color:var(--mu);transition:color .3s}.nav nav a:hover,.nav nav a.act{color:var(--ink)}
+
+/* Hero */
+.hero{padding:calc(var(--nav-h) + 12vh) var(--pad) 0}
+h1{margin:0;font-size:clamp(2.6rem,5.8vw,6.6rem);line-height:1;letter-spacing:-.05em;font-weight:650;max-width:15ch}
+h1 .w{display:inline-block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em;vertical-align:top}
+h1 .wi{display:inline-block}
+h1 .gray{color:#b3b3ae}
+.hero-sub{margin:34px 0 0;font-size:clamp(1.15rem,1.55vw,1.5rem);line-height:1.45;color:var(--mu);max-width:46ch}
+.hero-imgs{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(12px,1.6vw,24px);align-items:end;margin-top:clamp(56px,8vw,110px)}
+.hero-imgs .m{position:relative;overflow:hidden}
+.hero-imgs .m .ph{position:absolute;inset:-8% 0}
+.hero-imgs .m1{aspect-ratio:16/10}
+.hero-imgs .m2{aspect-ratio:3/4}
+
+/* Info */
+.info p{margin:0;font-size:clamp(1.5rem,2.9vw,3rem);line-height:1.18;letter-spacing:-.035em;font-weight:500}
+.info .wd{display:inline-block}
+.info .ulink{margin-top:40px;font-size:18px}
+
+/* Leistungen */
+.acc{border-top:1px solid var(--ink)}
+.ai{border-bottom:1px solid var(--ln)}
+.ai button{appearance:none;background:none;border:0;width:100%;text-align:left;cursor:pointer;display:grid;grid-template-columns:70px minmax(0,1fr) minmax(0,1.1fr) 28px;gap:20px;align-items:baseline;padding:28px 0;font-family:var(--font);color:var(--ink)}
+.ai .n{font-size:15px;font-weight:600;color:var(--mu);font-variant-numeric:tabular-nums}
+.ai .t{font-size:clamp(1.6rem,2.8vw,2.8rem);font-weight:650;letter-spacing:-.045em;line-height:1}
+.ai .s{font-size:clamp(1.05rem,1.3vw,1.25rem);color:var(--mu);font-weight:500}
+.ai .x{position:relative;width:18px;height:18px;align-self:center}
+.ai .x::before,.ai .x::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--ink);transition:transform .6s var(--ease)}
+.ai .x::after{transform:rotate(90deg)}
+.ai.open .x::after{transform:rotate(0)}
+.ai .body{overflow:hidden;height:0}
+.ai.open .body{height:auto}
+.ai .inner{display:grid;grid-template-columns:70px minmax(0,1fr) minmax(0,1.1fr) 28px;gap:20px;padding:0 0 34px}
+.ai .inner p{grid-column:3;margin:0;font-size:18px;max-width:44ch}
+.ai .meta{grid-column:3;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:18px}
+.ai .meta span{font-size:15px;border:1px solid var(--ln);padding:6px 10px}
+.ai .meta strong{margin-left:auto;font-size:18px;font-weight:650}
+.ai button:hover .t{color:var(--ac)}
+
+/* Arbeiten */
+.work-top{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(36px,4vw,60px)}
+.work-top p{margin:0;font-size:clamp(1.15rem,1.55vw,1.5rem);line-height:1.4;max-width:40ch}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,24px)}
+.card .m{position:relative;aspect-ratio:4/5;overflow:hidden}
+.card .m .ph{position:absolute;inset:0;transition:transform 1.4s var(--ease)}
+.card:hover .m .ph{transform:scale(1.05)}
+.card .m em{position:absolute;right:16px;bottom:16px;font-style:normal;background:#000;color:#fff;padding:10px 14px;font-size:15px;font-weight:600;transform:translateY(12px);opacity:0;transition:.6s var(--ease)}
+.card:hover .m em{transform:none;opacity:1}
+.card .c{display:flex;justify-content:space-between;gap:12px;margin-top:16px}
+.card .c b{font-size:clamp(1.2rem,1.7vw,1.6rem);font-weight:650;letter-spacing:-.03em}
+.card .c span{color:var(--mu)}
+.explore{margin-top:clamp(70px,8vw,120px)}
+.explore-head{display:flex;justify-content:space-between;margin-bottom:22px}
+.strip{display:flex;gap:clamp(12px,1.6vw,24px);width:max-content;will-change:transform}
+.strip .ph{width:clamp(220px,26vw,420px);aspect-ratio:4/3;flex:none}
+.explore-wrap{overflow:hidden;margin-right:calc(var(--pad) * -1)}
+
+/* Kunden */
+.clients{padding:0 0 clamp(100px,12vw,190px);overflow:hidden}
+.clients .lbl{display:block;padding:0 var(--pad) 26px}
+.crow{display:flex;width:max-content;padding:12px 0}
+.crow span{font-size:clamp(1.6rem,3vw,3rem);font-weight:750;letter-spacing:-.04em;color:#c7c7c3;padding-right:clamp(40px,5vw,90px);white-space:nowrap;transition:color .3s}
+.crow span:hover{color:var(--ink)}
+
+/* Kontakt */
+.contact{padding:clamp(100px,12vw,190px) var(--pad);border-top:1px solid var(--ln)}
+.contact h2{margin:0;font-size:clamp(2.4rem,5.6vw,6.2rem);line-height:1;letter-spacing:-.055em;font-weight:650;max-width:14ch}
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:48px}
+.copy{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:16px;background:var(--ink);color:#fff;padding:18px 24px;font-family:var(--font);font-size:clamp(1.05rem,1.4vw,1.3rem);font-weight:600;transition:background .4s var(--ease)}
+.copy:hover{background:var(--ac)}
+.copy i{font-style:normal;font-size:14px;opacity:.7}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:26px var(--pad) calc(26px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--ln)}
+
+@media (max-width:899px){
+  .brand span{display:none}.nav nav a:not(:last-child){display:none}
+  .sec{grid-template-columns:1fr}
+  .hero-imgs{grid-template-columns:1fr 1fr}
+  .ai button,.ai .inner{grid-template-columns:44px minmax(0,1fr) 22px}
+  .ai .s{grid-column:2;grid-row:2}
+  .ai .inner p,.ai .meta{grid-column:2}
+  .work-top{flex-direction:column;align-items:flex-start}
+  .cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top"><b>command+g</b><span>Gut beraten. Gut gemacht.</span></a>
+  <nav><a href="#info">Info</a><a href="#leistungen">Leistungen</a><a href="#arbeiten">Arbeiten</a><a href="#kontakt" class="act">Kontakt</a></nav>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <h1 id="h1"><span class="gray">Du sagst, was du willst.</span> Wir sagen, was du brauchst.</h1>
+  <p class="hero-sub">Websites, Design und alles dazwischen. Für kleine und mittlere Organisationen, die gut beraten werden wollen und jemanden brauchen, auf den sie sich verlassen können.</p>
+  <div class="hero-imgs">
+    <div class="m m1"><div class="ph" data-par="-6" style="--c:#1f5bff"><span>Bild folgt: Website-Mockup</span></div></div>
+    <div class="m m2"><div class="ph" data-par="10" style="--c:#999"><span>Foto folgt</span></div></div>
+  </div>
+</section>
+
+<section class="sec info" id="info">
+  <span class="lbl">Info</span>
+  <div>
+    <p id="infoP">Wir sind command+g, eine Ansprechperson für Design, Websites und alles dazwischen. Wir hören zu, stellen die richtigen Fragen und setzen um, mit den Werkzeugen, die gerade am besten passen. Wenn es mehr braucht, holen wir Leute aus unserem Netzwerk dazu.</p>
+    <a class="ulink" href="#kontakt">Lass uns sprechen</a>
+  </div>
+</section>
+
+<section class="sec" id="leistungen">
+  <span class="lbl">Leistungen</span>
+  <div class="acc" id="acc">
+    <div class="ai open">
+      <button aria-expanded="true"><span class="n">001</span><span class="t">Websites</span><span class="s">Verstehen, bevor wir gestalten.</span><i class="x" aria-hidden="true"></i></button>
+      <div class="body"><div class="inner"><p>Wir starten mit einem Workshop, klären Ziele und Abläufe und gestalten dann gemeinsam mit dir. Das Ergebnis ist eine Website, die du selbst pflegen kannst.</p><div class="meta"><span>Workshop</span><span>Design</span><span>Umsetzung</span><strong>ab 5.000 €</strong></div></div></div>
+    </div>
+    <div class="ai">
+      <button aria-expanded="false"><span class="n">002</span><span class="t">Branding</span><span class="s">Klarheit, die man wiedererkennt.</span><i class="x" aria-hidden="true"></i></button>
+      <div class="body"><div class="inner"><p>Vom Arbeitstitel zur Marke: Logo, Farben, Schrift und alles, was du im Alltag brauchst, damit dein Auftritt überall gleich klingt.</p><div class="meta"><span>Logo</span><span>Erscheinungsbild</span><span>Grundausstattung</span><strong>ab 2.000 €</strong></div></div></div>
+    </div>
+    <div class="ai">
+      <button aria-expanded="false"><span class="n">003</span><span class="t">Inhalte und Medien</span><span class="s">Bilder, Texte, Bewegung.</span><i class="x" aria-hidden="true"></i></button>
+      <div class="body"><div class="inner"><p>Kleine Shootings, kurze Videos, Animation, Plakate und Social Content. Aus einer Hand und passend zum Rest.</p><div class="meta"><span>Fotografie</span><span>Video</span><span>Motion</span><span>Print</span><strong>auf Anfrage</strong></div></div></div>
+    </div>
+    <div class="ai">
+      <button aria-expanded="false"><span class="n">004</span><span class="t">Werkzeuge und Pflege</span><span class="s">Kleine Helfer, lange Freude.</span><i class="x" aria-hidden="true"></i></button>
+      <div class="body"><div class="inner"><p>Rechner, Editoren und kleine Tools, die genau dein Problem lösen. Dazu Hosting, Updates und Sicherheit, damit deine Website in Würde altert.</p><div class="meta"><span>Tools nach Maß</span><span>Hosting</span><span>Updates</span><strong>ab 35 € / Monat</strong></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="arbeiten" style="padding-top:0">
+  <span class="lbl">Arbeiten</span>
+  <div>
+    <div class="work-top"><p>Eine Auswahl, von der Website bis zum Werkzeug nach Maß, für Menschen, denen gute Gestaltung wichtig ist.</p><a class="ulink" href="#">Alle ansehen</a></div>
+    <div class="cards">
+      <a class="card" href="#"><div class="m"><div class="ph" style="--c:#ff7a45"><span>Bild folgt</span></div><em>Ansehen</em></div><div class="c"><b>Festival</b><span>Website</span></div></a>
+      <a class="card" href="#"><div class="m"><div class="ph" style="--c:#e0a800"><span>Bild folgt</span></div><em>Ansehen</em></div><div class="c"><b>Wohnprojekt</b><span>Werkzeug nach Maß</span></div></a>
+    </div>
+    <div class="explore">
+      <div class="explore-head"><span class="lbl">Nebenbei</span><span class="lbl">Experimente und Leidenschaften</span></div>
+      <div class="explore-wrap"><div class="strip" id="strip">
+        <div class="ph" style="--c:#d6336c"><span>Experiment</span></div><div class="ph" style="--c:#6a4cff"><span>Experiment</span></div>
+        <div class="ph" style="--c:#1b998b"><span>Experiment</span></div><div class="ph" style="--c:#2f8f6b"><span>Experiment</span></div>
+        <div class="ph" style="--c:#1f5bff"><span>Experiment</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="clients" aria-label="Kunden">
+  <span class="lbl">Gearbeitet für</span>
+  <div class="crow" id="r1"><span>Berenberg</span><span>Detect</span><span>Modi Ventures</span><span>Stegreif</span><span>Kundenname</span><span>Kundenname</span></div>
+  <div class="crow" id="r2"><span>Kundenname</span><span>Stegreif</span><span>Kundenname</span><span>Detect</span><span>Berenberg</span><span>Modi Ventures</span></div>
+</section>
+
+<section class="contact" id="kontakt">
+  <h2 id="ch">Vernetzen, zusammenarbeiten oder einfach Hallo sagen.</h2>
+  <div class="contact-row">
+    <button class="copy" id="copy" type="button">hallo@commandg.de <i id="copyHint">Kopieren</i></button>
+    <a class="ulink" href="mailto:hallo@commandg.de">E-Mail schreiben</a>
+    <a class="ulink" href="#">LinkedIn</a>
+  </div>
+</section>
+</main>
+
+<footer class="lbl"><span>© 2026 command+g</span><span><a href="#">Impressum</a>&nbsp;&nbsp;&nbsp;<a href="#">Datenschutz</a></span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const motion = !!(window.gsap && window.ScrollTrigger) && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nav = $(".nav"); const onS = () => nav.classList.toggle("scrolled", scrollY > 10); addEventListener("scroll", onS, { passive: true }); onS();
+
+  // Headline in Wörter (grauer Teil bleibt grau)
+  const h1 = $("#h1");
+  const wrap = (txt, cls) => txt.trim().split(" ").map(w => `<span class="w"><span class="wi${cls ? " " + cls : ""}">${w}</span></span>`).join(" ");
+  h1.innerHTML = wrap($(".gray", h1).textContent, "gray") + " " + wrap(h1.lastChild.textContent);
+  const ip = $("#infoP"); ip.innerHTML = ip.textContent.trim().split(" ").map(w => `<span class="wd">${w}</span>`).join(" ");
+
+  // Laufbänder verdoppeln
+  ["#r1", "#r2"].forEach(s => { const r = $(s); r.innerHTML += r.innerHTML; });
+
+  // E-Mail kopieren
+  $("#copy").addEventListener("click", async () => {
+    const hint = $("#copyHint");
+    try { await navigator.clipboard.writeText("hallo@commandg.de"); hint.textContent = "Kopiert"; } catch { location.href = "mailto:hallo@commandg.de"; }
+    setTimeout(() => hint.textContent = "Kopieren", 1800);
+  });
+
+  // Akkordeon
+  const items = $$(".ai");
+  function toggle(ai, open) {
+    ai.classList.toggle("open", open); $("button", ai).setAttribute("aria-expanded", String(open));
+    const b = $(".body", ai);
+    if (motion) gsap.to(b, { height: open ? "auto" : 0, duration: .8, ease: "expo.inOut", onComplete: () => window.ScrollTrigger && ScrollTrigger.refresh() });
+    else b.style.height = open ? "auto" : "0px";
+  }
+  items.forEach(ai => $("button", ai).addEventListener("click", () => { const open = !ai.classList.contains("open"); items.forEach(o => o !== ai && o.classList.contains("open") && toggle(o, false)); toggle(ai, open); }));
+  if (!motion) { $(".ai.open .body").style.height = "auto"; return; }
+
+  gsap.registerPlugin(ScrollTrigger); gsap.config({ nullTargetWarn: false }); gsap.defaults({ ease: "expo.out" });
+  if (window.Lenis) { const l = new Lenis({ lerp: .09 }); l.on("scroll", ScrollTrigger.update); gsap.ticker.add(t => l.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => { const t = $(a.getAttribute("href")); if (t) { e.preventDefault(); l.scrollTo(t, { offset: -40 }); } })); }
+
+  // Hero
+  gsap.timeline({ delay: .15 })
+    .from(".brand, .nav nav a", { opacity: 0, y: -10, duration: 1, stagger: .05 })
+    .from("#h1 .wi", { yPercent: 110, duration: 1.4, stagger: .045 }, .1)
+    .from(".hero-sub", { opacity: 0, y: 20, filter: "blur(6px)", duration: 1.4 }, .7)
+    .fromTo(".hero-imgs .m", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut", stagger: .12 }, .8)
+    .from(".hero-imgs .ph", { scale: 1.3, duration: 2.2, stagger: .12 }, .8);
+  $$("[data-par]").forEach(p => gsap.fromTo(p, { yPercent: 0 }, { yPercent: +p.dataset.par, ease: "none", scrollTrigger: { trigger: p.parentElement, start: "top bottom", end: "bottom top", scrub: true } }));
+
+  // Info: Wort für Wort
+  gsap.fromTo("#infoP .wd", { opacity: .15 }, { opacity: 1, stagger: .1, ease: "none", scrollTrigger: { trigger: "#infoP", start: "top 80%", end: "bottom 55%", scrub: .6 } });
+  $$(".sec > .lbl").forEach(l => gsap.from(l, { opacity: 0, x: -16, duration: 1.2, scrollTrigger: { trigger: l, start: "top 88%" } }));
+
+  // Leistungen
+  gsap.set(items.filter(a => !a.classList.contains("open")).map(a => $(".body", a)), { height: 0 });
+  gsap.fromTo(".acc", { borderTopColor: "rgba(0,0,0,0)" }, { borderTopColor: "rgba(0,0,0,1)", duration: 1, scrollTrigger: { trigger: ".acc", start: "top 88%" } });
+  items.forEach(ai => gsap.from($$("button > *", ai), { opacity: 0, y: 20, duration: 1.2, stagger: .06, scrollTrigger: { trigger: ai, start: "top 92%" } }));
+
+  // Arbeiten
+  $$(".card").forEach((c, i) => {
+    gsap.fromTo($(".m", c), { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut", delay: i * .12, scrollTrigger: { trigger: ".cards", start: "top 85%" } });
+    gsap.from($(".m .ph", c), { scale: 1.3, duration: 2.2, delay: i * .12, scrollTrigger: { trigger: ".cards", start: "top 85%" } });
+    gsap.from($(".c", c), { opacity: 0, y: 12, duration: 1.2, delay: .6 + i * .12, scrollTrigger: { trigger: ".cards", start: "top 85%" } });
+  });
+  gsap.fromTo("#strip", { xPercent: 4 }, { xPercent: -28, ease: "none", scrollTrigger: { trigger: ".explore", start: "top bottom", end: "bottom top", scrub: true } });
+
+  // Kunden-Laufbänder, gegenläufig
+  const r1 = gsap.to("#r1", { xPercent: -50, duration: 34, ease: "none", repeat: -1 });
+  const r2 = gsap.fromTo("#r2", { xPercent: -50 }, { xPercent: 0, duration: 38, ease: "none", repeat: -1 });
+  $$(".crow").forEach(r => { r.addEventListener("pointerenter", () => { gsap.to([r1, r2], { timeScale: .2, duration: .6 }); }); r.addEventListener("pointerleave", () => { gsap.to([r1, r2], { timeScale: 1, duration: .6 }); }); });
+
+  // Kontakt
+  gsap.from("#ch", { opacity: 0, y: 50, filter: "blur(8px)", duration: 1.6, scrollTrigger: { trigger: ".contact", start: "top 80%" } });
+  gsap.from(".contact-row > *", { opacity: 0, y: 20, duration: 1.2, stagger: .08, scrollTrigger: { trigger: ".contact-row", start: "top 92%" } });
+  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
