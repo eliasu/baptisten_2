@@ -30,8 +30,6 @@ ignore any Webflow Lumos skill. No Tailwind.
   - swatches `--sun-500`, `--live-500`
   - utilities `.color-secondary` (theme `--text-2`) and `.link-hover`
     (underline draws in on hover), in `@layer utilities`
-  - auto dark mode: `prefers-color-scheme: dark` swaps the swatch values in
-    `:root`, so every theme flips with them
 - Import: website from `import/baptisten.schöneberg – Redesign.html`, record in IMPORT.md
 
 The three files in `resources/css/lumos/` started as verbatim copies. Tokens

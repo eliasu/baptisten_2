@@ -164,21 +164,6 @@
     --serif-text-wrap: pretty;
   }
 
-  /* Dark mode follows the system: the swatches swap, so every theme flips with them */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --light-100: #101320;
-      --light-200: #181c2b;
-      --light-300: #2b3042;
-      --dark-700: #a3a6b3;
-      --dark-800: #d8d8d2;
-      --dark-900: #ecece7;
-      --brand-500: #8e9dff;
-      --brand-text: #101320;
-      --sun-500: #f2bd48;
-    }
-  }
-
   html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--nav-height) + var(--space-3));

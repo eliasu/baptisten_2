@@ -26,19 +26,14 @@
   - Colours: Lumos swatches replaced with the source palette. Light theme =
     paper #FBFBFA / paper-2 #F0F0EC (background-2) / ink #15192B / ink-2
     #5B5F6E (text-2) / line #D8D8D2 (border) / accent #2C44C9 (buttons).
-    Dark theme = #101320 / #181C2B / #ECECE7 / #A3A6B3 / #2B3042 / #8E9DFF,
-    applied to :root automatically under prefers-color-scheme: dark.
-    Stance band = section theme `dark` (flips to light in dark mode, as the
-    source); magazine card = theme-brand (accent).
+    Source's dark palette dropped (no automatic dark mode).
+    Stance band = section theme `dark`; magazine card = theme-brand (accent).
     sun #E9A91F and live red #E5484D are swatches only.
   - Spacing: --section-space-large 88/168; --site-margin 20/56; max width
     1440; small gaps snap to --space-1…5 (≤4px each).
   - Radius 0 everywhere (radius-small/main = 0).
   - Heading weight 520 → new --primary-heading; 450 → --primary-book.
   - Nav height 72px → --nav-height 4.5rem (source value, not a snap).
-  - Dark mode implemented by swapping the swatch values under
-    prefers-color-scheme (as the source swaps its palette), so the invert
-    theme = the source's stance band in both modes.
   - Leading trim measured from the font files (hhea/OS2) with upstream's
     offset: Schibsted 0.38/0.375em, Newsreader 0.47/0.25em.
 - **Breakpoints** — Lumos' 30/48/64rem kept. Source used 560/760/860/900/960px;
@@ -124,8 +119,7 @@
     One required email field + honeypot. No automatic double opt-in.
   - "Mach mit" stays a mailto link prefilled with the ticked areas (small
     script, nothing stored). The areas are an editable list.
-  - Dark mode kept: light by default, dark palette under
-    `prefers-color-scheme: dark`, as in the source.
+  - No automatic dark mode: the site stays light even when the system is dark.
   - Source placeholders (IBAN, Instagram URL, magazine link, news links)
     become CMS fields left empty; the partials hide what is empty.
 - **Still open**

@@ -144,10 +144,6 @@ function figureField(canvas: HTMLCanvasElement) {
     visible = entry.isIntersecting;
     if (visible && !reduce) run();
   }).observe(canvas);
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-    readColors();
-    if (reduce) still();
-  });
 
   const host = canvas.parentElement!;
   host.addEventListener("pointermove", (event) => {
