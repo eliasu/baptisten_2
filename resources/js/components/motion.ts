@@ -2,7 +2,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
-/* Hooks: .motion-words (words rise on load), .motion-scrub (words brighten
+/* Hooks: .motion-words (words rise on load, a .motion-first part inside
+   first; then on-screen .motion-up, the nav, on-screen media), .motion-scrub (words brighten
    while scrolling), .motion-up, .motion-clip (builds up with the scroll
    position and back down when scrolled back; media already on screen at load
    builds up once, on its own), [data-parallax="-6"] (percent),
@@ -70,9 +71,16 @@ if (!reduced) {
 
   const reveal = (trigger: Element) => ({ trigger, start: "top 90%" });
 
+  const intro = gsap.timeline({ delay: 0.1 });
   for (const el of document.querySelectorAll(".motion-words")) {
-    gsap.from(splitWords(el), { yPercent: 110, duration: 1.4, stagger: 0.045, delay: 0.1 });
+    const words = [...splitWords(el)];
+    const first = words.filter((word) => word.closest(".motion-first"));
+    const rest = words.filter((word) => !first.includes(word));
+    if (first.length) intro.from(first, { yPercent: 110, duration: 1.4, stagger: 0.06 }, 0);
+    intro.from(rest, { yPercent: 110, duration: 1.4, stagger: 0.045 }, first.length ? 1.1 : 0);
   }
+  intro.addLabel("chrome", "-=0.7");
+  const onScreen = (el: Element) => el.getBoundingClientRect().top < innerHeight;
 
   for (const el of document.querySelectorAll(".motion-scrub")) {
     gsap.fromTo(splitWords(el), { opacity: 0.15 }, {
@@ -84,12 +92,18 @@ if (!reduced) {
   }
 
   for (const el of document.querySelectorAll(".motion-up")) {
-    gsap.from(el, { opacity: 0, y: 20, duration: 1.2, scrollTrigger: reveal(el) });
+    if (onScreen(el)) intro.from(el, { opacity: 0, y: 20, duration: 1.2 }, "chrome");
+    else gsap.from(el, { opacity: 0, y: 20, duration: 1.2, scrollTrigger: reveal(el) });
   }
+  intro.from(".nav_wrap", { opacity: 0, y: -16, duration: 1.2 }, "chrome+=0.5");
+  intro.addLabel("media", "chrome+=1");
 
+  let shown = 0;
   for (const el of document.querySelectorAll<HTMLElement>(".motion-clip")) {
     if (el.offsetParent === null) continue;
-    clipReveal(el, el.getBoundingClientRect().top < innerHeight);
+    const visible = onScreen(el);
+    clipReveal(el, visible);
+    if (visible) intro.add(clips.get(el)!, `media+=${shown++ * 0.15}`);
   }
 
   for (const el of document.querySelectorAll<HTMLElement>("[data-parallax]")) {

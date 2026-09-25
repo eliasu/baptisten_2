@@ -1,7 +1,7 @@
 {{# Hero #}}
 {{ partial:components/section padding_bottom="none" gap="0" class="home-hero_wrap" }}
     <div class="home-hero_heading motion-words" id="top">
-        {{ partial:components/heading tag="h1" max_width="15" }}{{ if hero_heading_muted }}<span class="home-hero_muted">{{ hero_heading_muted }}</span> {{ /if }}{{ hero_heading }}{{ /partial:components/heading }}
+        {{ partial:components/heading tag="h1" max_width="15" }}{{ if hero_heading_muted }}<span class="home-hero_muted motion-first">{{ hero_heading_muted }}</span> {{ /if }}{{ hero_heading }}{{ /partial:components/heading }}
     </div>
     {{ partial:components/paragraph variant="large" max_width="46" class="home-hero_text motion-up" }}{{ hero_text }}{{ /partial:components/paragraph }}
     <div class="home-hero_media">
