@@ -64,3 +64,25 @@
 .footer_copyright {
   color: var(--text-2);
 }
+
+/* Bar variant */
+.footer_wrap.bar {
+  padding-block: var(--space-5);
+  font-size: var(--eyebrow);
+  font-weight: var(--eyebrow-font-weight);
+  letter-spacing: var(--eyebrow-letter-spacing);
+  text-transform: var(--eyebrow-text-transform);
+
+  .footer_top {
+    gap: var(--space-3) var(--space-5);
+  }
+  .footer_links {
+    gap: var(--space-5);
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  .footer_link,
+  .footer_copyright {
+    color: var(--text);
+  }
+}

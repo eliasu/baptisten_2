@@ -1,0 +1,14 @@
+.intro_eyebrow {
+  color: var(--text-2);
+  text-transform: none;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.intro_line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  & > span {
+    display: block;
+  }
+}

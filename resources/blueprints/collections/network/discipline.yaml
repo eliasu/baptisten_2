@@ -1,0 +1,36 @@
+title: Discipline
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Name
+              instructions: 'Name der Disziplin, ein Wort (z. B. „Webdesign“). Wird sehr groß gesetzt.'
+              character_limit: 14
+              required: true
+              validate:
+                - required
+          -
+            handle: details
+            field:
+              type: text
+              display: Details
+              instructions: 'Was dazugehört, kurz (z. B. „Konzept, Gestaltung, Prototypen“).'
+              character_limit: 40
+              validate:
+                - required
+          -
+            handle: media
+            field:
+              type: group
+              display: Media
+              instructions: 'Bild, Video oder Slideshow, das neben der Liste erscheint, wenn diese Disziplin aktiv ist. Hochformat (4 : 5).'
+              fullscreen: false
+              fields:
+                -
+                  import: media

@@ -1,25 +1,42 @@
 ---
+# Nav layout: default, split.
+# split: text logo centred between the two halves of the links, from 64rem.
+variant: default
 # Fix the nav over the page.
 overlap: false
 # Statamic port: links come from this Statamic navigation, not hard-coded.
 navigation: main
 ---
 {{# Statamic port: ARIA labels are German, the site language. JS: resources/js/components/nav.ts #}}
-<header class="nav_wrap{{ if view:overlap | to_bool }} overlap{{ /if }}">
+<header class="nav_wrap{{ if view:variant != 'default' }} {{ view:variant }}{{ /if }}{{ if view:overlap | to_bool }} overlap{{ /if }}">
     <div class="nav_inner">
-        <a class="nav_logo" href="/" aria-label="{{ site:name }}">
-            {{ partial:components/icon name="logo" variant="full-width" }}
+        <a class="nav_logo" href="/"{{ unless view:variant == 'split' }} aria-label="{{ site:name }}"{{ /unless }}>
+            {{ if view:variant == 'split' }}{{ site:name }}{{ else }}{{ partial:components/icon name="logo" variant="full-width" }}{{ /if }}
         </a>
         <button class="nav_toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="nav-menu">
             <span class="nav_toggle_icon"></span>
         </button>
         <nav class="nav_menu" id="nav-menu" aria-label="Hauptnavigation">
             <div class="nav_menu_inner">
+                {{ if view:variant == 'split' }}
+                {{# Statamic port: split renders the first half of the links and the rest as two lists. #}}
+                <ul class="nav_links">
+                    {{ nav :handle="view:navigation" max_depth="1" }}
+                        {{ unless no_results }}{{ if count <= (total_results / 2 | ceil) }}{{ partial:components/nav-link :href="url" }}{{ title }}{{ /partial:components/nav-link }}{{ /if }}{{ /unless }}
+                    {{ /nav }}
+                </ul>
+                <ul class="nav_links">
+                    {{ nav :handle="view:navigation" max_depth="1" }}
+                        {{ unless no_results }}{{ if count > (total_results / 2 | ceil) }}{{ partial:components/nav-link :href="url" }}{{ title }}{{ /partial:components/nav-link }}{{ /if }}{{ /unless }}
+                    {{ /nav }}
+                </ul>
+                {{ else }}
                 <ul class="nav_links">
                     {{ nav :handle="view:navigation" max_depth="1" }}
                         {{ unless no_results }}{{ partial:components/nav-link :href="url" }}{{ title }}{{ /partial:components/nav-link }}{{ /unless }}
                     {{ /nav }}
                 </ul>
+                {{ /if }}
             </div>
         </nav>
     </div>

@@ -20,7 +20,15 @@ ignore any Webflow Lumos skill. No Tailwind.
   footer, accordion, accordion-item, dropdown, marquee, modal, slider, tabs,
   tab-link, form, input, select, choice, fieldset, textarea, range
 - Blocks: none (mode A)
-- Extensions: none yet
+- Extensions (all in `site.css` `@layer base`): text style `eyebrow` (14px,
+  uppercase, +0.06em, listed in heading/paragraph/rich-text and snippets),
+  `--primary-light` 300, `--primary-semibold` 600, `--ease-out`, `--letter-spacing-wide` 0.06em, `scroll-padding-top`
+  for the sticky nav; Lenis CSS imported into `base`
+- Custom: partials `media` (from branch commandg1), `content-head`; nav variant `split`, footer
+  variant `bar`, section param `id`; page CSS `hero-slides`, `intro`,
+  `network`, `work`, `services`, `contact`; scripts `motion.ts`,
+  `hero-slides.ts`, `network.ts` (GSAP, Lenis from npm)
+- Import: website from `imported/C-produktion-netzwerk.html`, record in IMPORT.md
 
 The three files in `resources/css/lumos/` started as verbatim copies. Tokens
 are edited there. To upgrade, run a three-way merge against the commit above,

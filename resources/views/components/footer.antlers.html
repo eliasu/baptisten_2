@@ -1,14 +1,21 @@
 ---
+# Footer layout: default, bar.
+# bar: one row, copyright left and links right, no logo.
+variant: default
 # Statamic port: links come from this Statamic navigation, not hard-coded.
 navigation: footer
 ---
 {{# Statamic port: ARIA label is German, the site language. JS: resources/js/components/footer.ts #}}
-<footer class="footer_wrap">
+<footer class="footer_wrap{{ if view:variant != 'default' }} {{ view:variant }}{{ /if }}">
     <div class="footer_inner">
         <div class="footer_top">
+            {{ if view:variant == 'bar' }}
+            <p class="footer_copyright">&copy; {{ now format="Y" }}&#160;<span class="text-transform-none letter-spacing-normal">{{ site:name }}</span></p>
+            {{ else }}
             <a class="footer_logo" href="/" aria-label="{{ site:name }}">
                 {{ partial:components/icon name="logo" variant="full-width" }}
             </a>
+            {{ /if }}
             <nav aria-label="Fußzeile">
                 <ul class="footer_links">
                     {{ nav :handle="view:navigation" max_depth="1" }}
@@ -17,8 +24,10 @@ navigation: footer
                 </ul>
             </nav>
         </div>
+        {{ unless view:variant == 'bar' }}
         <div class="footer_bottom">
             <p class="footer_copyright text-style-small">&copy; <span id="year">{{ now format="Y" }}</span>&#160;{{ site:name }}</p>
         </div>
+        {{ /unless }}
     </div>
 </footer>

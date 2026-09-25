@@ -1,0 +1,46 @@
+title: Project
+tabs:
+  main:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: Title
+              instructions: 'Name des Projekts, erscheint unter dem Bild.'
+              character_limit: 40
+              required: true
+              validate:
+                - required
+          -
+            handle: category
+            field:
+              type: text
+              display: Category
+              instructions: 'Art des Projekts, rechts neben dem Namen (z. B. „Website“).'
+              character_limit: 30
+          -
+            handle: media
+            field:
+              type: group
+              display: Media
+              instructions: 'Bild, Video oder Slideshow der Arbeit. Das Format ergibt sich aus dem Platz im Raster. Bis etwas hochgeladen ist, erscheint ein Platzhalter.'
+              fullscreen: false
+              fields:
+                -
+                  import: media
+          -
+            handle: link
+            field:
+              type: link
+              display: Link
+              instructions: 'Optional: wohin die Karte führt, z. B. die Website des Projekts. Ohne Link ist die Karte nicht klickbar.'
+          -
+            handle: featured
+            field:
+              type: toggle
+              display: In slideshow
+              instructions: 'Zeigt das Projekt auch in der Diashow ganz oben auf der Startseite.'

@@ -1,0 +1,20 @@
+title: Kontakt
+fields:
+  -
+    handle: message
+    field:
+      type: textarea
+      display: 'Worum geht’s?'
+      placeholder: 'Ein, zwei Sätze reichen.'
+      validate:
+        - required
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: E-Mail
+      placeholder: du@beispiel.de
+      validate:
+        - required
+        - email

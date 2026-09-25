@@ -6,7 +6,7 @@ tabs:
     sections:
       -
         display: Intro
-        instructions: 'Der erste Bereich der Startseite.'
+        instructions: 'Der Bereich unter der Diashow. Die Diashow zeigt die Arbeiten mit „In slideshow“.'
         fields:
           -
             handle: title
@@ -27,9 +27,9 @@ tabs:
           -
             handle: heading
             field:
-              type: text
+              type: textarea
               display: Heading
-              instructions: 'Hauptüberschrift der Startseite.'
+              instructions: 'Hauptüberschrift. Jede Zeile wird eine eigene Zeile der Überschrift; zwei kurze Sätze passen am besten.'
               character_limit: 80
               validate:
                 - required
@@ -38,10 +38,132 @@ tabs:
             field:
               type: textarea
               display: Text
-              instructions: 'Ein bis zwei Sätze unter der Überschrift.'
+              instructions: 'Zwei, drei Sätze unter der Überschrift.'
               character_limit: 300
+      -
+        display: Network
+        instructions: 'Die Disziplinen selbst pflegst du in der Sammlung „Netzwerk“.'
+        fields:
           -
-            import: buttons
+            handle: network_label
+            field:
+              type: text
+              display: Label
+              instructions: 'Kleine Überschrift links (z. B. „Das Netzwerk“).'
+              character_limit: 30
+              validate:
+                - required
+          -
+            handle: network_text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Zwei, drei Sätze rechts neben der Überschrift.'
+              character_limit: 240
+      -
+        display: Work
+        instructions: 'Die Projekte selbst pflegst du in der Sammlung „Arbeiten“.'
+        fields:
+          -
+            handle: work_heading
+            field:
+              type: text
+              display: Heading
+              instructions: 'Überschrift des Bereichs (z. B. „Arbeiten“).'
+              character_limit: 30
+              validate:
+                - required
+          -
+            handle: work_label
+            field:
+              type: text
+              display: Label
+              instructions: 'Kleine Zeile rechts neben der Überschrift (optional, z. B. „Auswahl“).'
+              character_limit: 30
+      -
+        display: Services
+        fields:
+          -
+            handle: services_heading
+            field:
+              type: text
+              display: Heading
+              instructions: 'Überschrift des Bereichs, ein kurzer Satz.'
+              character_limit: 40
+              validate:
+                - required
+          -
+            handle: services_text
+            field:
+              type: textarea
+              display: Text
+              instructions: 'Zwei, drei Sätze rechts neben der Überschrift.'
+              character_limit: 240
+          -
+            handle: phases
+            field:
+              type: grid
+              display: Phases
+              instructions: 'Die drei Phasen eines Projekts, nebeneinander dargestellt.'
+              min_rows: 3
+              max_rows: 3
+              mode: stacked
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: Title
+                    instructions: 'Name der Phase, ein Wort (z. B. „Vorher“).'
+                    character_limit: 20
+                    validate:
+                      - required
+                -
+                  handle: points
+                  field:
+                    type: list
+                    display: Points
+                    instructions: 'Die Punkte dieser Phase, einer pro Zeile, jeweils kurz.'
+          -
+            handle: prices
+            field:
+              type: grid
+              display: Prices
+              instructions: 'Bis zu vier Preise unter den Phasen.'
+              max_rows: 4
+              mode: table
+              fields:
+                -
+                  handle: label
+                  field:
+                    type: text
+                    display: Label
+                    instructions: 'Wofür der Preis gilt (z. B. „Website“).'
+                    character_limit: 30
+                    validate:
+                      - required
+                -
+                  handle: price
+                  field:
+                    type: text
+                    display: Price
+                    instructions: 'Der Preis mit Einheit (z. B. „ab 5.000 €“ oder „35 € / Monat“).'
+                    character_limit: 20
+                    validate:
+                      - required
+      -
+        display: Contact
+        instructions: 'E-Mail-Adresse, Foto und Hinweis stehen unter Globals → Kontakt, das Formular unter Formulare → Kontakt.'
+        fields:
+          -
+            handle: contact_label
+            field:
+              type: text
+              display: Label
+              instructions: 'Kleine Überschrift über dem Kontaktbereich (z. B. „Anfragen“).'
+              character_limit: 30
+              validate:
+                - required
   seo:
     display: SEO
     sections:

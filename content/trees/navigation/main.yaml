@@ -1,1 +1,17 @@
-tree: {  }
+tree:
+  -
+    id: 8367bd7e-4e7f-44f9-b1a6-0a53e4fbcf43
+    title: 'Netzwerk'
+    url: '#netzwerk'
+  -
+    id: 23ee1e2a-401b-44a7-9375-a837c2c7c0f4
+    title: 'Arbeiten'
+    url: '#arbeiten'
+  -
+    id: c97f2184-c4ff-4916-9480-b556e74652ec
+    title: 'Leistungen'
+    url: '#produktion'
+  -
+    id: d173c329-5efd-4019-9606-d9008dd31d60
+    title: 'Kontakt'
+    url: '#kontakt'

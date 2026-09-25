@@ -5,6 +5,7 @@
 @import "./lumos/base.css" layer(base);
 @import "./lumos/patterns.css" layer(patterns);
 @import "./lumos/utilities.css" layer(utilities);
+@import "lenis/dist/lenis.css" layer(base);
 
 /* Components — one file per partial in resources/views/components */
 @import "./components/accordion-item.css" layer(components);
@@ -31,16 +32,66 @@
 @import "./components/slider.css" layer(components);
 @import "./components/tabs.css" layer(components);
 @import "./components/textarea.css" layer(components);
+@import "./components/content-head.css" layer(components);
+@import "./components/media.css" layer(components);
+@import "./components/hero-slides.css" layer(components);
+@import "./components/intro.css" layer(components);
+@import "./components/network.css" layer(components);
+@import "./components/work.css" layer(components);
+@import "./components/services.css" layer(components);
+@import "./components/contact.css" layer(components);
 
-/* Fonts — Astro's font API sets --font-inter upstream; here it's plain @font-face */
+/* Fonts — Astro's font API sets the family variable upstream; here it's plain @font-face */
 @font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-regular.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Hanken Grotesk";
+  src: url("../fonts/hanken-grotesk-latin.woff2") format("woff2");
+  font-weight: 300 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-inter: "Inter";
+  --font-hanken: "Hanken Grotesk";
+}
+
+/* Extensions (listed in CLAUDE.md) */
+@layer base {
+  :root {
+    --primary-light: 300;
+    --primary-semibold: 600;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --letter-spacing-wide: 0.06em;
+
+    --eyebrow: clamp(var(--eyebrow-min) / 16 * 1rem, ((var(--eyebrow-min) - ((var(--eyebrow-max) - var(--eyebrow-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--eyebrow-max) - var(--eyebrow-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--eyebrow-max) / 16 * 1rem);
+    --eyebrow-min: 14;
+    --eyebrow-max: 14;
+    --eyebrow-line-height: var(--line-height-huge);
+    --eyebrow-letter-spacing: var(--letter-spacing-wide);
+    --eyebrow-text-transform: uppercase;
+    --eyebrow-margin-top: var(--space-4);
+    --eyebrow-margin-bottom: var(--space-4);
+    --eyebrow-font-family: var(--primary-family);
+    --eyebrow-font-weight: var(--primary-medium);
+    --eyebrow-trim-top: var(--primary-trim-top);
+    --eyebrow-trim-bottom: var(--primary-trim-bottom);
+    --eyebrow-text-wrap: pretty;
+  }
+
+  html {
+    scroll-padding-top: var(--nav-height);
+  }
+
+  .text-style-eyebrow {
+    font-family: var(--eyebrow-font-family);
+    font-size: var(--eyebrow);
+    font-weight: var(--eyebrow-font-weight);
+    line-height: var(--eyebrow-line-height);
+    letter-spacing: var(--eyebrow-letter-spacing);
+    text-transform: var(--eyebrow-text-transform);
+    text-wrap: var(--eyebrow-text-wrap);
+    --_trim-top: var(--eyebrow-trim-top);
+    --_trim-bottom: var(--eyebrow-trim-bottom);
+    --_margin-top: var(--eyebrow-margin-top);
+    --_margin-bottom: var(--eyebrow-margin-bottom);
+  }
 }

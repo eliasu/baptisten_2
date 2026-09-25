@@ -1,5 +1,5 @@
 default:
-  name: '{{ config:app:name }}'
+  name: 'command+g'
   url: /
   locale: de_DE
   lang: de

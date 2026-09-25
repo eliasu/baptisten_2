@@ -1,0 +1,8 @@
+title: Kontakt
+honeypot: website
+store: true
+email:
+  -
+    to: hallo@commandg.de
+    reply_to: '{{ email }}'
+    subject: 'Neue Anfrage über commandg.de'

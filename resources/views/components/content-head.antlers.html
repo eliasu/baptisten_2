@@ -1,0 +1,13 @@
+---
+# Head layout: columns, spread.
+# columns: the default slot and the `aside` slot as two equal columns from 64rem.
+# spread: the default slot left, the `aside` slot right, aligned to the bottom.
+variant: columns
+class: null
+---
+{{ if slot | trim }}
+<div class="content-head_wrap{{ if view:variant != 'columns' }} {{ view:variant }}{{ /if }}{{ if view:class }} {{ view:class }}{{ /if }}" data-reveal>
+    <div>{{ slot | trim }}</div>
+    {{ if slot:aside | trim }}<div>{{ slot:aside | trim }}</div>{{ /if }}
+</div>
+{{ /if }}

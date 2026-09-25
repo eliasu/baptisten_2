@@ -7,10 +7,10 @@
     </head>
     <body>
         {{ partial:components/skip-link }}
-        {{ partial:components/nav :overlap="view:overlap" }}
+        {{ partial:components/nav variant="split" :overlap="view:overlap" }}
         <main id="main" tabindex="-1">
             {{ template_content }}
         </main>
-        {{ partial:components/footer }}
+        {{ partial:components/footer variant="bar" }}
     </body>
 </html>

@@ -7,3 +7,7 @@ import "./components/nav.ts";
 import "./components/range.ts";
 import "./components/slider.ts";
 import "./components/tabs.ts";
+import "./components/hero-slides.ts";
+import "./components/media.ts";
+import "./components/network.ts";
+import "./motion.ts";

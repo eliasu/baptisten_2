@@ -1,13 +1,136 @@
+{{# Slideshow #}}
+{{ partial:components/section padding_top="none" padding_bottom="none" }}
+    {{ collection:projects featured:is="true" as="slides" }}
+        {{ unless no_results }}
+        {{ _total = slides | count }}
+        <div class="hero-slides_wrap" aria-label="Ausgewählte Arbeiten" role="region">
+            <div class="hero-slides_stage">
+                {{ slides }}
+                    <div class="hero-slides_slide" data-caption="{{ title }}, {{ category }}">
+                        {{ partial:components/media :media="media" ratio="auto" class="hero-slides_media" }}
+                    </div>
+                {{ /slides }}
+            </div>
+            <div class="hero-slides_caption">
+                <div class="hero-slides_title">{{ slides }}{{ if first }}<span>{{ title }}, {{ category }}</span>{{ /if }}{{ /slides }}</div>
+                <div class="hero-slides_bar" aria-hidden="true"><span class="hero-slides_progress"></span></div>
+                <div class="hero-slides_count">01 / {{ _total < 10 ? '0' : '' }}{{ _total }}</div>
+            </div>
+        </div>
+        {{ /unless }}
+    {{ /collection:projects }}
+{{ /partial:components/section }}
+
 {{# Intro #}}
-{{ partial:components/section padding_top="large" }}
-    {{ partial:components/content-wrapper }}
-        {{ partial:components/eyebrow }}{{ eyebrow }}{{ /partial:components/eyebrow }}
-        {{ partial:components/heading tag="h1" variant="display" max_width="16" }}{{ heading }}{{ /partial:components/heading }}
-        {{ partial:components/paragraph variant="large" max_width="48" }}{{ text }}{{ /partial:components/paragraph }}
-        {{ partial:components/button-wrapper }}
-            {{ buttons scope="button" }}
-                {{ partial:components/button element="link" :href="button:link" :emphasis="first ? 'primary' : 'secondary'" }}{{ button:label }}{{ /partial:components/button }}
-            {{ /buttons }}
-        {{ /partial:components/button-wrapper }}
+{{ partial:components/section padding_top="large" padding_bottom="large" }}
+    {{ partial:components/content-wrapper centered="true" class="intro_layout" }}
+        {{ partial:components/paragraph variant="eyebrow" class="intro_eyebrow" }}{{ eyebrow }}{{ /partial:components/paragraph }}
+        {{ partial:components/heading tag="h1" max_width="18" class="intro_heading" }}{{ heading | nl2br }}{{ /partial:components/heading }}
+        {{ partial:components/paragraph variant="large" max_width="44" class="intro_text" }}{{ text }}{{ /partial:components/paragraph }}
     {{ /partial:components/content-wrapper }}
+{{ /partial:components/section }}
+
+{{# Netzwerk #}}
+{{ partial:components/section padding_top="none" padding_bottom="large" id="netzwerk" }}
+    {{ partial:components/content-head }}
+        {{ partial:components/heading tag="h2" variant="eyebrow" }}{{ network_label }}{{ /partial:components/heading }}
+        {{ slot:aside }}{{ partial:components/paragraph variant="large" max_width="40" }}{{ network_text }}{{ /partial:components/paragraph }}{{ /slot:aside }}
+    {{ /partial:components/content-head }}
+    {{ collection:network as="disciplines" }}
+        {{ unless no_results }}
+        <div class="network_wrap">
+            <ol class="network_list">
+                {{ disciplines }}
+                    <li class="network_item{{ if first }} is-active{{ /if }}">
+                        <span class="network_number text-style-eyebrow">{{ count < 10 ? '0' : '' }}{{ count }}</span>
+                        <span class="network_name text-style-display">{{ title }}</span>
+                        <span class="network_details text-style-small">{{ details }}</span>
+                    </li>
+                {{ /disciplines }}
+            </ol>
+            <div class="network_preview" aria-hidden="true">
+                <div class="network_stage">
+                    {{ disciplines }}
+                        {{ partial:components/media :media="media" ratio="auto" class="network_media{ first ? ' is-active' : '' }" }}
+                    {{ /disciplines }}
+                </div>
+                <div class="network_caption">
+                    <span class="network_current text-style-eyebrow">{{ disciplines }}{{ if first }}{{ title }}{{ /if }}{{ /disciplines }}</span>
+                    <span class="network_label text-style-eyebrow">Netzwerk</span>
+                </div>
+            </div>
+        </div>
+        {{ /unless }}
+    {{ /collection:network }}
+{{ /partial:components/section }}
+
+{{# Arbeiten #}}
+{{ partial:components/section padding_top="none" padding_bottom="large" id="arbeiten" }}
+    {{ partial:components/content-head variant="spread" }}
+        {{ partial:components/heading tag="h2" }}{{ work_heading }}{{ /partial:components/heading }}
+        {{ slot:aside }}{{ partial:components/paragraph variant="eyebrow" class="work_label" }}{{ work_label }}{{ /partial:components/paragraph }}{{ /slot:aside }}
+    {{ /partial:components/content-head }}
+    {{ collection:projects as="projects" }}
+        {{ unless no_results }}
+        <ul class="work_list">
+            {{ projects }}
+                <li class="work_item">
+                    {{ if link }}<a class="work_link" href="{{ link }}">{{ else }}<div class="work_link">{{ /if }}
+                        {{ partial:components/media :media="media" class="work_media" }}
+                        <div class="work_caption"><span class="text-style-eyebrow">{{ title }}</span><span class="work_type text-style-eyebrow">{{ category }}</span></div>
+                    {{ if link }}</a>{{ else }}</div>{{ /if }}
+                </li>
+            {{ /projects }}
+        </ul>
+        {{ /unless }}
+    {{ /collection:projects }}
+{{ /partial:components/section }}
+
+{{# Produktion #}}
+{{ partial:components/section padding_top="none" padding_bottom="large" id="produktion" }}
+    {{ partial:components/content-head }}
+        {{ partial:components/heading tag="h2" }}{{ services_heading }}{{ /partial:components/heading }}
+        {{ slot:aside }}{{ partial:components/paragraph variant="large" max_width="40" }}{{ services_text }}{{ /partial:components/paragraph }}{{ /slot:aside }}
+    {{ /partial:components/content-head }}
+    <div class="services_wrap">
+        {{ if phases }}
+        <div class="services_phases" data-reveal>
+            {{ phases scope="phase" }}
+                <div class="services_phase">
+                    {{ partial:components/heading tag="h3" }}{{ phase:title }}{{ /partial:components/heading }}
+                    <ul class="services_points">
+                        {{ phase:points }}<li>{{ value }}</li>{{ /phase:points }}
+                    </ul>
+                </div>
+            {{ /phases }}
+        </div>
+        {{ /if }}
+        {{ if prices }}
+        <dl class="services_prices" data-reveal>
+            {{ prices scope="price" }}
+                <div class="services_price">
+                    <dt class="text-style-eyebrow">{{ price:label }}</dt>
+                    <dd class="text-style-h3">{{ price:price }}</dd>
+                </div>
+            {{ /prices }}
+        </dl>
+        {{ /if }}
+    </div>
+{{ /partial:components/section }}
+
+{{# Kontakt #}}
+{{ partial:components/section padding_top="large" padding_bottom="large" class="contact_section" id="kontakt" }}
+    {{ partial:components/paragraph variant="eyebrow" }}{{ contact_label }}{{ /partial:components/paragraph }}
+    <div class="contact_wrap">
+        <div class="contact_info">
+            {{ if contact:email }}<a class="contact_mail text-style-h2" href="mailto:{{ contact:email }}">{{ contact:email }}</a>{{ /if }}
+            {{ if contact:note }}
+            <div class="contact_person">
+                {{ partial:components/media :media="contact:portrait" ratio="1/1" placeholder="" class="contact_portrait" }}
+                {{ partial:components/paragraph class="contact_note" }}{{ contact:note }}{{ /partial:components/paragraph }}
+            </div>
+            {{ /if }}
+        </div>
+        {{ partial:components/form handle="kontakt" submit_label="Anfrage senden" success_message="Danke. Du hörst persönlich von uns." class="contact_form" }}
+    </div>
 {{ /partial:components/section }}

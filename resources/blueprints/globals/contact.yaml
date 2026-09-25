@@ -1,0 +1,29 @@
+title: Contact
+fields:
+  -
+    handle: email
+    field:
+      type: text
+      input_type: email
+      display: Email
+      instructions: 'Adresse, die groß im Kontaktbereich steht und angeklickt werden kann.'
+      validate:
+        - required
+        - email
+  -
+    handle: portrait
+    field:
+      type: group
+      display: Portrait
+      instructions: 'Foto (oder Video) der Ansprechperson, quadratisch zugeschnitten. Erscheint klein neben dem Hinweis.'
+      fullscreen: false
+      fields:
+        -
+          import: media
+  -
+    handle: note
+    field:
+      type: textarea
+      display: Note
+      instructions: 'Ein, zwei Sätze neben dem Foto, z. B. wer die Nachricht liest.'
+      character_limit: 200
