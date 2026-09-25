@@ -50,7 +50,6 @@ document.querySelectorAll<HTMLElement>(".hero-slides_wrap").forEach((wrap) => {
   };
   run();
 
+  // ponytail: no hover pause, a missed pointerleave left it paused for good
   document.addEventListener("visibilitychange", () => (document.hidden ? timer?.pause() : timer?.resume()));
-  wrap.addEventListener("pointerenter", () => timer?.pause());
-  wrap.addEventListener("pointerleave", () => timer?.resume());
 });

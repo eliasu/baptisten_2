@@ -1,3 +1,4 @@
+import "./components/cursor.ts";
 import "./components/dropdown.ts";
 import "./components/footer.ts";
 import "./components/form.ts";

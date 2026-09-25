@@ -34,6 +34,7 @@
 @import "./components/textarea.css" layer(components);
 @import "./components/content-head.css" layer(components);
 @import "./components/media.css" layer(components);
+@import "./components/cursor.css" layer(components);
 @import "./components/hero-slides.css" layer(components);
 @import "./components/intro.css" layer(components);
 @import "./components/network.css" layer(components);

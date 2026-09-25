@@ -69,7 +69,11 @@
   - `motion.ts`: Lenis smooth scroll + anchor offset; intro lines slide up;
     head rules draw in; `[data-reveal]` children rise; work masks open
   - `hero-slides.ts`: wipe slideshow, caption roll, progress bar (GSAP);
-    also pauses on hover (added: the source never paused)
+    pauses only while the tab is hidden (a hover pause was removed: a missed
+    pointerleave left the slideshow stuck)
+  - `cursor.ts` (from branch commandg1): trailing dot; ring over links,
+    larger dot over media, "Ansehen" (+ domain for external links) over
+    linked media. Mouse/trackpad only, off under reduced motion
   - `network.ts`: hover and a scroll line at 55% set the active row, with
     IntersectionObserver instead of ScrollTrigger; the preview's clip
     reveal is a CSS transition, not GSAP

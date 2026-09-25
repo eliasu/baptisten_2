@@ -26,7 +26,7 @@ ignore any Webflow Lumos skill. No Tailwind.
   for the sticky nav; Lenis CSS imported into `base`
 - Custom: partials `media` (from branch commandg1), `content-head`; nav variant `split`, footer
   variant `bar`, section param `id`; page CSS `hero-slides`, `intro`,
-  `network`, `work`, `services`, `contact`; scripts `motion.ts`,
+  `network`, `work`, `services`, `contact`; scripts `motion.ts`, `cursor.ts` (from commandg1),
   `hero-slides.ts`, `network.ts` (GSAP, Lenis from npm)
 - Import: website from `imported/C-produktion-netzwerk.html`, record in IMPORT.md
 
